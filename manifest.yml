@@ -1,4 +1,5 @@
 applications:
+-ElephantSQL-3n
 - disk_quota: 1024M
   host: itucsdb1506
   name: itucsdb1506
