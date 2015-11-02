@@ -1,6 +1,6 @@
 applications:
--services:
-  -ElephantSQL-dz
+- services:
+  - ElephantSQL-dz
   disk_quota: 1024M
   host: itucsdb1506
   name: itucsdb1506
@@ -8,3 +8,4 @@ applications:
   domain: mybluemix.net
   instances: 1
   memory: 128M
+
