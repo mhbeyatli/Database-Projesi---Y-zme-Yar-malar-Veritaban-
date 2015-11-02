@@ -1,5 +1,4 @@
 body {
-  background-color: white;
   color: #6F6F6F;
   font-family: 'Droid Sans', 'Helvetica', 'sans';
   font-size: 12pt;
@@ -19,3 +18,5 @@ div#datetime {
   font-size: 80%;
   text-align: right;
 }
+
+
