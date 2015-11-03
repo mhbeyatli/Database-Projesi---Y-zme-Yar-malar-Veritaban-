@@ -5,7 +5,7 @@ import re
 import psycopg2 as dbcon
 from players import Player
 from records import Record
-
+from contest import contest
 from flask import Flask, request, render_template, redirect, url_for, session
 
 app = Flask(__name__)
@@ -144,6 +144,48 @@ def deleterecord(id):
             return redirect(url_for('edit_records'))
 
 @app.route('/admin')
+
+
+@app.route('/deleteanl/<int:id>')
+def deleteanl(id):
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                DELETE FROM contest WHERE id = %s
+                """, (int(id),))
+            conn.commit()
+return redirect(url_for('home'))
+
+
+@app.route('/addanl/', methods=['POST', 'GET'])
+def addanl():
+
+    now = datetime.datetime.now()
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM contest")
+            rows = cursor.fetchall()
+            contest = {}
+            for row in rows:
+                contest[int(row[0])] = contest(row[0], row[1], row[2], row[3], row[4])
+
+    if request.method == 'POST' and 'add' in request.form:
+        name = request.form.get('name')
+        surname = request.form.get('surname')
+        type = request.form.get('type')
+        degree = request.form.get('degree')
+        with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+"""INSERT INTO
+ contest (name, surname, type, degree)
+
+VALUES (%s, %s, %s, %s)
+ RETURNING ID""",(name, surname, type, degree))
+            conn.commit()
+
+            return redirect(url_for('home'))
+
 def admin():
     if 'email' in session:
         return render_template('admin.html', username=session['email'])

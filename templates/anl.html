@@ -1,0 +1,31 @@
+
+{% extends "home.html" %}
+{% block content %}
+	<table>
+      <thead>
+        <tr><th>id</th><th>Name</th><th>Surname</th><th>Type</th><th>Degree</th></tr>
+      </thead>
+      <tbody>
+
+	      	{% for n in contest %}
+	      	<tr>
+    		<td>{{ n.id }}</td>
+  		<td>{{ n.name }}</td>
+ 		<td>{{ n.surname }}</td>
+		<td>{{ n.type }}</td>
+		<td>{{ n.degree}}</td>
+	      	<td><a href="{{ url_for('delete', id=n.id) }}">Delete</a></td>
+	    </tr>
+	    {% endfor %}
+      </tbody>
+    </table>
+Add New
+<form method="post">
+Name<input type="text" id="name" name="name">
+Surname<input type="text" id="surname" name="surname">
+Type<input type="text" id="type" name="type">
+Degree<input type="text" class="form-control" id="degree" name="degree">
+<a href="{{ url_for('add', id=n.id) }}">Add</a>
+</br>Anil Agca 150120022
+
+{% endblock %}
