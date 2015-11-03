@@ -2,7 +2,7 @@ applications:
 - services:
   - ElephantSQL-dz
   disk_quota: 1024M
-  host: itucsdb1506
+  host: horton.elephantsql.com
   name: itucsdb1506
   path: .
   domain: mybluemix.net
