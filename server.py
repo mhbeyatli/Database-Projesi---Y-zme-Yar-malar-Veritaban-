@@ -7,7 +7,6 @@ from players import Player
 from records import Record
 
 from flask import Flask, request, render_template, redirect, url_for, session
-import records
 
 app = Flask(__name__)
 
@@ -42,7 +41,7 @@ def players():
                 players[int(row[0])] = Player(row[0], row[1], row[2], row[3], row[4])
 
     return render_template('players.html', current_time=now.ctime(), players=players.values())
-@app.route('/records')
+@app.route('/records/')
 def records():
     now = datetime.datetime.now()
 
