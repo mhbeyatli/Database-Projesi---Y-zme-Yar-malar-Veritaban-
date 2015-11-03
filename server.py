@@ -178,6 +178,6 @@ if __name__ == '__main__':
     if VCAP_SERVICES is not None:
         app.config['dsn'] = get_sqldb_dsn(VCAP_SERVICES)
     else:
-        app.config['dsn'] = """dbname='mzeqlsdz' host='horton.elephantsql.com' port=5432 user='mzeqlsdz' password='XkyJ3SH4oKAm6Q6tFhkHvfm2tHRxtz95'"""
+        app.config['dsn'] = """dbname='xwacqlyq' host='jumbo.db.elephantsql.com' port=5432 user='xwacqlyq' password='eDso0SkacPcR_R6fDRmk0iISfAqh9xjN'"""
 
     app.run(host='0.0.0.0', port=port, debug=debug)
