@@ -4,8 +4,10 @@ import json
 import re
 import psycopg2 as dbcon
 from players import Player
+from records import Record
 
 from flask import Flask, request, render_template, redirect, url_for, session
+import records
 
 app = Flask(__name__)
 
@@ -40,7 +42,19 @@ def players():
                 players[int(row[0])] = Player(row[0], row[1], row[2], row[3], row[4])
 
     return render_template('players.html', current_time=now.ctime(), players=players.values())
+@app.route('/records')
+def records():
+    now = datetime.datetime.now()
 
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM records")
+            rows = cursor.fetchall()
+            records = {}
+            for row in rows:
+                records[int(row[0])] = Record(row[0], row[1], row[2], row[3], row[4])
+
+    return render_template('records.html', current_time=now.ctime(), players=players.values())
 @app.route('/edit/players', methods=['POST', 'GET'])
 def edit_players():
     if not 'email' in session:
@@ -85,6 +99,50 @@ def delete(id):
             conn.commit()
 
             return redirect(url_for('edit_players'))
+@app.route('/edit/players', methods=['POST', 'GET'])
+def edit_records():
+    if not 'email' in session:
+        return redirect(url_for('home'))
+
+    now = datetime.datetime.now()
+
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM players")
+            rows = cursor.fetchall()
+            players = {}
+            for row in rows:
+                records[int(row[0])] = Record(row[0], row[1], row[2], row[3], row[4])
+
+    if request.method == 'POST' and 'add' in request.form:
+        record = request.form.get('record')
+        name = request.form.get('name')
+        surname = request.form.get('surname')
+        style = request.form.get('style')
+
+        with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""INSERT INTO players (record,name, surname, style)
+                VALUES (%s, %s, %s, %s) RETURNING ID""",(record,name, surname, style))
+            conn.commit()
+
+            return redirect(url_for('edit_records'))
+
+    return render_template('edit_players.html', current_time=now.ctime(), players=players.values())
+
+@app.route('/deleterc/<int:id>')
+def deleterecord(id):
+    if not 'email' in session:
+        return redirect(url_for('home'))
+
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                DELETE FROM records WHERE id = %s
+                """, (int(id),))
+            conn.commit()
+
+            return redirect(url_for('edit_records'))
 
 @app.route('/admin')
 def admin():
