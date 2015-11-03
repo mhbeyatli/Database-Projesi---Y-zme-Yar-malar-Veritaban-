@@ -6,6 +6,7 @@ import psycopg2 as dbcon
 from players import Player
 from records import Record
 from contest import contest
+from Type import types
 from flask import Flask, request, render_template, redirect, url_for, session
 
 app = Flask(__name__)
@@ -54,10 +55,66 @@ def records():
                 records[int(row[0])] = Record(row[0], row[1], row[2], row[3], row[4])
 
     return render_template('records.html', current_time=now.ctime(), players=players.values())
+@app.route('/types/')
+def types():
+    now = datetime.datetime.now()
+
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM types")
+            rows = cursor.fetchall()
+            types = {}
+            for row in rows:
+                types[int(row[0])] = types(row[0], row[1], row[2], row[3], row[4])
+
+    return
+
+
+
+@app.route('/deletety/<int:id>')
+def deletety(id):
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                DELETE FROM types WHERE id = %s
+                """, (int(id),))
+            conn.commit()
+    return redirect(url_for(''))
+
+
+@app.route('/addty/', methods=['POST', 'GET'])
+def addty():
+
+    now = datetime.datetime.now()
+    with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM types")
+            rows = cursor.fetchall()
+            types = {}
+            for row in rows:
+                types[int(row[0])] = types(row[0], row[1], row[2], row[3], row[4])
+
+    if request.method == 'POST' and 'add' in request.form:
+        name = request.form.get('name')
+        type = request.form.get('type')
+        weight = request.form.get('weight')
+        height = request.form.get('height')
+        with dbcon.connect(app.config['dsn']) as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+"""INSERT INTO
+ types (name, type, weight,height)
+                
+VALUES (%s, %s, %s, %s)
+ RETURNING ID""",(name, type, weight, height))
+            conn.commit()
+
+        return redirect(url_for('home'))
+
 @app.route('/edit/players', methods=['POST', 'GET'])
 def edit_players():
     if not 'email' in session:
-        return redirect(url_for('home'))
+        return redirect(url_for('edit_players'))
 
     now = datetime.datetime.now()
 
@@ -154,7 +211,8 @@ def deleteanl(id):
                 DELETE FROM contest WHERE id = %s
                 """, (int(id),))
             conn.commit()
-return redirect(url_for('home'))
+            
+            return redirect(url_for('home'))
 
 
 @app.route('/addanl/', methods=['POST', 'GET'])
