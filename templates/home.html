@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Obladi Oblada??- {%block title%} {%endblock%}</title>
+    <title>Burasi Neresi??- {%block title%} {%endblock%}</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
@@ -18,6 +18,9 @@
 	          <ul class="nav navbar-nav">
 	            <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
 	            <li><a href="{{ url_for('players') }}">Players</a></li>
+	             <li><a href="{{ url_for('records') }}">Records</a></li>
+	              <li><a href="{{ url_for('types') }}">Types</a></li>
+	             <li><a href="/addanl.html">anladddelete</a></li>
 	            <li><a href="{{ url_for('edit_players') }}">Customize Players</a></li>
 	          </ul>
 	        </div>
