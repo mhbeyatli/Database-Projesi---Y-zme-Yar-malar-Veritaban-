@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Burasi Neresi??- {%block title%} {%endblock%}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+  </head>
+  <body>
+  	<header>
+  		<nav class="navbar navbar-default navbar-static-top">
+	      <div class="container-fluid">
+	        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-8">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+	            <li><a href="{{ url_for('players') }}">Players</a></li>
+	             <li><a href="{{ url_for('records') }}">Records</a></li>
+	              <li><a href="{{ url_for('types') }}">Types</a></li>
+	             <li><a href="/addanl.html">anladddelete</a></li>
+	            <li><a href="{{ url_for('edit_players') }}">Customize Players</a></li>
+	          </ul>
+	        </div>
+	      </div>
+	    </nav>
+  	</header>
+    <div class="main">
+    	{% block content %}
+    	{% endblock %}
+    </div>
+    <footer>
+      <div id="datetime">{{ current_time }}</div>
+    </footer>
+  </body>
+</html>
