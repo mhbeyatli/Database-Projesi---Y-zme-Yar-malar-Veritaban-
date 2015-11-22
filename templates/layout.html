@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8" />
+	<title>Swimming - {% block title %}{% endblock %}</title>
+	<link rel="stylesheet"
+		href="{{ url_for('static', filename='style.css') }}" />
+	</head>
+	<body>
+		<header>
+				<nav>
+					<ul>
+						<li><a href="{{ url_for('home_page') }}">Home</a></li>
+						<li><a href="{{ url_for('styles_page')}}">Swimming Styles</a></li>
+						<li><a href="{{ url_for('records_page')}}">Swimming Records</a></li>
+						<li><a href="{{ url_for('medals_page')}}">Swimming Medals</a></li>
+						<li><a href="{{ url_for('olympics_page')}}">Olympics Swimming</a></li>
+						<li><a href="{{ url_for('openwater_page')}}">Open Water Swimming</a></li>
+					</ul>
+		</nav>
+		</header>
+	{% block content %}{% endblock %}
+
+		<footer>
+		<div id="datetime">{{ current_time }}</div>
+		</footer>
+	</body>
+</html>

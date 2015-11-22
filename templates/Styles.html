@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Styles{% endblock %}
+{% block content %}<h2>Style List</h2>
+<a href="{{ url_for('style_edit')}}">Add Styles</a>
+<form action="{{ url_for('styles_page') }}" method="post">
+ <table>
+ {% for key, Style in Styles %}
+ <tr>
+<td><input type="checkbox" name="styles_to_delete"
+value="{{ key }}" /></td>
+ <td>
+<a href="{{ url_for('style_page', key=key) }}">
+{{ Style.title }} ({{ Style.year }})
+</a>
+</td>
+ </tr>
+{% endfor %}
+</table>
+<input type="submit" value="Delete" name="delete" />
+</form>
+{% endblock %}
+
