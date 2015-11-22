@@ -13,26 +13,26 @@ class Style:
 @app.route('/Styles', methods=['GET', 'POST'])
 def styles_page():
     if request.method == 'GET':
-        Styles = app.store.get_movies()
+        Styles = app.store.get_styles()
         now = datetime.datetime.now()
         return render_template('Styles.html', Styles=Styles,
                                current_time=now.ctime())
     elif 'styles_to_delete' in request.form:
         keys = request.form.getlist('styles_to_delete')
         for key in keys:
-            app.store.delete_movie(int(key))
+            app.store.delete_style(int(key))
             return redirect(url_for('styles_page'))
 
     else:
         title = request.form['title']
         year = request.form['year']
         style = Style(title, year)
-        app.store.add_movie(style)
+        app.store.add_style(style)
         return redirect(url_for('style_page', key=app.store.last_key))
 
 @app.route('/Styles/<int:key>')
 def style_page(key):
-    Style= app.store.get_movie(key)
+    Style= app.store.get_style(key)
     now = datetime.datetime.now()
     return render_template('Styles.html', Style=Style, current_time=now.ctime())
 

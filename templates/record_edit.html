@@ -1,0 +1,27 @@
+ {% extends "layout.html" %}
+ {% block title %}Record Edit Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('records_page') }}" method="post">
+<table>
+ <tr>
+ <th>Name:</th>
+ <td>
+ <input type="text" name="name" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Surname:</th>
+<td>
+ <input type="text" name="surname" required autofocus />
+</td>
+</tr>
+ <tr>
+ <th>Records:</th>
+<td>
+ <input type="text" name="records" size="4" />
+</td>
+</tr>
+</table>
+<input value="Save" name="save" type="submit" />
+</form>
+{% endblock %}
