@@ -28,7 +28,7 @@ def records_page():
         rec = request.form['rec']
         record = Record(name, rec)
         app.store.add_record(record)
-        return redirect(url_for('record_page', key=app.store.last_key))
+        return redirect(url_for('records_page', key=app.store.last_key))
 
 @app.route('/Records/<int:key>')
 def record_page(key):
