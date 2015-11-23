@@ -6,17 +6,49 @@ body {
 }
 
 h1, h2, h3, h4 {
-  color: #E9601A;
+  color: #003366;
 }
 
-a {
-  color: #6F6F6F;
-  text-decoration: underline;
-}
 
 div#datetime {
   font-size: 80%;
   text-align: right;
 }
 
+li.nav {
+    float: left;
+    display: inline;
+}
+
+a.nav:link, a.nav:visited {
+    display: block;
+    width: 185px;
+    font-weight: bold;
+    color: #e5f2ff;
+    background-color: #6F6F6F;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    
+}
+
+a.nav:hover, a.nav:active {
+    background-color: #669999;
+}
+
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+a {
+	 color: #000000;
+	 text-decoration: none;
+}
+li
+{
+	float: left;
+}
 
