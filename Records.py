@@ -6,10 +6,9 @@ from flask import render_template
 from config import app
 
 class Record:
-    def __init__(self, name, surname, record=None):
+    def __init__(self, name, rec=None):
             self.name = name
-            self.surname = surname
-            self.record = record 
+            self.rec=rec 
             
 @app.route('/Records', methods=['GET', 'POST'])
 def records_page():
@@ -19,17 +18,16 @@ def records_page():
         return render_template('Records.html', Records=Records,
                                current_time=now.ctime())
     elif 'records_to_delete' in request.form:
-        keys = request.form.getlist('records_o_delete')
+        keys = request.form.getlist('records_to_delete')
         for key in keys:
             app.store.delete_record(int(key))
             return redirect(url_for('records_page'))
 
     else:
         name = request.form['name']
-        surname = request.form['surname']
-        record = request.form['record']
-        recordes = Record(name, surname, record)
-        app.store.add_record(recordes)
+        rec = request.form['rec']
+        record = Record(name, rec)
+        app.store.add_record(record)
         return redirect(url_for('record_page', key=app.store.last_key))
 
 @app.route('/Records/<int:key>')

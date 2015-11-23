@@ -50,36 +50,36 @@ class Store:
     def add_record(self, record1):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "INSERT INTO RECORDS (NAME, SURNAME, RECORD) VALUES (?, ?, ?)"
-            cursor.execute(query, (record1.name, record1.surname, record1.record))
+            query = "INSERT INTO RECO (NAME, REC) VALUES (%s, %s)"
+            cursor.execute(query, (record1.name, record1.rec))
             connection.commit()
             self.last_key = cursor.lastrowid
     def delete_record(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "DELETE FROM RECORDS WHERE (ID = %s)"
+            query = "DELETE FROM RECO WHERE (ID = %s)"
             cursor.execute(query, (key,))
             connection.commit()
 
-    def update_record(self, key, name, surname,record):
+    def update_record(self, key, name, rec):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE RECORDS SET NAME = ?, SURNAME = ?, RECORD = ? WHERE (ID = ?)"
-            cursor.execute(query, (name, surname ,record, key))
+            query = "UPDATE RECO SET NAME = ?, REC = ? WHERE (ID = ?)"
+            cursor.execute(query, (name, rec, key))
             connection.commit()
     def get_record(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT NAME, SURNAME, RECORD FROM RECORDS WHERE (ID = ?)"
+            query = "SELECT NAME, REC FROM RECO WHERE (ID = ?)"
             cursor.execute(query, (key))
             name, surname, record = cursor.fetchone()
             return Record(name, surname, record)
     def get_records(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, NAME, SURNAME, RECORD FROM RECORDS ORDER BY ID"
+            query = "SELECT ID, NAME, REC FROM RECO ORDER BY ID"
             cursor.execute(query)
-            Records = [(key, Record(name, surname, record))
-                      for key, name, surname, record in cursor]
+            Records = [(key, Record(name, rec))
+                      for key, name, rec in cursor]
             return Records
         

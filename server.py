@@ -10,7 +10,7 @@ import Openwater
 import Olympicurldef
 import Styles
 import Records
-import sqlite3 as dbapi2
+import psycopg2 as dbapi2
 
 
 def get_elephantsql_dsn(vcap_services):
