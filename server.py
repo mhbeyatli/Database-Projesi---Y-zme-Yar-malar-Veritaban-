@@ -7,6 +7,7 @@ from config import app
 from store import Store
 import Medals
 import Openwater
+import Olympicurldef
 import Styles
 import Records
 import sqlite3 as dbapi2
