@@ -8,7 +8,6 @@ from store import Store
 import Medals
 import Openwater
 import Olympicurldef
-import Styles
 import Records
 import psycopg2 as dbapi2
 
