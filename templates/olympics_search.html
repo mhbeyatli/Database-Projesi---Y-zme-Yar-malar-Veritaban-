@@ -1,0 +1,26 @@
+ {% extends "layout.html" %}
+ {% block title %}Olympics Search Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('olympics_search') }}" method="post">
+<table>
+<tr>
+ <th>Enter the Keyword for search:</th>
+ <td>
+ <input type="text" name="keywords" required autofocus />
+ </td>
+ </tr>
+</table>
+<input value="Save" name="save" type="submit" />
+</form>
+<form action="{{ url_for('olympics_search') }}" method="post">
+ <table>
+ {% for key, Olympic in Olympics %}
+<tr>
+ <td>
+<a href="{{ url_for('olympic_page', keywords=key) }}">
+{{ Olympic.Listno }} ({{Olympic.Fullname}} {{ Olymic.SwimmerId }} {{Olympic.Year}} {{Olympic.Poolid}})
+</a>
+</td>
+ </tr>
+
+{% endblock %}

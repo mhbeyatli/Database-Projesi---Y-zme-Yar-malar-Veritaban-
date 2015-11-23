@@ -1,0 +1,39 @@
+ {% extends "layout.html" %}
+ {% block title %}Olympics Add Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('olympics_page') }}" method="post">
+<table>
+ <tr>
+ <th>List No:</th>
+<td>
+ <input type="text" name="Listno" size="4" />
+</td>
+</tr> 
+<tr>
+ <th>Full name:</th>
+ <td>
+ <input type="text" name="Fullname" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Swimmer ID:</th>
+<td>
+ <input type="text" name="SwimmerId" size="5" />
+</td>
+</tr>
+ <tr>
+ <th>Year : </th>
+<td>
+ <input type="text" name="Year" size="5" />
+</td>
+</tr>
+ <tr>
+ <th>Pool ID:</th>
+<td>
+ <input type="text" name="Poolid" size="5" />
+</td>
+</tr>
+</table>
+<input value="Save" name="save" type="submit" />
+</form>
+{% endblock %}

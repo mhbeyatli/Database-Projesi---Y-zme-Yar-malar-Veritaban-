@@ -1,0 +1,25 @@
+x{% extends "layout.html" %}
+{% block title %}Olympics{% endblock %}
+{% block content %}<h1>List of Olympics</h1>
+<a href="{{ url_for('olympic_edit'}})">Add New Olympics</a>
+<a href="olympics_update.html">Update Olympics</a>
+<a href="olympics_search.html">Search Olympics</a>
+<form action="{{ url_for('olympics_page') }}" method="post">
+ <table>
+ {% for key, Olympic in Olympics %}
+ <tr>
+<td><input type="checkbox" name="deleteolympics"
+value="{{ key }}" /></td>
+
+ <td>
+<a href="{{ url_for('olympic_page', key=key) }}">
+{{ Olympic.Listno }} ({{Olympic.Fullname}} {{ Olymic.SwimmerId }} {{Olympic.Year}} {{Olympic.Poolid}})
+</a>
+</td>
+ </tr>
+{% endfor %}
+</table>
+<input type="submit" value="Delete" name="delete" />
+</form>
+{% endblock %}
+
