@@ -6,7 +6,6 @@ from flask import render_template
 from config import app
 from store import Store
 import Medals
-import Olympics
 import Openwater
 import Styles
 import Records
