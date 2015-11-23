@@ -1,6 +1,7 @@
 import psycopg2 as dbapi2
 
 from Records import Record
+from Styles import Style
 from flask import render_template
 import datetime
 from flask import redirect
@@ -12,7 +13,51 @@ class Store:
         self.dsn = dsn
         self.last_key = None
         
+    def add_style(self, style1):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO STYLESS (TITLE, YR) VALUES (%s, %s)"
+            cursor.execute(query, (style1.title, style1.year))
+            connection.commit()
+            self.last_key = cursor.lastrowid
+    def delete_style(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM STYLESS WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+
+    def update_style(self, key, title, year):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "UPDATE STYLESS SET TITLE = %s, YR = %s WHERE (ID = %s)"
+            cursor.execute(query, (title, year, key))
+            connection.commit()
+            
+    def get_style(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT TITLE, YR FROM STYLESS WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            title, year = cursor.fetchone()
+        return Style(title, year)
+    def get_styles(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, TITLE, YR FROM STYLESS ORDER BY ID"
+            cursor.execute(query)
+            Styles = [(key, Style(title, year))
+                      for key, title, year in cursor]
+        return Styles
     
+    def search_style(self, tosearch):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT TITLE, YR FROM STYLESS WHERE (TITLE LIKE '%s')"
+            cursor.execute(query,('tosearch'))
+            title, year = cursor.fetchone()
+        return Style(title,year)
+        
     def add_record(self, record1):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
