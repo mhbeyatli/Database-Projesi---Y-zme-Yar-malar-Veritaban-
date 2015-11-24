@@ -72,4 +72,8 @@ def openw_search():
         Openwater=app.store.search_openw(word)
         now = datetime.datetime.now()
         return render_template('OpenWater.html', Openwater=Openwater, current_time=now.ctime())
-    
+
+@app.route('/OpenWater/tables')
+def openw_tables():
+    now = datetime.datetime.now()
+    return render_template('openw_tables.html', current_time=now.ctime())
