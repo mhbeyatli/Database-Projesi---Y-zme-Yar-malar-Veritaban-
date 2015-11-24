@@ -2,6 +2,7 @@ import psycopg2 as dbapi2
 
 from Openwater import Openw
 from Records import Record
+from Styles import Person
 from Styles import Style
 from flask import render_template
 import datetime
