@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Medalsupdate{% endblock %}
+{% block content %}
+<form method="post">
+		      <div class="modal-body">
+				  <div class="form-group">
+				    <label for="name">Year</label>
+				    <input type="text" class="form-control" id="year" name="year" placeholder="Year" value="{{medal.year}}">
+				  </div>
+				  <div class="form-group">
+				    <label for="surname">Gold</label>
+				    <input type="text" class="form-control" id="gold" name="gold" placeholder="Gold" value="{{medal.gold}}">
+				  </div>
+				  <div class="form-group">
+				    <label for="nationality">Silver</label>
+				    <input type="text" class="form-control" id="silver" name="silver" placeholder="Silver" value="{{medal.silver}}">
+				  </div>
+				  <div class="form-group">
+				    <label for="style">Bronze</label>
+				    <input type="text" class="form-control" id="bronze" name="bronze" placeholder="Bronze" value="{{medal.bronze}}">
+				  </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="submit" name="add" class="btn btn-primary">Save</button>
+		      </div>
+	      </form>
+{% endblock %}

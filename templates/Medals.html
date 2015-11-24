@@ -1,7 +1,156 @@
 {% extends "layout.html" %}
 {% block title %}Medals{% endblock %}
 {% block content %}
+		<br>
+		<br>
+		<button class="btn btn-default" data-toggle="modal" data-target="#myModal">Add New Competition</button>
+		<br>
+		<br>
+		<div class="row">
+			<form method="get">
+		      <div class="col-sm-8">
+				  <div class="form-group">
+				    <input type="text" class="form-control" id="keyword" name="keyword" value="{{kw}}" placeholder="Keyword(Year doesn't work)">
+				  </div>
+		      </div>
+		      <div class="col-sm-4">
+		        <button type="submit" name="search" class="btn btn-primary">Search</button>
+		      </div>
+			</form>
+		</div>
+		<br>
 
-		<h2>Medal List</h2>
-	
+		<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Competition ID</th>
+          <th>Year</th>
+          <th>Gold</th>
+          <th>Silver</th>
+          <th>Bronze</th>
+        </tr>
+      </thead>
+	   <tbody>
+      	{% if medals %}
+	      	{% for i in medals %}
+	      	<tr>
+	      		<td>{{ i.id }}</td>
+	      		<td>{{ i.year }}</td>
+	      		<td>{{ i.gold }}</td>
+	      		<td>{{ i.silver }}</td>
+	      		<td>{{ i.bronze }}</td>
+	      		<td>
+	      			<a href="{{ url_for('deletemedal', id=i.id) }}">Delete</a>
+	      		</td>
+	      		<td>
+	      			<a href="{{ url_for('updatemedal', id=i.id) }}">Update</a>
+	      		</td>
+	      	</tr>
+	        {% endfor %}
+        {% else %}
+        	<tr>
+	          <td colspan="5" align="center">Nothing found.</td>
+	        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+	<br>
+	<br>
+	<br>
+	<button class="btn btn-default" data-toggle="modal" data-target="#myModalhigh">Add New Best Score</button>
+		<br>
+		<br>
+
+	<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Best Score ID</th>
+          <th>Best Score (Minutes)</th>
+          <th>Competition ID</th>
+        </tr>
+      </thead>
+	   <tbody>
+      	{% if medal_records %}
+	      	{% for j in medal_records %}
+	      	<tr>
+	      		<td>{{ j.id }}</td>
+	      		<td>{{ j.bscore }}</td>
+	      		<td>{{ j.mid }}</td>
+	      		<td>
+	      			<a href="{{ url_for('deletemedalrec', id=j.id) }}">Delete</a>
+	      		</td>
+	      		<td>
+	      			<a href="{{ url_for('updatemedalrec', id=j.id) }}">Update</a>
+	      		</td>
+	      	</tr>
+	        {% endfor %}
+        {% else %}
+        	<tr>
+	          <td colspan="5" align="center">Nothing found.</td>
+	        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Add New Player</h4>
+	      </div>
+	      <form method="post">
+		      <div class="modal-body">
+				  <div class="form-group">
+				    <label for="name">Year</label>
+				    <input type="text" class="form-control" id="year" name="year" placeholder="Year">
+				  </div>
+				  <div class="form-group">
+				    <label for="surname">Gold</label>
+				    <input type="text" class="form-control" id="gold" name="gold" placeholder="Gold">
+				  </div>
+				  <div class="form-group">
+				    <label for="nationality">Silver</label>
+				    <input type="text" class="form-control" id="silver" name="silver" placeholder="Silver">
+				  </div>
+				  <div class="form-group">
+				    <label for="style">Bronze</label>
+				    <input type="text" class="form-control" id="bronze" name="bronze" placeholder="Bronze">
+				  </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" name="add" class="btn btn-primary">Save</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="myModalhigh" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Add New Best Score</h4>
+	      </div>
+	      <form method="post">
+		      <div class="modal-body">
+				  <div class="form-group">
+				    <label for="surname">High Score</label>
+				    <input type="text" class="form-control" id="bscore" name="bscore" placeholder="High Score">
+				  </div>
+				  <div class="form-group">
+				    <label for="surname">Comptetition ID</label>
+				    <input type="text" class="form-control" id="mid" name="mid" placeholder="Comptetition ID">
+				  </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" name="addrec" class="btn btn-primary">Save</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
 {% endblock %}
