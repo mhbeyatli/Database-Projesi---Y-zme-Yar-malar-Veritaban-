@@ -108,4 +108,15 @@ def person_update2():
     Persons = app.store.get_person()
     now = datetime.datetime.now()
     return render_template('person_update.html',Persons=Persons,current_time=now.ctime())
+@app.route('/Person/search2')
+def person_search2():
+    now = datetime.datetime.now()
+    return render_template('person_search.html', current_time=now.ctime())
 
+@app.route('/Person/search', methods=['GET' , 'POST'])
+def person_search():
+    if request.method == 'POST':
+        word =request.form['word']
+        Persons=app.store.search_person(word)
+        now = datetime.datetime.now()
+        return render_template('Styles.html',Persons=Persons, current_time=now.ctime())
