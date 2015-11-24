@@ -53,10 +53,11 @@ class Store:
     def search_style(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT TITLE, YR FROM STYLESS WHERE (TITLE LIKE '%s')"
-            cursor.execute(query,('tosearch'))
-            title, year = cursor.fetchone()
-        return Style(title,year)
+            query = "SELECT ID, TITLE, YR FROM STYLESS WHERE (TITLE LIKE %s)"
+            cursor.execute(query,(tosearch,))
+            Styles = [(key, Style(title, year))
+                      for key, title, year in cursor]
+            return Styles
     
     def add_record(self, record1):
         with dbapi2.connect(self.dsn) as connection:
