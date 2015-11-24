@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+ {% block title %}Search Styles{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('person_search') }}" method="post">
+<table>
+<tr>
+ <th>Enter the Keyword for search:</th>
+ <td>
+ <input type="text" name="word" required autofocus />
+ </td>
+ </tr>
+</table>
+<input value="Search" name="search" type="submit" />
+</form>
+{% endfor %}
+{% endblock %}
