@@ -2,28 +2,36 @@
 {% block title %}OpenWater{% endblock %}
 {% block content %}
 
+ 
 <h2>Open Water List</h2>
+
+<p> 
 <a href="{{ url_for('openw_add')}}">Add Styles</a>
 <form action="{{ url_for('openwater_page') }}" method="post">
 <table>
 {% for key, Openw in Openwater %}
 <tr>
-	<td><input type="checkbox" name="openw_to_delete"
-		value="{{ key }}" />
+	<td> 
+	<input type="checkbox" name="openw_to_delete"
+		value="{{ key }}" /> 
 	</td>
 	<td>
 		<a href="{{ url_for('openwater_page', key=key) }}">
 		{{ Openw.comp }}  ({{ Openw.year }}) - {{ Openw.winner}}</a>
 	</td>
 </tr>
+</p>
 {% endfor %}
+
 </table>
 
-
+<p>
 <input type="submit" value="Delete" name="delete" />
 <input type="button" value="Update" name="update" onclick="location.href='OpenWater/update2';" />
 <input type="button" value="Search" name="search" onclick="location.href='OpenWater/search2';" />
+</p>
 </form>
+
 
 
 {% endblock %}

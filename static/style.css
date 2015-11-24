@@ -3,10 +3,12 @@ body {
   font-family: 'Droid Sans', 'Helvetica', 'sans';
   font-size: 12pt;
   margin: 2ex 2em;
+
 }
 
 h1, h2, h3, h4 {
   color: #003366;
+  text-indent: 50px;
 }
 
 

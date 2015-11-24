@@ -72,3 +72,4 @@ def openw_search():
         Openwater=app.store.search_openw(word)
         now = datetime.datetime.now()
         return render_template('OpenWater.html', Openwater=Openwater, current_time=now.ctime())
+    
