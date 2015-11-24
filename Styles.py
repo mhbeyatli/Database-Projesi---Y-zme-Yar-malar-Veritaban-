@@ -62,6 +62,6 @@ def style_search2():
 def style_search():
     if request.method == 'POST':
         word =request.form['word']
-        app.store.search_style(word)
+        Styles=app.store.search_style(word)
         now = datetime.datetime.now()
-        return render_template('style_search.html', Style=Style, current_time=now.ctime())
+        return render_template('Styles.html', Styles=Styles, current_time=now.ctime())
