@@ -128,6 +128,13 @@ class Store:
             query = "DELETE FROM OPENWATER WHERE (ID = %s)"
             cursor.execute(query, (key,))
             connection.commit()
+    def update_openw(self, key, comp, winner, year):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "UPDATE OPENWATER SET COMPATITION = %s, WINNER = %s, YEAR = %s WHERE (ID = %s)"
+            cursor.execute(query, (comp,winner, year, key))
+            connection.commit()
+            
     def add_person(self, person1):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -149,11 +156,13 @@ class Store:
             Persons = [(key, Person(cntry, time))
                       for key, cntry, time in cursor]
         return Persons
-    def update_openw(self, key, comp, winner, year):
+     def update_person(self, key, cntry, time):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE OPENWATER SET COMPATITION = %s, WINNER = %s, YEAR = %s WHERE (ID = %s)"
-            cursor.execute(query, (comp,winner, year, key))
+            query = "UPDATE PERSON SET CNTRY = %s, TIME = %s WHERE (ID = %s)"
+            cursor.execute(query, (cntry, time,key))
             connection.commit()
+            
+  
 
                 
