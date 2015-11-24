@@ -3,6 +3,7 @@ import psycopg2 as dbapi2
 from Openwater import Openw
 from Records import Record
 from Styles import Person
+from Records import Recor
 from Styles import Style
 from flask import render_template
 import datetime
@@ -61,12 +62,21 @@ class Store:
                       for key, title, year in cursor]
             return Styles
     
-    def add_record(self, record1):
+   def add_record(self, record1):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "INSERT INTO RECO (NAME, REC) VALUES (%s, %s)"
             cursor.execute(query, (record1.name, record1.rec))
             connection.commit()
+    
+    def add_recor(self, recor1):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO RECOC (NAME, RECOR) VALUES (%s, %s)"
+            cursor.execute(query, (recor1.name, recor1.recor))
+            connection.commit()
+            self.last_key = cursor.lastrowid
+
             self.last_key = cursor.lastrowid
     def delete_record(self, key):
         with dbapi2.connect(self.dsn) as connection:
@@ -75,12 +85,29 @@ class Store:
             cursor.execute(query, (key,))
             connection.commit()
 
+    def delete_recor(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM RECOC WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+
+    
     def update_record(self, key, name, rec):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "UPDATE RECO SET NAME = %s, REC = %s WHERE (ID = %s)"
             cursor.execute(query, (name, rec, key))
             connection.commit()
+    
+    def update_recor(self, key, name, recor):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "UPDATE RECOC SET NAME = %s, RECOR = %s WHERE (ID = %s)"
+            cursor.execute(query, (name, recor, key))
+            connection.commit()
+
+    
     
     def get_record(self, key):
         with dbapi2.connect(self.dsn) as connection:
@@ -89,6 +116,16 @@ class Store:
             cursor.execute(query, (key,))
             name, rec = cursor.fetchone()
             return Record(name, rec)
+        
+    def get_recor(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT NAME, RECOR FROM RECOC WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            name, recor = cursor.fetchone()
+            return Recor(name, recor)      
+        
+        
     def get_records(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -98,6 +135,15 @@ class Store:
                       for key, name, rec in cursor]
             return Records
         
+    def get_recors(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, RECOR FROM RECOC ORDER BY ID"
+            cursor.execute(query)
+            Recors = [(key, Recor(name, recor))
+                      for key, name, recor in cursor]
+            return Recors
+   
     def record_search(self, tosearch):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
@@ -106,6 +152,23 @@ class Store:
                 Records = [(key, Record(name, rec))
                           for key, name, rec in cursor]
                 return Records
+    def get_openw(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, COMPETITION, WINNER, YEAR FROM OPENWATER ORDER BY YEAR"
+            cursor.execute(query)
+            Openwater = [(key, Openw(competition,winner,year))
+                        for key, competition,winner,year in cursor]
+            return Openwater
+   
+    def recor_search(self, tosearch):
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "SELECT ID, NAME, RECOR FROM RECO WHERE (NAME LIKE %s)"
+                cursor.execute(query,(tosearch,))
+                Recors = [(key, Record(name, recor))
+                          for key, name, recor in cursor]
+                return Recors
     def get_openw(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
