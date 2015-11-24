@@ -3,7 +3,7 @@
 {% block content %}
 
 <h2>Open Water List</h2>
-<a href="{{ url_for('openw_add')}}">Add Open Water</a>
+<a href="{{ url_for('openw_add')}}">Add Styles</a>
 <form action="{{ url_for('openwater_page') }}" method="post">
 <table>
 {% for key, Openw in Openwater %}
@@ -21,6 +21,7 @@
 
 
 <input type="submit" value="Delete" name="delete" />
+<input type="button" value="Update" name="update" onclick="location.href='OpenWater/update2';" />
 </form>
 
 

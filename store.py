@@ -149,4 +149,11 @@ class Store:
             Persons = [(key, Person(cntry, time))
                       for key, cntry, time in cursor]
         return Persons
+    def update_openw(self, key, comp, winner, year):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "UPDATE OPENWATER SET COMPATITION = %s, WINNER = %s, YEAR = %s WHERE (ID = %s)"
+            cursor.execute(query, (comp,winner, year, key))
+            connection.commit()
+
                 

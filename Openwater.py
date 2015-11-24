@@ -42,3 +42,20 @@ def openw_page(key):
 def openw_add():
     now = datetime.datetime.now()
     return render_template('openw_add.html', current_time=now.ctime())
+
+@app.route('/OpenWater/update/',methods=['GET' , 'POST'])
+def openw_update():
+    if request.method == 'POST':
+        comp = request.form['competition']
+        winner = request.form['winner']
+        year = request.form['year']
+        keys = request.form.getlist('openw_to_update')
+        for key in keys:
+            app.store.update_openw(int(key),comp,winner,year)
+    return redirect(url_for('openwater_page'))
+                                
+@app.route('/OpenWater/update2/')
+def openw_update2():
+    Openwater = app.store.get_openw()
+    now = datetime.datetime.now()
+    return render_template('openw_update.html',Openwater=Openwater,current_time=now.ctime())

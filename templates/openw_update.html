@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block title %}Open water Update Form{% endblock %}
+{% block content %}
+
+<form action="{{ url_for('openw_update') }}" method="post">
+	<table>
+ 	{% for key, Openw in Openwater %}
+ 		<tr>
+			<td><input type="checkbox" name="openw_to_update"
+				value="{{ key }}" />
+			</td>
+ 			<td>
+				<a href="{{ url_for('openwater_page', key=key) }}">
+					{{ Openw.comp }} ({{ Openw.year }}) - {{ Openw.winner }}
+				</a>
+			</td>
+ 		</tr>
+	{% endfor %}
+	<table>
+ 		<th>Competition:</th>
+			<td>
+ 				<input  type="text" name="competition" required autofocus />
+ 			</td>
+ 		</tr>
+ 		<tr>
+			<th>Winner:</th>
+				<td>
+ 					<input  type="text" name="winner" required autofocus />
+ 				</td>
+ 		</tr>
+ 		<tr>
+			<th>Year:</th>
+				<td>
+ 					<input  type="text" name="year" size="4" />
+ 				</td>
+ 			</tr>
+ 		<tr>
+
+	</table>
+	<input value="Update" name="update" type="submit" />
+</form>
+
+{% endblock %}
