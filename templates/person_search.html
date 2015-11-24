@@ -12,5 +12,14 @@
 </table>
 <input value="Search" name="search" type="submit" />
 </form>
+<form action="{{ url_for('person_search') }}" method="post">
+ <table>
+ {% for key, Person in Persons %}
+<tr>
+ <td>
+{{ Person.cntry }} {{ Person.time }}
+</a>
+</td>
+ </tr>
 {% endfor %}
 {% endblock %}
