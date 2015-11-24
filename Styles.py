@@ -54,7 +54,9 @@ def style_update():
                                 
 @app.route('/Styles/update2/')
 def style_update2():
-    return render_template('style_update.html')
+    Styles = app.store.get_styles()
+    return render_template('style_update.html',Styles=Styles)
+    
 @app.route('/Styles/search2')
 def style_search2():
     now = datetime.datetime.now()
