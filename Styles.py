@@ -93,4 +93,14 @@ def person_page():
 def person_edit():
     now = datetime.datetime.now()
     return render_template('person_edit.html', current_time=now.ctime())
+    
+@app.route('/Person/update/',methods=['GET' , 'POST'])
+def person_update():
+    if request.method == 'POST':
+        cntry = request.form['cntry']
+        time = request.form['time']
+        keys = request.form.getlist('person_to_update')
+        for key in keys:
+            app.store.update_person(int(key),cntry,time)
+    return redirect(url_for('styles_page'))
 
