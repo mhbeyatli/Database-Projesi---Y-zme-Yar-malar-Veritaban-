@@ -39,7 +39,7 @@ from flask import url_for
     def update_olympic(self, Updateto, Olymp):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE OLYMPICS SET LISTNO = %s, FULLNAME = %s, SWIMMERID = %s, YEAR, POOLID WHERE (LISTNO = %s)"
+            query = "UPDATE OLYMPICS SET LISTNO = %s, FULLNAME = %s, SWIMMERID = %s, YEAR, = %s POOLID = %s WHERE (LISTNO = %s)"
             cursor.execute(query, (Olymp.Listno, Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid, Updateto))
             connection.commit()
 

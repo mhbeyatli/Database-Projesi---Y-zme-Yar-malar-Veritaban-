@@ -51,7 +51,7 @@ Toupdate = request.form['Toupdate']
 	Year = request.form['Year']
 	Poolid = request.form['Poolid']
         Olympic = Olympic(Listno,Fullname,SwimmerId,Year,Poolid)
-        app.store.Olympicupdate(Updateto,Olympic)
+        app.store.Olympicupdate(Toupdate,Olympic)
         return redirect(url_for('olympic_page', key=app.store.last_key))
 
 @app.route('/Olympics/search')
