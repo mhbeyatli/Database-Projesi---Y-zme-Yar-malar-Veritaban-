@@ -59,3 +59,16 @@ def openw_update2():
     Openwater = app.store.get_openw()
     now = datetime.datetime.now()
     return render_template('openw_update.html',Openwater=Openwater,current_time=now.ctime())
+
+@app.route('/OpenWater/search2')
+def openw_search2():
+    now = datetime.datetime.now()
+    return render_template('openw_search.html', current_time=now.ctime())
+
+@app.route('/OpenWater/search', methods=['GET' , 'POST'])
+def openw_search():
+    if request.method == 'POST':
+        word =request.form['word']
+        Openwater=app.store.search_openw(word)
+        now = datetime.datetime.now()
+        return render_template('OpenWater.html', Openwater=Openwater, current_time=now.ctime())

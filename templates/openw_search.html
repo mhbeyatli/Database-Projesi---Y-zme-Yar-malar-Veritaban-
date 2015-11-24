@@ -1,0 +1,28 @@
+
+{% extends "layout.html" %}
+{% block title %}Search Open Water{% endblock %}
+{% block content %}
+<form action="{{ url_for('openw_search') }}" method="post">
+	<table>
+		<tr>
+ 			<th>Enter the Keyword for search:</th>
+			<td>
+ 				<input type="text" name="word" required autofocus />
+ 			</td>
+ 		</tr>
+	</table>
+	<input value="Search" name="search" type="submit" />
+</form>
+
+<form action="{{ url_for('openw_search') }}" method="post">
+	<table>
+	{% for key, Openw in Openwater %}
+		<tr>
+ 			<td>
+				<a href="{{ url_for('openwater_page', key=key) }}">
+				{{ Openw.comp }} ({{ Openw.year }}) - {{ Openw.winner }}
+				</a>
+			</td>
+ 		</tr>
+	{% endfor %}
+{% endblock %}

@@ -162,7 +162,15 @@ class Store:
             query = "UPDATE PERSON SET CNTRY = %s, TIME = %s WHERE (ID = %s)"
             cursor.execute(query, (cntry, time,key))
             connection.commit()
-            
+    
+    def search_openw(self, tosearch):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, TITLE, YR FROM STYLESS WHERE (TITLE LIKE %s)"
+            cursor.execute(query,(tosearch,))
+            Openwater = [(key, Openw(comp,winner,year))
+                      for key, comp, winner, year in cursor]
+            return Openwater
   
 
                 
