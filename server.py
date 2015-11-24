@@ -7,6 +7,7 @@ from config import app
 from store import Store
 import Medals
 import Openwater
+import Styles
 import Olympicurldef
 import Records
 import psycopg2 as dbapi2
