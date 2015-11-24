@@ -1,5 +1,6 @@
 import psycopg2 as dbapi2
 
+from Openwater import Openw
 from Records import Record
 from Styles import Style
 from flask import render_template
@@ -104,3 +105,26 @@ class Store:
                 Records = [(key, Record(name, rec))
                           for key, name, rec in cursor]
                 return Records
+    def get_openw(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, COMPETITION, WINNER, YEAR FROM OPENWATER ORDER BY YEAR"
+            cursor.execute(query)
+            Openwater = [(key, Openw(competition,winner,year))
+                        for key, competition,winner,year in cursor]
+            return Openwater
+        
+    def add_openw(self, o1):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO OPENWATER (COMPETITION, WINNER,  YEAR) VALUES (%s, %s, %s)"
+            cursor.execute(query, (o1.comp, o1.winner, o1.year))
+            connection.commit()
+            self.last_key = cursor.lastrowid
+    def delete_openw(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM OPENWATER WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+                

@@ -1,12 +1,44 @@
 import datetime
-
+from flask import redirect
+from flask import request
+from flask import url_for
 from flask import render_template
-
 from config import app
 
+class Openw: 
+    def __init__(self, comp, winner, year=None): 
+        self.comp = comp
+        self.winner = winner
+        self.year = year
 
-
-@app.route('/OpenWater')
+@app.route('/OpenWater', methods=['GET', 'POST'])
 def openwater_page():
+    if request.method == 'GET':
+        Openwater = app.store.get_openw()
+        now = datetime.datetime.now()
+        return render_template('OpenWater.html', Openwater=Openwater,
+                               current_time=now.ctime())
+    elif 'delete' in request.form:
+        keys = request.form.getlist('openw_to_delete')
+        for key in keys:
+            app.store.delete_openw(int(key))
+            return redirect(url_for('openwater_page'))
+ 
+    else:
+        comp = request.form['competition']
+        winner = request.form['winner']
+        year = request.form['year']
+        openw = Openw(comp,winner, year)
+        app.store.add_openw(openw)
+        return redirect(url_for('openwater_page'))
+    
+@app.route('/OpenWater/<int:key>')
+def openw_page(key):
+    Openwater= app.store.get_openw(key)
     now = datetime.datetime.now()
-    return render_template('OpenWater.html', current_time=now.ctime())
+    return render_template('OpenWater.html', Openwater=Openwater, current_time=now.ctime())
+
+@app.route('/OpenWater/add')
+def openw_add():
+    now = datetime.datetime.now()
+    return render_template('openw_add.html', current_time=now.ctime())
