@@ -1,0 +1,33 @@
+ {% extends "layout.html" %}
+ {% block title %}Pool Add Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('pools_page') }}" method="post">
+<table>
+ <tr>
+ <th>Pool ID : </th>
+ <td>
+ <input type="text" name="Id"  size="3" />
+ </td>
+ </tr>
+ 	<tr>
+ <th>Pool Name :</th>
+<td>
+ <input type="text" name="Poolname"  required autofocus/>
+</td>
+</tr>
+	<tr>
+ <th>City :</th>
+ <td>
+ <input type="text" name="City" required autofocus />
+ </td>
+ </tr>
+	<tr>
+ <th>Area : </th>
+ <td>
+ <input type="text" name="Area" required autofocus />
+ </td>
+ </tr>
+</table>
+<input value="Save" name="save" type="submit" />
+</form>
+{% endblock %}

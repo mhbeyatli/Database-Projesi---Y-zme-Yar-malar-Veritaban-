@@ -1,0 +1,42 @@
+ {% extends "layout.html" %}
+ {% block title %}pools Update Form{% endblock %}
+ {% block content %}
+<a href="{{ url_for('pool_edit'}})">Add/Delete New pools</a>
+<a href="pools_update.html">Update pools</a>
+<a href="pools_search.html">Search pools</a>
+ <form action="{{ url_for('pool_update') }}" method="post">
+<table>
+ <tr>
+ <th>ID No of the element you want to update:</th>
+<td>
+ <input type="text" name="Toupdate" size="4" />
+</td>
+</tr> 
+ <tr>
+ <th>New ID No:</th>
+<td>
+ <input type="text" name="Id" size="3" />
+</td>
+</tr> 
+<tr>
+ <th>New Pool Name:</th>
+ <td>
+ <input type="text" name="Poolname" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>New City : </th>
+<td>
+ <input type="text" name="City" required autofocus />
+</td>
+</tr>
+ <tr>
+ <th>Area : </th>
+<td>
+ <input type="text" name="Area" size="10" />
+</td>
+</tr>
+</table>
+<input value="Save" name="save" type="submit" />
+</form>
+{% endblock %}

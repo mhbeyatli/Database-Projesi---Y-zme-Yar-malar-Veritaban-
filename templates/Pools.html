@@ -1,0 +1,26 @@
+x{% extends "layout.html" %}
+{% block title %}Pools{% endblock %}
+{% block content %}<h1>List of Pools</h1>
+<a href="{{ url_for('olympic_edit'}})">Add New Pools</a>
+<a href="pools_update.html">Update Pools</a>
+<a href="pools_search.html">Search Pools</a>
+<form action="{{ url_for('pools_page') }}" method="post">
+ <table>
+ {% for key, Pool in Pools %}
+ <tr>
+<td><input type="checkbox" name="deletepools"
+value="{{ key }}" /></td>
+ <td>
+<a href="{{ url_for('pool_page', key=key) }}">
+{{ Pool.Id }} ({{Pool.Poolname}} {{ Pool.City }} {{Pool.Area}})
+</a>
+</td>
+ </tr>
+{% endfor %}
+</table>
+<input type="submit" value="Delete" name="delete" />
+</form>
+{% endblock %}
+
+
+
