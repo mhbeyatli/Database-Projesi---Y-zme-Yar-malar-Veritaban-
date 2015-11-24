@@ -17,7 +17,7 @@ def records_page():
         now = datetime.datetime.now()
         return render_template('Records.html', Records=Records,
                                current_time=now.ctime())
-    elif 'records_to_delete' in request.form:
+    elif 'delete' in request.form:
         keys = request.form.getlist('records_to_delete')
         for key in keys:
             app.store.delete_record(int(key))
@@ -46,13 +46,17 @@ def record_update():
     if request.method == 'POST':
         name = request.form['name']
         rec = request.form['rec']
-        key=request.form['id']
-        app.store.update_record(int(key),name, rec)
-        return redirect(url_for('records_page'))
+        keys = request.form.getlist('records_to_update')
+        for key in keys:
+            app.store.update_record(int(key),name, rec)
+    return redirect(url_for('records_page'))
                                 
 @app.route('/Records/update2/')
 def record_update2():
-    return render_template('record_update.html')
+    Records = app.store.get_records()
+    now = datetime.datetime.now()
+    return render_template('record_update.html',Records=Records,current_time=now.ctime())
+
 @app.route('/Records/search2')
 def record_search2():
     now = datetime.datetime.now()
@@ -62,6 +66,6 @@ def record_search2():
 def record_search():
     if request.method == 'POST':
         word =request.form['word']
-        Records=app.store.record_style(word)
+        Records=app.store.record_search(word)
         now = datetime.datetime.now()
         return render_template('Records.html', Records=Records, current_time=now.ctime())

@@ -33,7 +33,7 @@ class Store:
             query = "UPDATE STYLESS SET TITLE = %s, YR = %s WHERE (ID = %s)"
             cursor.execute(query, (title, year, key))
             connection.commit()
-            
+
     def get_style(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -76,16 +76,17 @@ class Store:
     def update_record(self, key, name, rec):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE RECO SET NAME = ?, REC = ? WHERE (ID = ?)"
+            query = "UPDATE RECO SET NAME = %s, REC = %s WHERE (ID = %s)"
             cursor.execute(query, (name, rec, key))
             connection.commit()
+    
     def get_record(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT NAME, REC FROM RECO WHERE (ID = ?)"
-            cursor.execute(query, (key))
-            name, surname, record = cursor.fetchone()
-            return Record(name, surname, record)
+            query = "SELECT NAME, REC FROM RECO WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            name, rec = cursor.fetchone()
+            return Record(name, rec)
     def get_records(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -95,7 +96,7 @@ class Store:
                       for key, name, rec in cursor]
             return Records
         
-    def record_style(self, tosearch):
+    def record_search(self, tosearch):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
                 query = "SELECT ID, NAME, REC FROM RECO WHERE (NAME LIKE %s)"

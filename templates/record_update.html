@@ -2,23 +2,28 @@
  {% block title %}Record Update Form{% endblock %}
  {% block content %}
  <form action="{{ url_for('record_update') }}" method="post">
-<table>
+ <table>
+ {% for key, Record in Records %}
  <tr>
- <th>Id:</th>
+<td><input type="checkbox" name="records_to_update"
+value="{{ key }}" /></td>
  <td>
- <input  type="text" name="id" required autofocus />
- </td>
+<a href="{{ url_for('record_page', key=key) }}">
+{{ Record.name }} {{ Record.rec }}
+</a>
+</td>
  </tr>
- <tr>
+{% endfor %}
+<table>
  <th>Name:</th>
  <td>
- <input  type="text" name="title" required autofocus />
+ <input type="text" name="name" required autofocus />
  </td>
  </tr>
  <tr>
  <th>Record:</th>
 <td>
- <input type="text" name="year" size="4" />
+ <input type="text" name="rec" size="4" />
 </td>
 </tr>
 </table>
