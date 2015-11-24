@@ -162,6 +162,14 @@ class Store:
             query = "UPDATE PERSON SET CNTRY = %s, TIME = %s WHERE (ID = %s)"
             cursor.execute(query, (cntry, time,key))
             connection.commit()
+    def search_person(self, tosearch):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, CNTRY, TIME FROM PERSON WHERE (CNTRY LIKE %s)"
+            cursor.execute(query,(tosearch,))
+            Persons = [(key, Person(cntry, time))
+                      for key, cntry, time in cursor]
+            return Persons
     
     def search_openw(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
