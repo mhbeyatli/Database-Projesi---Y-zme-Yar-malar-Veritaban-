@@ -127,4 +127,25 @@ class Store:
             query = "DELETE FROM OPENWATER WHERE (ID = %s)"
             cursor.execute(query, (key,))
             connection.commit()
+    def add_person(self, person1):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO PERSON (CNTRY, TIME) VALUES (%s, %s)"
+            cursor.execute(query, (person1.cntry, person1.time))
+            connection.commit()
+            self.last_key = cursor.lastrowid
+    def delete_person(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM PERSON WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+    def get_person(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, CNTRY, TIME FROM PERSON ORDER BY ID"
+            cursor.execute(query)
+            Persons = [(key, Person(cntry, time))
+                      for key, cntry, time in cursor]
+        return Persons
                 
