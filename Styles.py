@@ -43,12 +43,14 @@ def style_edit():
 
 @app.route('/Styles/update/',methods=['GET' , 'POST'])
 def style_update():
+  def style_update():
     if request.method == 'POST':
         title = request.form['title']
         year = request.form['year']
-        key=request.form['id']
-        app.store.update_style(int(key),title,year)
-        return redirect(url_for('styles_page'))
+        keys = request.form.getlist('styles_to_update')
+        for key in keys:
+            app.store.update_style(int(key),title,year)
+    return redirect(url_for('styles_page'))
                                 
 @app.route('/Styles/update2/')
 def style_update2():
