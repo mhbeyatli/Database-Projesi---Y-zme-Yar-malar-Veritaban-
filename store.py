@@ -156,7 +156,7 @@ class Store:
             Persons = [(key, Person(cntry, time))
                       for key, cntry, time in cursor]
         return Persons
-     def update_person(self, key, cntry, time):
+    def update_person(self, key, cntry, time):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "UPDATE PERSON SET CNTRY = %s, TIME = %s WHERE (ID = %s)"
