@@ -36,10 +36,32 @@ def record_page(key):
     now = datetime.datetime.now()
     return render_template('Records.html', Record=Record, current_time=now.ctime())
 
-
 @app.route('/Records/add')
 def record_edit():
     now = datetime.datetime.now()
     return render_template('record_edit.html', current_time=now.ctime())
 
+@app.route('/Records/update/',methods=['GET' , 'POST'])
+def record_update():
+    if request.method == 'POST':
+        name = request.form['name']
+        rec = request.form['rec']
+        key=request.form['id']
+        app.store.update_record(int(key),name, rec)
+        return redirect(url_for('records_page'))
+                                
+@app.route('/Records/update2/')
+def record_update2():
+    return render_template('record_update.html')
+@app.route('/Records/search2')
+def record_search2():
+    now = datetime.datetime.now()
+    return render_template('record_search.html', current_time=now.ctime())
 
+@app.route('/Records/search', methods=['GET' , 'POST'])
+def record_search():
+    if request.method == 'POST':
+        word =request.form['word']
+        Records=app.store.record_style(word)
+        now = datetime.datetime.now()
+        return render_template('Records.html', Records=Records, current_time=now.ctime())

@@ -2,7 +2,6 @@
 {% block title %}Styles{% endblock %}
 {% block content %}<h2>Style List</h2>
 <a href="{{ url_for('style_edit')}}">Add Styles</a>
-
 <form action="{{ url_for('styles_page') }}" method="post">
  <table>
  {% for key, Style in Styles %}
@@ -22,4 +21,3 @@ value="{{ key }}" /></td>
 <input type="button" value="Search" name="update" onclick="location.href='Styles/search2';" />
 </form>
 {% endblock %}
-

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+ {% block title %}Search Records{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('record_search') }}" method="post">
+<table>
+<tr>
+ <th>Enter the Keyword for record:</th>
+ <td>
+ <input type="text" name="word" required autofocus />
+ </td>
+ </tr>
+</table>
+<input value="Search" name="search" type="submit" />
+</form>
+<form action="{{ url_for('record_search') }}" method="post">
+ <table>
+ {% for key, Record in Records %}
+<tr>
+ <td>
+<a href="{{ url_for('record_page', key=key) }}">
+{{ Record.title }} ({{ Record.year }})
+</a>
+</td>
+ </tr>
+{% endfor %}
+{% endblock %}

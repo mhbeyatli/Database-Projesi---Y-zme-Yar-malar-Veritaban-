@@ -1,0 +1,27 @@
+ {% extends "layout.html" %}
+ {% block title %}Record Update Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('record_update') }}" method="post">
+<table>
+ <tr>
+ <th>Id:</th>
+ <td>
+ <input  type="text" name="id" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Name:</th>
+ <td>
+ <input  type="text" name="title" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Record:</th>
+<td>
+ <input type="text" name="year" size="4" />
+</td>
+</tr>
+</table>
+<input value="Update" name="update" type="submit" />
+</form>
+{% endblock %}

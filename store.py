@@ -95,3 +95,11 @@ class Store:
                       for key, name, rec in cursor]
             return Records
         
+    def record_style(self, tosearch):
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "SELECT ID, NAME, REC FROM RECO WHERE (NAME LIKE %s)"
+                cursor.execute(query,(tosearch,))
+                Records = [(key, Record(name, rec))
+                          for key, name, rec in cursor]
+                return Records
