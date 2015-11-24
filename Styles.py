@@ -103,4 +103,9 @@ def person_update():
         for key in keys:
             app.store.update_person(int(key),cntry,time)
     return redirect(url_for('styles_page'))
+@app.route('/Person/update2/')
+def person_update2():
+    Persons = app.store.get_person()
+    now = datetime.datetime.now()
+    return render_template('person_update.html',Persons=Persons,current_time=now.ctime())
 
