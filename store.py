@@ -62,7 +62,7 @@ class Store:
                       for key, title, year in cursor]
             return Styles
     
-   def add_record(self, record1):
+    def add_record(self, record1):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "INSERT INTO RECO (NAME, REC) VALUES (%s, %s)"
