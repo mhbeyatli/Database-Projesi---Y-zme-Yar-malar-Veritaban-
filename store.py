@@ -155,10 +155,10 @@ class Store:
     def get_openw(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, COMPETITION, WINNER, YEAR FROM OPENWATER ORDER BY YEAR"
+            query = "SELECT ID, COMPETITION, WINNERID, YEAR FROM OPENWATER ORDER BY YEAR"
             cursor.execute(query)
-            Openwater = [(key, Openw(competition,winner,year))
-                        for key, competition,winner,year in cursor]
+            Openwater = [(key, Openw(competition,winnerid,year))
+                        for key, competition,winnerid,year in cursor]
             return Openwater
    
     def recor_search(self, tosearch):
@@ -172,10 +172,10 @@ class Store:
     def get_openw(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, COMPETITION, WINNER, YEAR FROM OPENWATER ORDER BY YEAR"
+            query = "SELECT ID, COMPETITION, WINNERID, YEAR FROM OPENWATER ORDER BY YEAR"
             cursor.execute(query)
-            Openwater = [(key, Openw(competition,winner,year))
-                        for key, competition,winner,year in cursor]
+            Openwater = [(key, Openw(competition,winnerid,year))
+                        for key, competition,winnerid,year in cursor]
             return Openwater
         
     def add_openw(self, o1):
@@ -215,8 +215,8 @@ class Store:
             cursor = connection.cursor()
             query = "SELECT ID, COMPETITION,WINNERID, YR FROM OPENWATER WHERE (COMPETITION LIKE %s)"
             cursor.execute(query,(tosearch,))
-            Openwater = [(key, Openw(comp,winner,year))
-                      for key, comp, winner, year in cursor]
+            Openwater = [(key, Openw(comp,winnerid,year))
+                      for key, comp, winnerid, year in cursor]
             return Openwater
             
     def add_person(self, person1):
