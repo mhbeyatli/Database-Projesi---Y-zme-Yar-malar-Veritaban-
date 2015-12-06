@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}Records{% endblock %}
-{% block content %}<h2>Record Lists</h2>
+{% block content %}<h2>Record List</h2>
 <a href="{{ url_for('record_edit')}}">Add Records</a>
 
 <form action="{{ url_for('records_page') }}" method="post">
@@ -24,7 +24,6 @@ value="{{ key }}" /></td>
 
 <h2>High Score List for records</h2>
 <a href="{{ url_for('recor_edit')}}">Add High Scores</a>
-
 <form action="{{ url_for('recor_page') }}" method="post">
  <table>
  {% for key, Recor in Recors %}
@@ -40,7 +39,28 @@ value="{{ key }}" /></td>
 {% endfor %}
 </table>
 <input type="submit" value="Delete" name="delete" />
-<input type="button" value="Update" name="update" onclick="location.href='Records/update21';" />
-<input type="button" value="Search" name="update" onclick="location.href='Records/search21';" />
+<input type="button" value="Update" name="update" onclick="location.href='Recor/update2';" />
+<input type="button" value="Search" name="update" onclick="location.href='Recor/search2';" />
+</form>
+
+<h2>Lowest Score List for records</h2>
+<a href="{{ url_for('lowrecor_edit')}}">Add Lowest Scores</a>
+<form action="{{ url_for('lowrecor_page') }}" method="post">
+ <table>
+ {% for key, LowRecor in LowRecors %}
+ <tr>
+<td><input type="checkbox" name="lowrecor_to_delete"
+value="{{ key }}" /></td>
+ <td>
+<a href="{{ url_for('lowrecor_page', key=key) }}">
+{{ LowRecor.name }} {{ LowRecor.lowrecor }}
+</a>
+</td>
+ </tr>
+{% endfor %}
+</table>
+<input type="submit" value="Delete" name="delete" />
+<input type="button" value="Update" name="update" onclick="location.href='LowRecor/update2';" />
+<input type="button" value="Search" name="update" onclick="location.href='LowRecor/search2';" />
 </form>
 {% endblock %}

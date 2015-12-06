@@ -4,6 +4,7 @@ from Openwater import Openw
 from Records import Record
 from Styles import Person
 from Records import Recor
+from Records import RecorLow
 from Styles import Style
 from flask import render_template
 import datetime
@@ -76,8 +77,23 @@ class Store:
             cursor.execute(query, (recor1.name, recor1.recor))
             connection.commit()
             self.last_key = cursor.lastrowid
-
+    
+    def add_lowrecor(self, lowrecor1):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO RECOL (NAME, LOWRECOR) VALUES (%s, %s)"
+            cursor.execute(query, (lowrecor1.name, lowrecor1.lowrecor))
+            connection.commit()
             self.last_key = cursor.lastrowid
+
+    def delete_lowrecor(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM RECOL WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+    
+        
     def delete_record(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -92,7 +108,12 @@ class Store:
             cursor.execute(query, (key,))
             connection.commit()
 
-    
+    def update_lowrecor(self, key, name, lowrecor):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "UPDATE RECOL SET NAME = %s, LOWRECOR = %s WHERE (ID = %s)"
+            cursor.execute(query, (name, lowrecor, key))
+            connection.commit()            
     def update_record(self, key, name, rec):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -107,8 +128,24 @@ class Store:
             cursor.execute(query, (name, recor, key))
             connection.commit()
 
-    
-    
+    def get_lowrecor(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, LOWRECOR FROM RECOL ORDER BY ID"
+            cursor.execute(query)
+            LowRecors = [(key, RecorLow(name, lowrecor))
+                      for key, name, lowrecor in cursor]
+        return LowRecors 
+
+    def get_lowrecors(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, LOWRECOR FROM RECOL ORDER BY ID"
+            cursor.execute(query)
+            LowRecors = [(key, RecorLow(name, lowrecor))
+                      for key, name, lowrecor in cursor]
+            return LowRecors
+
     def get_record(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -117,13 +154,16 @@ class Store:
             name, rec = cursor.fetchone()
             return Record(name, rec)
         
-    def get_recor(self, key):
+
+    def get_recor(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT NAME, RECOR FROM RECOC WHERE (ID = %s)"
-            cursor.execute(query, (key,))
-            name, recor = cursor.fetchone()
-            return Recor(name, recor)      
+            query = "SELECT ID, NAME, RECOR FROM RECOC ORDER BY ID"
+            cursor.execute(query)
+            Recors = [(key, Recor(name, recor))
+                      for key, name, recor in cursor]
+        return Recors 
+  
         
         
     def get_records(self):
@@ -156,11 +196,21 @@ class Store:
     def recor_search(self, tosearch):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
-                query = "SELECT ID, NAME, RECOR FROM RECO WHERE (NAME LIKE %s)"
+                query = "SELECT ID, NAME, RECOR FROM RECOC WHERE (NAME LIKE %s)"
                 cursor.execute(query,(tosearch,))
-                Recors = [(key, Record(name, recor))
+                Recors = [(key, Recor(name, recor))
                           for key, name, recor in cursor]
                 return Recors
+            
+    def lowrecor_search(self, tosearch):
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "SELECT ID, NAME, LOWRECOR FROM RECOL WHERE (NAME LIKE %s)"
+                cursor.execute(query,(tosearch,))
+                LowRecors = [(key, RecorLow(name, lowrecor))
+                          for key, name, lowrecor in cursor]
+                return LowRecors  
+    
     def get_openw(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -246,6 +296,3 @@ class Store:
             Persons = [(key, Person(cntry, time))
                       for key, cntry, time in cursor]
             return Persons
-  
-
-                
