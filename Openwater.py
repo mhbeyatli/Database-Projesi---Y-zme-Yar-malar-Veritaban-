@@ -26,9 +26,9 @@ def openwater_page():
  
     else:
         comp = request.form['competition']
-        winner = request.form['winner']
+        winnerid = request.form['winnerid']
         year = request.form['year']
-        openw = Openw(comp,winner, year)
+        openw = Openw(comp,winnerid, year)
         app.store.add_openw(openw)
         return redirect(url_for('openwater_page'))
     
@@ -47,11 +47,11 @@ def openw_add():
 def openw_update():
     if request.method == 'POST':
         comp = request.form['competition']
-        winner = request.form['winner']
+        winnerid = request.form['winnerid']
         year = request.form['year']
         keys = request.form.getlist('openw_to_update')
         for key in keys:
-            app.store.update_openw(int(key),comp,winner,year)
+            app.store.update_openw(int(key),comp,winnerid,year)
     return redirect(url_for('openwater_page'))
                                 
 @app.route('/OpenWater/update2/')
