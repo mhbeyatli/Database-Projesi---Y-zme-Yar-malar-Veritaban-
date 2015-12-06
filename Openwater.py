@@ -6,9 +6,9 @@ from flask import render_template
 from config import app
 
 class Openw: 
-    def __init__(self, comp, winner, year=None): 
+    def __init__(self, comp, winnerid, year=None): 
         self.comp = comp
-        self.winner = winner
+        self.winnerid = winnerid
         self.year = year
 
 @app.route('/OpenWater', methods=['GET', 'POST'])
