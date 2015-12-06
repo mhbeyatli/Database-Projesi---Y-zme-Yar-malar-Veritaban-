@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
- {% block title %}Movie Edit Form{% endblock %}
+ {% block title %}Openwater add form{% endblock %}
  {% block content %}
  <form action="{{ url_for('openwater_page') }}" method="post">
 	<table>
  		<tr>
- 			<th>Competition name::</th>
+ 			<th>Competition name:</th>
  			<td>
  				<input type="text" name="competition" required autofocus />
  			</td>
  		</tr>
  		<tr>
-			<th>Winner:</th>
+			<th>Winnerid:</th>
 			<td>
- 				<input type="text" name="winner" required autofocus/>
+ 				<input type="integer" name="winnerid" required autofocus/>
 			</td>
 		</tr>
 		<tr>
