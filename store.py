@@ -179,24 +179,45 @@ class Store:
             return Openwater
         
     def add_openw(self, o1):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "INSERT INTO OPENWATER (COMPETITION, WINNER,  YEAR) VALUES (%s, %s, %s)"
-            cursor.execute(query, (o1.comp, o1.winner, o1.year))
-            connection.commit()
-            self.last_key = cursor.lastrowid
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "INSERT INTO OPENWATER (COMPETITION, WINNERID,  YR) VALUES (%s, %s, %s)"
+                cursor.execute(query, (o1.comp, o1.winnerid, o1.year))
+                connection.commit()
+                self.last_key = cursor.lastrowid
+        except dbapi2.DatabaseError:
+            ctypes.windll.user32.MessageBoxW(0,"No swimmers in this id !!!","",1)
+            connection.rollback()
+        finally:
+            connection.close()
     def delete_openw(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "DELETE FROM OPENWATER WHERE (ID = %s)"
             cursor.execute(query, (key,))
             connection.commit()
-    def update_openw(self, key, comp, winner, year):
+    def update_openw(self, key, comp, winnerid, yr):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "UPDATE OPENWATER SET COMPETITION = %s, WINNERID = %s, YR = %s WHERE (ID = %s)"
+                cursor.execute(query, (comp,winnerid, yr, key))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            ctypes.windll.user32.MessageBoxW(0,"No swimmers in this id !!!","",1)
+            connection.rollback()
+        finally:
+            connection.close()
+            
+    def search_openw(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE OPENWATER SET COMPATITION = %s, WINNER = %s, YEAR = %s WHERE (ID = %s)"
-            cursor.execute(query, (comp,winner, year, key))
-            connection.commit()
+            query = "SELECT ID, COMPETITION,WINNERID, YR FROM OPENWATER WHERE (COMPETITION LIKE %s)"
+            cursor.execute(query,(tosearch,))
+            Openwater = [(key, Openw(comp,winner,year))
+                      for key, comp, winner, year in cursor]
+            return Openwater
             
     def add_person(self, person1):
         with dbapi2.connect(self.dsn) as connection:
@@ -233,15 +254,6 @@ class Store:
             Persons = [(key, Person(cntry, time))
                       for key, cntry, time in cursor]
             return Persons
-    
-    def search_openw(self, tosearch):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "SELECT ID, TITLE, YR FROM STYLESS WHERE (TITLE LIKE %s)"
-            cursor.execute(query,(tosearch,))
-            Openwater = [(key, Openw(comp,winner,year))
-                      for key, comp, winner, year in cursor]
-            return Openwater
   
 
                 
