@@ -229,7 +229,6 @@ class Store:
                 connection.commit()
                 self.last_key = cursor.lastrowid
         except dbapi2.DatabaseError:
-            ctypes.windll.user32.MessageBoxW(0,"No swimmers in this id !!!","",1)
             connection.rollback()
         finally:
             connection.close()
@@ -247,7 +246,6 @@ class Store:
                 cursor.execute(query, (comp,winnerid, year, key))
                 connection.commit()
         except dbapi2.DatabaseError:
-            ctypes.windll.user32.MessageBoxW(0,"No swimmers in this id !!!","",1)
             connection.rollback()
         finally:
             connection.close()
