@@ -4,7 +4,7 @@
 
 <form action="{{ url_for('openw_update',key=key) }}" method="post">
 
-<table>
+<table class="t1">
  	<th>Competition:</th>
 		<td>
  			<input  type="text" name="competition" required autofocus />
@@ -24,7 +24,7 @@
  		</tr>
  	<tr>
 </table>
-	<input value="Update" name="update" type="submit" />
+	<input class="button" value="Update" name="update" type="submit" />
 </form>
 
 {% endblock %}
