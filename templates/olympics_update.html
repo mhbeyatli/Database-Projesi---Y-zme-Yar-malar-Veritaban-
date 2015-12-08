@@ -1,48 +1,31 @@
- {% extends "layout.html" %}
- {% block title %}Olympics Update Form{% endblock %}
- {% block content %}
-<a href="{{ url_for('olympic_edit'}})">Add/Delete New Olympics</a>
-<a href="olympics_update.html">Update Olympics</a>
-<a href="olympics_search.html">Search Olympics</a>
- <form action="{{ url_for('olympic_update') }}" method="post">
-<table>
- <tr>
- <th>List No of the element you want to update:</th>
-<td>
- <input type="text" name="Toupdate" size="4" />
-</td>
-</tr> 
- <tr>
- <th>New List No:</th>
-<td>
- <input type="text" name="Listno" size="4" />
-</td>
-</tr> 
-<tr>
- <th>New Full name:</th>
- <td>
- <input type="text" name="Fullname" required autofocus />
- </td>
- </tr>
- <tr>
- <th>New Swimmer ID:</th>
-<td>
- <input type="text" name="SwimmerId" size="5" />
-</td>
-</tr>
- <tr>
- <th>New Year : </th>
-<td>
- <input type="text" name="Year" size="5" />
-</td>
-</tr>
- <tr>
- <th>Pool ID:</th>
-<td>
- <input type="text" name="Poolid" size="5" />
-</td>
-</tr>
-</table>
-<input value="Save" name="save" type="submit" />
+{% extends "layout.html" %}
+{% block title %}Open water Update Form{% endblock %}
+{% block content %}
+
+<form action="{{ url_for('openw_update',key=key) }}" method="post">
+
+	<table>
+ 		<th>Competition:</th>
+			<td>
+ 				<input  type="text" name="competition" required autofocus />
+ 			</td>
+ 		</tr>
+ 		<tr>
+			<th>Winner:</th>
+				<td>
+ 					<input  type="text" name="winnerid" required autofocus />
+ 				</td>
+ 		</tr>
+ 		<tr>
+			<th>Year:</th>
+				<td>
+ 					<input  type="text" name="year" size="4" />
+ 				</td>
+ 			</tr>
+ 		<tr>
+
+	</table>
+	<input value="Update" name="update" type="submit" />
 </form>
+
 {% endblock %}
