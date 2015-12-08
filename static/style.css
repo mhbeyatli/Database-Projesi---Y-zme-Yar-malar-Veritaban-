@@ -40,7 +40,7 @@ a.nav:hover, a.nav:active {
 
 ul.nav {
     list-style-type: none;
-    margin: 0;
+    margin: 10px;
     padding: 0;
     overflow: hidden;
 }
@@ -52,4 +52,39 @@ a {
 li
 {
 	float: left;
+}
+
+table.t1 {
+	max-width:500px;
+	margin: 25px 50px 25px 50px;
+	padding: 15px;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th.t1, td.t1 {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th.t1{
+	background-color: #99ccff;
+    color: #000000;
+    height: 25px;
+}
+tr:hover{background-color:#e5f2ff}
+
+p.paragraf{
+	margin-left: 25px;
+}
+
+input.button{
+	background-color: #e5f2ff;
+	hover: #99ccff;
+	width: 120px;
+    margin-left: 35px;
+}
+
+input.button:hover, input.button:active {
+    background-color: #669999;
 }
