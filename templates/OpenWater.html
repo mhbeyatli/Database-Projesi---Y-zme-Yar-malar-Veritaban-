@@ -5,37 +5,50 @@
  
 <h2>Open Water List</h2>
 
+<form action="{{ url_for('openwater_page') }}" method="post">
 <p>
 	
 </p>
+<p class="paragraf"> 
+<table class="t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">copetition</th>
+<th class="t1">year</th>
+<th class="t1">winnerid</th>
 
-<p> 
-<a href="{{ url_for('openw_add')}}">Add Styles</a>
-<form action="{{ url_for('openwater_page') }}" method="post">
-<table>
+</tr>
 {% for key, Openw in Openwater %}
-<tr>
-	<td> 
+<tr class="t1">
+	<td class="t1"> 
 	<input type="checkbox" name="openw_to_delete"
 		value="{{ key }}" /> 
 	</td>
-	<td>
+	<td class="t1">
 		<a href="{{ url_for('openwater_page', key=key) }}">
-		{{ Openw.comp }}  ({{ Openw.year }}) - {{ Openw.winnerid}}</a>
+		{{ Openw.comp }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openw.year }} </a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openw.winnerid}}</a>
 	</td>
 </tr>
 </p>
 {% endfor %}
-
 </table>
-
 <p>
-<input type="submit" value="Delete" name="delete" />
-<input type="button" value="Update" name="update" onclick="location.href='OpenWater/update2';" />
-<input type="button" value="Search" name="search" onclick="location.href='OpenWater/search2';" />
+
+</p>
+<p class = "paragraf">
+<input class="button" type="submit" value="Add" name="Add" />
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="submit" value="Update" name="update" />
+<input class="button" type="button" value="Search" name="search" onclick="location.href='OpenWater/search2';" />
 </p>
 </form>
-
-
 
 {% endblock %}
