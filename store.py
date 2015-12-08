@@ -210,7 +210,6 @@ class Store:
                 LowRecors = [(key, RecorLow(name, lowrecor))
                           for key, name, lowrecor in cursor]
                 return LowRecors  
-    
     def get_openw(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -219,7 +218,6 @@ class Store:
             Openwater = [(key, Openw(competition,winnerid,year))
                         for key, competition,winnerid,year in cursor]
             return Openwater
-        
     def add_openw(self, o1):
         try:
             with dbapi2.connect(self.dsn) as connection:
