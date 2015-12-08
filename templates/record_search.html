@@ -2,7 +2,7 @@
  {% block title %}Search Records{% endblock %}
  {% block content %}
  <form action="{{ url_for('record_search') }}" method="post">
-<table>
+<table class="t1">
 <tr>
  <th>Enter the Keyword for record:</th>
  <td>
@@ -10,13 +10,13 @@
  </td>
  </tr>
 </table>
-<input value="Search" name="search" type="submit" />
+<input class="button" value="Search" name="search" type="submit" />
 </form>
 <form action="{{ url_for('record_search') }}" method="post">
  <table>
  {% for key, Record in Records %}
 <tr>
- <td>
+<td>
 <a href="{{ url_for('record_page', key=key) }}">
 {{ Record.title }} ({{ Record.year }})
 </a>
