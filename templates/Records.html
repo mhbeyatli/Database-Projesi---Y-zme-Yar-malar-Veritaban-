@@ -1,66 +1,96 @@
 {% extends "layout.html" %}
 {% block title %}Records{% endblock %}
 {% block content %}<h2>Record List</h2>
-<a href="{{ url_for('record_edit')}}">Add Records</a>
+<a href="{{ url_for('record_edit')}}"><input class="button" type="submit" value="Add" name="Add" /></a>
 
 <form action="{{ url_for('records_page') }}" method="post">
- <table>
- {% for key, Record in Records %}
- <tr>
-<td><input type="checkbox" name="records_to_delete"
+<table class = "t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">name</th>
+<th class="t1">record</th>
+
+</tr>
+{% for key, Record in Records %}
+<tr>
+<td class="t1"><input type="checkbox" name="records_to_delete"
 value="{{ key }}" /></td>
- <td>
+<td class="t1">
 <a href="{{ url_for('record_page', key=key) }}">
-{{ Record.name }} {{ Record.rec }}
+{{ Record.name }}
 </a>
 </td>
- </tr>
+<td class="t1">
+<a href="{{ url_for('record_page', key=key) }}">
+{{ Record.rec }}
+</a>
+</td>
+</tr>
 {% endfor %}
 </table>
-<input type="submit" value="Delete" name="delete" />
-<input type="button" value="Update" name="update" onclick="location.href='Records/update2';" />
-<input type="button" value="Search" name="update" onclick="location.href='Records/search2';" />
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="button" value="Update" name="update" onclick="location.href='Records/update2';" />
+<input class="button" type="button" value="Search" name="update" onclick="location.href='Records/search2';" />
 </form>
 
 <h2>High Score List for records</h2>
-<a href="{{ url_for('recor_edit')}}">Add High Scores</a>
+<a href="{{ url_for('recor_edit')}}"><input class="button" type="submit" value="Add High Scores" name="Add High Scores"/></a>
 <form action="{{ url_for('recor_page') }}" method="post">
- <table>
+<table class="t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">name</th>
+<th class="t1">record</th>
+</tr>
  {% for key, Recor in Recors %}
- <tr>
-<td><input type="checkbox" name="recor_to_delete"
+<tr>
+<td class="t1"><input type="checkbox" name="recor_to_delete"
 value="{{ key }}" /></td>
- <td>
+<td class="t1">
 <a href="{{ url_for('recor_page', key=key) }}">
-{{ Recor.name }} {{ Recor.recor }}
+{{ Recor.name }}
+</a>
+<td class="t1">
+<a href="{{ url_for('recor_page', key=key) }}">
+{{ Recor.recor }}
 </a>
 </td>
- </tr>
+</tr>
 {% endfor %}
 </table>
-<input type="submit" value="Delete" name="delete" />
-<input type="button" value="Update" name="update" onclick="location.href='Recor/update2';" />
-<input type="button" value="Search" name="update" onclick="location.href='Recor/search2';" />
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="button" value="Update" name="update" onclick="location.href='Recor/update2';" />
+<input class="button" type="button" value="Search" name="update" onclick="location.href='Recor/search2';" />
 </form>
 
 <h2>Lowest Score List for records</h2>
-<a href="{{ url_for('lowrecor_edit')}}">Add Lowest Scores</a>
+<a href="{{ url_for('lowrecor_edit')}}"><input class="button" type="submit" value="Add Lowest Scores" name="Add Lowest Scores"/></a>
 <form action="{{ url_for('lowrecor_page') }}" method="post">
- <table>
- {% for key, LowRecor in LowRecors %}
- <tr>
-<td><input type="checkbox" name="lowrecor_to_delete"
+<table class="t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">name</th>
+<th class="t1">record</th>
+</tr>
+{% for key, LowRecor in LowRecors %}
+<tr class="t1">
+<td class="t1"><input type="checkbox" name="lowrecor_to_delete"
 value="{{ key }}" /></td>
- <td>
+<td class="t1">
 <a href="{{ url_for('lowrecor_page', key=key) }}">
-{{ LowRecor.name }} {{ LowRecor.lowrecor }}
+{{ LowRecor.name }}
+</a>
+</td>
+<td class="t1">
+<a href="{{ url_for('lowrecor_page', key=key) }}">
+{{ LowRecor.lowrecor }}
 </a>
 </td>
  </tr>
 {% endfor %}
 </table>
-<input type="submit" value="Delete" name="delete" />
-<input type="button" value="Update" name="update" onclick="location.href='LowRecor/update2';" />
-<input type="button" value="Search" name="update" onclick="location.href='LowRecor/search2';" />
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="button" value="Update" name="update" onclick="location.href='LowRecor/update2';" />
+<input class="button" type="button" value="Search" name="update" onclick="location.href='LowRecor/search2';" />
 </form>
 {% endblock %}
