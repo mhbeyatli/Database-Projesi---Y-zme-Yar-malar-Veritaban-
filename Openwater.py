@@ -23,15 +23,12 @@ def openwater_page():
         for key in keys:
             app.store.delete_openw(int(key))
             return redirect(url_for('openwater_page'))
- 
-    else:
-        comp = request.form['competition']
-        winnerid = request.form['winnerid']
-        year = request.form['year']
-        openw = Openw(comp,winnerid, year)
-        app.store.add_openw(openw)
-        return redirect(url_for('openwater_page'))
-    
+    elif 'update' in request.form:
+        keys = request.form.getlist('openw_to_delete')
+        for key in keys:
+            return render_template('openw_update.html',key=key)
+    elif 'add' in request.form:
+        return render_template('openw_add.html')
 @app.route('/OpenWater/<int:key>')
 def openw_page(key):
     Openwater= app.store.get_openw(key)
@@ -40,25 +37,24 @@ def openw_page(key):
 
 @app.route('/OpenWater/add')
 def openw_add():
-    now = datetime.datetime.now()
-    return render_template('openw_add.html', current_time=now.ctime())
+    comp = request.form['competition']
+    winnerid = request.form['winnerid']
+    year = request.form['year'] 
+    openw = Openw(comp,winnerid, year)
+    app.store.add_openw(openw)
+    return redirect(url_for('openwater_page'))
 
-@app.route('/OpenWater/update/',methods=['GET' , 'POST'])
-def openw_update():
+
+@app.route('/OpenWater/update/<key>',methods=['GET' , 'POST'])
+def openw_update(key):
     if request.method == 'POST':
         comp = request.form['competition']
         winnerid = request.form['winnerid']
         year = request.form['year']
         keys = request.form.getlist('openw_to_update')
-        for key in keys:
-            app.store.update_openw(int(key),comp,winnerid,year)
-    return redirect(url_for('openwater_page'))
-                                
-@app.route('/OpenWater/update2/')
-def openw_update2():
-    Openwater = app.store.get_openw()
-    now = datetime.datetime.now()
-    return render_template('openw_update.html',Openwater=Openwater,current_time=now.ctime())
+        app.store.update_openw(int(key),comp,winnerid,year)
+        return redirect(url_for('openwater_page'))
+
 
 @app.route('/OpenWater/search2')
 def openw_search2():
