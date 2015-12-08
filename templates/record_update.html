@@ -2,7 +2,7 @@
  {% block title %}Record Update Form{% endblock %}
  {% block content %}
  <form action="{{ url_for('record_update') }}" method="post">
- <table>
+ <table class="t1">
  {% for key, Record in Records %}
  <tr>
 <td><input type="checkbox" name="records_to_update"
@@ -27,6 +27,6 @@ value="{{ key }}" /></td>
 </td>
 </tr>
 </table>
-<input value="Update" name="update" type="submit" />
+<input class="button" value="Update" name="update" type="submit" />
 </form>
 {% endblock %}
