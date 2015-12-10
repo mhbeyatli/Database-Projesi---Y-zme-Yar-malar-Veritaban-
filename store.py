@@ -17,51 +17,144 @@ class Store:
         self.dsn = dsn
         self.last_key = None
         
-    def add_style(self, style1):
+   def add_style(self, title,year):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "INSERT INTO STYLESS (TITLE, YR) VALUES (%s, %s)"
-            cursor.execute(query, (style1.title, style1.year))
+            query = "INSERT INTO STYLESS (TITLE, METER) VALUES (%s, %s)"
+            cursor.execute(query, (title, year))
             connection.commit()
             self.last_key = cursor.lastrowid
     def delete_style(self, key):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "DELETE FROM STYLESS WHERE (ID = %s)"
-            cursor.execute(query, (key,))
-            connection.commit()
-
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "DELETE FROM STYLESS WHERE (ID = %s)"
+                cursor.execute(query, (key,))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Cannot be deleted: You cant delete it if it has any child! ')
+            connection.rollback()
+        finally:
+            connection.close()
     def update_style(self, key, title, year):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE STYLESS SET TITLE = %s, YR = %s WHERE (ID = %s)"
-            cursor.execute(query, (title, year, key))
+            query = "UPDATE STYLESS SET TITLE = %s, METER = %s WHERE (ID = %s)"
+            cursor.execute(query, (title, year,key))
             connection.commit()
-
+            
     def get_style(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT TITLE, YR FROM STYLESS WHERE (ID = %s)"
+            query = "SELECT TITLE, METER FROM STYLESS WHERE (ID = %s)"
             cursor.execute(query, (key,))
             title, year = cursor.fetchone()
         return Style(title, year)
     def get_styles(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, TITLE, YR FROM STYLESS ORDER BY ID"
+            query = "SELECT ID, TITLE, METER FROM STYLESS ORDER BY ID"
             cursor.execute(query)
-            Styles = [(key, Style(title, year))
+            Styles = [(key, Style( title, year))
                       for key, title, year in cursor]
         return Styles
     
     def search_style(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, TITLE, YR FROM STYLESS WHERE (TITLE LIKE %s)"
+            query = "SELECT ID, TITLE, METER FROM STYLESS WHERE (TITLE LIKE %s)"
             cursor.execute(query,(tosearch,))
             Styles = [(key, Style(title, year))
                       for key, title, year in cursor]
             return Styles
+    def add_men(self, person1):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO MEN (NAME, TIME, STYLEID) VALUES (%s, %s, %s)"
+            cursor.execute(query, (person1.name, person1.time,person1.styleid))
+            connection.commit()
+            self.last_key = cursor.lastrowid
+    def delete_men(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM MEN WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+            
+    def get_men(self,key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (STYLEID = %s)"
+            cursor.execute(query,(key,))
+            Allmen = [(key, Men(name,time, styleid))
+                      for key, name, time, styleid in cursor]
+            return Allmen
+            
+    def search_men(self, tosearch, ids):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (NAME LIKE %s) AND (STYLEID= %s)"
+            cursor.execute(query,(tosearch,ids))
+            Allmen = [(key, Men(name, time, styleid))
+                      for key, name, time, styleid in cursor]
+            return Allmen
+    
+            
+    def update_men(self, key, name, time, styleid):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "UPDATE MEN SET NAME = %s, TIME = %s,STYLEID = %s WHERE (ID = %s)"
+                cursor.execute(query, (name, time,styleid,key))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Cannot be update ')
+            connection.rollback()
+        finally:
+            connection.close()
+    
+              
+    def get_women(self,key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (STYLEID = %s)"
+            cursor.execute(query,(key,))
+            Allwomen = [(key, Women(name,time, styleid))
+                      for key, name, time, styleid in cursor]
+            return Allwomen
+    def add_women(self, person1):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO WOMEN (NAME, TIME, STYLEID) VALUES (%s, %s, %s)"
+            cursor.execute(query, (person1.name, person1.time,person1.styleid))
+            connection.commit()
+            self.last_key = cursor.lastrowid
+    def delete_women(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM WOMEN WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+    def update_women(self, key, name, time, styleid):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "UPDATE WOMEN SET NAME = %s, TIME = %s,STYLEID = %s WHERE (ID = %s)"
+                cursor.execute(query, (name, time,styleid,key))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Cannot be update ')
+            connection.rollback()
+        finally:
+            connection.close() 
+    def search_women(self, tosearch, ids):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (NAME LIKE %s) AND (STYLEID= %s)"
+            cursor.execute(query,(tosearch,ids))
+            Allwomen = [(key, Women(name, time, styleid))
+                      for key, name, time, styleid in cursor]
+            return Allwomen 
     
     def add_record(self, record1):
         with dbapi2.connect(self.dsn) as connection:
@@ -256,39 +349,4 @@ class Store:
             Openwater = [(key, Openw(comp,winnerid,year))
                       for key, comp, winnerid, year in cursor]
             return Openwater
-            
-    def add_person(self, person1):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "INSERT INTO PERSON (CNTRY, TIME) VALUES (%s, %s)"
-            cursor.execute(query, (person1.cntry, person1.time))
-            connection.commit()
-            self.last_key = cursor.lastrowid
-    def delete_person(self, key):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "DELETE FROM PERSON WHERE (ID = %s)"
-            cursor.execute(query, (key,))
-            connection.commit()
-    def get_person(self):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "SELECT ID, CNTRY, TIME FROM PERSON ORDER BY ID"
-            cursor.execute(query)
-            Persons = [(key, Person(cntry, time))
-                      for key, cntry, time in cursor]
-        return Persons
-    def update_person(self, key, cntry, time):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "UPDATE PERSON SET CNTRY = %s, TIME = %s WHERE (ID = %s)"
-            cursor.execute(query, (cntry, time,key))
-            connection.commit()
-    def search_person(self, tosearch):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "SELECT ID, CNTRY, TIME FROM PERSON WHERE (CNTRY LIKE %s)"
-            cursor.execute(query,(tosearch,))
-            Persons = [(key, Person(cntry, time))
-                      for key, cntry, time in cursor]
-            return Persons
+
