@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+ {% block title %}Person Update Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('person_update2',key=key,ids=ids) }}" method="post">
+ 
+ <table>
+ <th>Name:</th>
+ <td>
+ <input  type="text" name="name" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Time:</th>
+<td>
+ <input type="text" name="time" size="4" />
+</td>
+</tr>
+</table>
+<input value="Update" name="update" type="submit" />
+</form>
+{% endblock %}
