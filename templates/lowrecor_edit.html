@@ -1,0 +1,21 @@
+ {% extends "layout.html" %}
+ {% block title %}LowRecor Edit Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('lowrecor_page') }}" method="post">
+<table class="t1">
+ <tr>
+ <th>Name:</th>
+ <td>
+ <input type="text" name="name" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Lowest Records:</th>
+<td>
+ <input type="text" name="lowrecor" size="4" />
+</td>
+</tr>
+</table>
+<input value="Save" name="save" type="submit" />
+</form>
+{% endblock %}
