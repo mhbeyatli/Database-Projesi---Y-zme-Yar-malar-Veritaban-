@@ -8,6 +8,7 @@ from Records import Recor
 from Records import RecorLow
 from Styles import Style
 from flask import render_template
+from flask import flash
 import datetime
 from flask import redirect
 
@@ -18,7 +19,7 @@ class Store:
         self.dsn = dsn
         self.last_key = None
         
-   def add_style(self, title,year):
+    def add_style(self, title,year):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "INSERT INTO STYLESS (TITLE, METER) VALUES (%s, %s)"
