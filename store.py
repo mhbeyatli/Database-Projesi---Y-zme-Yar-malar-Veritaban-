@@ -2,7 +2,8 @@ import psycopg2 as dbapi2
 
 from Openwater import Openw
 from Records import Record
-from Styles import Person
+from Styles import Men
+from Styles import Women
 from Records import Recor
 from Records import RecorLow
 from Styles import Style
