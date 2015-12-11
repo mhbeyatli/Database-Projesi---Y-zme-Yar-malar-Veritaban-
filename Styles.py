@@ -82,7 +82,7 @@ def style_search():
 def men_page(key):
     ids=key
     if request.method == 'GET':
-       return redirect(url_for('style_page',key=ids))
+        return redirect(url_for('style_page',key=ids))
     elif 'delete' in request.form:
         keys = request.form.getlist('person_to_delete')
         for key in keys:
