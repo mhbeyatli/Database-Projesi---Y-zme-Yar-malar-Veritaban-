@@ -2,61 +2,79 @@
 {% extends "layout.html" %}
 {% block title %}Styles{% endblock %}
 {% block content %}<h2>Highest Records</h2>
- 
 
 <h3>MEN</h3>
-<form action="{{ url_for('men_search',key=key) }}" method="post">
-<table>
-<tr>
- <td>
+<a href="{{ url_for('men_edit',key=key)}}"><input class="button" type="submit" value="Add Score" name="Add" /></a>
+<table class="t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">Name</th>
+<th class="t1">Time</th>
+ <th class="t1">
+ <form action="{{ url_for('men_search',key=key) }}" method="post">
  <input value="Search" name="search" type="submit" />
  <input type="text" name="word" required autofocus />
- </td>
- </tr>
-</table>
 </form>
-<a href="{{ url_for('men_edit',key=key)}}">Add Best Score</a>
-
- <table>
+ </th>
+ </tr>
+<form action="{{ url_for('men_page',key=key) }}" method="post">
  {% for key, Men in Allmen %}
  <tr>
-<td><input type="checkbox" name="person_to_delete"
-value="{{ key }}" /></td>
- <td>
-{{ Men.name }} {{ Men.time }} {{Men.styleid}}
-</td>
- </tr>
+	<td class="t1"> 
+	<input type="checkbox" name="person_to_delete"
+		value="{{ key }}" /> 
+	</td>
+	<td class="t1">
+		{{ Men.name }}
+	</td>
+	<td class="t1">
+		{{ Men.time }}
+	</td>
+	<td class="t1">
+	</td>
+</tr>
+
 {% endfor %}
 </table>
-<input type="submit" value="Delete" name="delete" />
-<input type="submit" value="Update" name="update">
-
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="submit" value="Update" name="update">
+</form>
 <h3>WOMEN</h3>
-<form action="{{ url_for('women_search',key=key) }}" method="post">
-<table>
-<tr>
- <td>
+<a href="{{ url_for('women_edit',key=key)}}"><input class="button" type="submit" value="Add Score" name="Add" /></a>
+<table class="t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">Name</th>
+<th class="t1">Time</th>
+ <th class="t1">
+ <form action="{{ url_for('women_search',key=key) }}" method="post">
  <input value="Search" name="search" type="submit" />
  <input type="text" name="word" required autofocus />
- </td>
+ </form>
+ </th>
  </tr>
-</table>
-</form>
+
 <form action="{{ url_for('women_page',key=key) }}" method="post">
-<a href="{{ url_for('women_edit',key=key)}}">Add Best Score</a>
- <table>
+
  {% for key, Women in Allwomen %}
  <tr>
-<td><input type="checkbox" name="person_to_delete"
-value="{{ key }}" /></td>
- <td>
-{{ Women.name }} {{ Women.time }} {{Women.styleid}}
-</td>
- </tr>
+	<td class="t1"> 
+	<input type="checkbox" name="person_to_delete"
+		value="{{ key }}" /> 
+	</td>
+	<td class="t1">
+		{{ Women.name }}
+	</td>
+	<td class="t1">
+		{{ Women.time }}
+	</td>
+	<td class="t1">
+	</td>
+</tr>
+
 {% endfor %}
 </table>
-<input type="submit" value="Delete" name="delete" />
-<input type="submit" value="Update" name="update" />
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="submit" value="Update" name="update">
 </form>
-
 {% endblock %}
