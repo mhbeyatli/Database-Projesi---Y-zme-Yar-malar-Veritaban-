@@ -404,14 +404,15 @@ class Store:
     def update_olympic(self, key, Fullname,SwimmerId,Year,Poolid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE OLYMPICS SET FULLNAME = %S, SPONSORID = %S, YEAR = %S, POOLID = %s WHERE (LISTNO = %s)"
+            query = "UPDATE OLYMPICS SET FULLNAME = %s, SPONSORID = %s, YEAR = %s, POOLID = %s WHERE (LISTNO = %s)"
             cursor.execute(query, (Fullname,SwimmerId,Year,Poolid, key))
             connection.commit()
 
-    def olympic_search(self, tosearch):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "SELECT LISTNO,FULLNAME,SWIMMERID,YEAR,POOLID FROM OLYMPICS WHERE (FULLNAME LIKE %s)"
-            cursor.execute(query,(tosearch,))
-            Listno,Fullname,SwimmerId,Year,Poolid = cursor.fetchone()
-            return Olympic(Listno,Fullname,SwimmerId,Year,Poolid)
+    def olympic_search(self, word):
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "SELECT LISTNO,FULLNAME,SWIMMERID,YEAR,POOLID FROM OLYMPICS WHERE (FULLNAME LIKE %s)"
+                cursor.execute(query,(word,))
+                Olympics = [(key, Olympic(Fullname,SwimmerId,Year,Poolid))
+                          for key,Fullname,SwimmerId,Year,Poolid in cursor]
+                return Olympics
