@@ -86,7 +86,7 @@ class Store:
     def get_men(self,key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (STYLEID = %s)"
+            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (STYLEID = %s) ORDER BY TIME"
             cursor.execute(query,(key,))
             Allmen = [(key, Men(name,time, styleid))
                       for key, name, time, styleid in cursor]
@@ -119,7 +119,7 @@ class Store:
     def get_women(self,key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (STYLEID = %s)"
+            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (STYLEID = %s) ORDER BY TIME"
             cursor.execute(query,(key,))
             Allwomen = [(key, Women(name,time, styleid))
                       for key, name, time, styleid in cursor]
