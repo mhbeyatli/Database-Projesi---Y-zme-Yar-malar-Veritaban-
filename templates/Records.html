@@ -34,6 +34,7 @@ value="{{ key }}" /></td>
 </form>
 
 <h2>High Score List for records</h2>
+<h5>If a player in Record list has a record that you want to add, then you can add a new High score</h5>
 <a href="{{ url_for('recor_edit')}}"><input class="button" type="submit" value="Add High Scores" name="Add High Scores"/></a>
 <form action="{{ url_for('recor_page') }}" method="post">
 <table class="t1">
@@ -64,6 +65,7 @@ value="{{ key }}" /></td>
 </form>
 
 <h2>Lowest Score List for records</h2>
+<h5>If a player in Record list has a record that you want to add, then you can add a new Lowest score</h5>
 <a href="{{ url_for('lowrecor_edit')}}"><input class="button" type="submit" value="Add Lowest Scores" name="Add Lowest Scores"/></a>
 <form action="{{ url_for('lowrecor_page') }}" method="post">
 <table class="t1">

@@ -166,40 +166,58 @@ class Store:
             connection.commit()
     
     def add_recor(self, recor1):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "INSERT INTO RECOC (NAME, RECOR) VALUES (%s, %s)"
-            cursor.execute(query, (recor1.name, recor1.recor))
-            connection.commit()
-            self.last_key = cursor.lastrowid
-    
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "INSERT INTO RECOC (NAME, RECOR) VALUES (%s, %s)"
+                cursor.execute(query, (recor1.name, recor1.recor))
+                connection.commit()
+                self.last_key = cursor.lastrowid
+        except dbapi2.DatabaseError:
+            flash('Cannot be add, cause Record list has no record that you entered. ')
+            connection.rollback()
+        finally:
+            connection.close()
+            
     def add_lowrecor(self, lowrecor1):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "INSERT INTO RECOL (NAME, LOWRECOR) VALUES (%s, %s)"
-            cursor.execute(query, (lowrecor1.name, lowrecor1.lowrecor))
-            connection.commit()
-            self.last_key = cursor.lastrowid
-
-    def delete_lowrecor(self, key):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "DELETE FROM RECOL WHERE (ID = %s)"
-            cursor.execute(query, (key,))
-            connection.commit()
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "INSERT INTO RECOL (NAME, LOWRECOR) VALUES (%s, %s)"
+                cursor.execute(query, (lowrecor1.name, lowrecor1.lowrecor))
+                connection.commit()
+                self.last_key = cursor.lastrowid
+        except dbapi2.DatabaseError:
+            flash('Cannot be add, cause Record list has no record that you entered. ')
+            connection.rollback()
+        finally:
+            connection.close()
     
         
     def delete_record(self, key):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "DELETE FROM RECO WHERE (ID = %s)"
-            cursor.execute(query, (key,))
-            connection.commit()
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "DELETE FROM RECO WHERE (ID = %s)"
+                cursor.execute(query, (key,))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Cannot be deleted, if it record has a child or children')
+            connection.rollback()
+        finally:
+            connection.close()
 
     def delete_recor(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "DELETE FROM RECOC WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+
+    def delete_lowrecor(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM RECOL WHERE (ID = %s)"
             cursor.execute(query, (key,))
             connection.commit()
 
