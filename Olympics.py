@@ -5,7 +5,10 @@ import datetime
 from flask import redirect
 from flask import url_for
 
-
+class Olympics:
+    def __init__(self, dsn):
+        self.dsn = dsn
+        self.last_key = None
     def get_olympic(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -18,7 +21,7 @@ from flask import url_for
             cursor = connection.cursor()
             query = "SELECT * FROM OLYMPICS ORDER BY LISTNO"
             cursor.execute(query)
-            Olympics = [Olympic(Listno,Fullname,SwimmerId,Year,Poolid))
+            Olympics = [Olympic(Listno,Fullname,SwimmerId,Year,Poolid))]
                       for Listno,Fullname,SwimmerId,Year,Poolid in cursor]
             return Olympics
 	
@@ -43,10 +46,10 @@ from flask import url_for
             cursor.execute(query, (Olymp.Listno, Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid, Updateto))
             connection.commit()
 
-  def olympic_search(self,tosearch)
-	with dbapi2.connect(self.dsn) as connection:
-		cursor = connection.cursor()
-		query = "SELECT LISTNO,FULLNAME,SWIMMERID,YEAR,POOLID FROM OLYMPICS WHERE (FULLNAME LIKE %s)"
-		cursor.execute(query,tosearch)
-		Listno,Fullname,SwimmerId,Year,Poolid = cursor.fetchone()
- 		return Olympic(Listno,Fullname,SwimmerId,Year,Poolid)
+ 	def olympic_search(self,tosearch)
+		with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+			query = "SELECT LISTNO,FULLNAME,SWIMMERID,YEAR,POOLID FROM OLYMPICS WHERE (FULLNAME LIKE %s)"
+			cursor.execute(query,(tosearch,))
+            Listno,Fullname,SwimmerId,Year,Poolid = cursor.fetchone()
+            return Olympic(Listno,Fullname,SwimmerId,Year,Poolid)

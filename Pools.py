@@ -5,7 +5,11 @@ import datetime
 from flask import redirect
 from flask import url_for
 
-
+class Pools:
+    def __init__(self, dsn):
+        self.dsn = dsn
+        self.last_key = None
+        
     def get_pool(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -21,7 +25,7 @@ from flask import url_for
             Pools = [Pool(Id,Poolname,City,Area ))
                       for Id,Poolname,City,Area in cursor]
             return Pools
-	
+
     def add_pool(self, Newpool):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -43,10 +47,10 @@ from flask import url_for
             cursor.execute(query, (Newpool.Id, Newpool.Poolname,Newpool.City, Newpool.Area, Updateto))
             connection.commit()
 
-  def pool_search(self,tosearch)
-	with dbapi2.connect(self.dsn) as connection:
-		cursor = connection.cursor()
-		query = "SELECT ID,POOLNAME,CITY,AREA FROM POOLS WHERE (POOLNAME LIKE %s)"
-		cursor.execute(query,tosearch)
-		Id,Poolname,City,Area = cursor.fetchone()
- 		return Pool(Id,Poolname,City,Area)
+    def pool_search(self,tosearch)
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()   
+            query = "SELECT ID,POOLNAME,CITY,AREA FROM POOLS WHERE (POOLNAME LIKE %s)"    
+            cursor.execute(query,tosearch)
+            Id,Poolname,City,Area = cursor.fetchone()
+            return Pool(Id,Poolname,City,Area)
