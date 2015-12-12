@@ -408,10 +408,10 @@ class Store:
             cursor.execute(query, (Fullname,SwimmerId,Year,Poolid, key))
             connection.commit()
 
-    def olympic_search(self, word):
+    def olympics_search(self, word):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
-                query = "SELECT LISTNO,FULLNAME,SWIMMERID,YEAR,POOLID FROM OLYMPICS WHERE (FULLNAME LIKE %s)"
+                query = "SELECT LISTNO,FULLNAME,SPONSORID,YEAR,POOLID FROM OLYMPICS WHERE (FULLNAME LIKE %s)"
                 cursor.execute(query,(word,))
                 Olympics = [(key, Olympic(Fullname,SwimmerId,Year,Poolid))
                           for key,Fullname,SwimmerId,Year,Poolid in cursor]

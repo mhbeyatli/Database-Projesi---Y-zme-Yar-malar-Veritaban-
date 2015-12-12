@@ -58,6 +58,12 @@ def olympic_update():
             app.store.update_olympic(int(key),Fullname,SwimmerId,Year,Poolid)
     return redirect(url_for('olympics_page'))
 
+@app.route('/Olympic/update2/')
+def olympic_update2():
+    Olympics = app.store.get_olympics()
+    now = datetime.datetime.now()
+    return render_template('olympics_update.html',Olympics = Olympics,current_time=now.ctime())
+
 @app.route('/Olympics/search2')
 def olympic_search2():
     now = datetime.datetime.now()
@@ -67,6 +73,6 @@ def olympic_search2():
 def olympic_search():
     if request.method == 'POST':
         word =request.form['word']
-        Olympics=app.store.olympic_search(word)
+        Olympics=app.store.olympics_search(word)
         now = datetime.datetime.now()
         return render_template('olympics.html', Olympics=Olympics, current_time=now.ctime())
