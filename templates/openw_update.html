@@ -4,27 +4,27 @@
 
 <form action="{{ url_for('openw_update',key=key) }}" method="post">
 
-<table class="t1">
- 	<th>Competition:</th>
-		<td>
+<table class="t2">
+ 	<th class="t2">Competition:</th>
+		<td class="t2">
  			<input  type="text" name="competition" required autofocus />
  		</td>
  	</tr>
- 	<tr>
-		<th>Winner:</th>
-			<td>
+ 	<tr class="t2">
+		<th class="t2">Winner:</th>
+			<td class="t2">
  				<input  type="text" name="winnerid" required autofocus />
  			</td>
  	</tr>
- 	<tr>
-		<th>Year:</th>
-			<td>
+ 	<tr class="t2">
+		<th class="t2">Year:</th>
+			<td class="t2">
  				<input  type="text" name="year" size="4" />
  			</td>
  		</tr>
  	<tr>
 </table>
-	<input class="button" value="Update" name="update" type="submit" />
+	<input class="button2" value="Update" name="update" type="submit" />
 </form>
 
 {% endblock %}
