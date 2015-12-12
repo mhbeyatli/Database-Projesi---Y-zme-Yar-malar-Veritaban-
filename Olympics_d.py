@@ -42,8 +42,14 @@ def olympic_page(key):
     now = datetime.datetime.now()
     return render_template('Olympics.html', Olympic=Olympic, current_time=now.ctime())
 
+@app.route('/Records/add')
+def record_edit():
+    now = datetime.datetime.now()
+    return render_template('oympicsadd.html', current_time=now.ctime())
 
+@app.route('/Olympics/update/',methods=['GET' , 'POST'])
 def olympic_update():
+    if request.method == 'POST':
         Toupdate = request.form['Toupdate']
         Listno = request.form['Listno']
         Fullname = request.form['Fullname']
