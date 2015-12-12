@@ -1,10 +1,12 @@
 import datetime
 from flask import redirect
 from flask import request
+from flask import flash
 from flask import url_for
 from flask import render_template
 from config import app
 
+app.secret_key = 'many random bytes'
 class Record:
     def __init__(self, name, rec=None):
             self.name = name

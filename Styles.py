@@ -5,7 +5,7 @@ from flask import flash
 from flask import url_for
 from flask import render_template
 from config import app
-    
+
 app.secret_key = 'many random bytes'
 class Style:
     def __init__(self, title, year=None):
@@ -114,7 +114,7 @@ def women_page(key):
         keys = request.form.getlist('person_to_delete')
         for key in keys:
             return render_template('women_update.html',key=key, ids=ids)
-    
+
     else:
         name = request.form['name']
         time = request.form['time']
@@ -122,7 +122,7 @@ def women_page(key):
         woman1=Women(name,time,styleid)
         app.store.add_women(woman1)
         return redirect(url_for('style_page',key=key))
-    
+
 @app.route('/Person/add/<key>')
 def men_edit(key):
     now = datetime.datetime.now()
@@ -157,7 +157,7 @@ def men_search(key):
         Allmen= app.store.search_men(word,ids)
         now = datetime.datetime.now()
         return render_template('person.html',key=key, Allmen=Allmen, current_time=now.ctime())
-    
+
 @app.route('/Person2/search/<key>', methods=['GET' , 'POST'])
 def women_search(key):
     ids=key

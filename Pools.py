@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-from Pools import Pool
+from Pools_d import Pool
 from flask import render_template
 import datetime
 from flask import redirect
@@ -22,7 +22,7 @@ class Pools:
             cursor = connection.cursor()
             query = "SELECT * FROM POOLS ORDER BY ID"
             cursor.execute(query)
-            Pools = [Pool(Id,Poolname,City,Area ))
+            Pools = [(key, Pool(Id,Poolname,City,Area ))
                       for Id,Poolname,City,Area in cursor]
             return Pools
 
@@ -47,7 +47,7 @@ class Pools:
             cursor.execute(query, (Newpool.Id, Newpool.Poolname,Newpool.City, Newpool.Area, Updateto))
             connection.commit()
 
-    def pool_search(self,tosearch)
+    def pool_search(self,tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()   
             query = "SELECT ID,POOLNAME,CITY,AREA FROM POOLS WHERE (POOLNAME LIKE %s)"    
