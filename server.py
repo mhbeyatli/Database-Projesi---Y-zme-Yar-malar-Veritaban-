@@ -10,6 +10,7 @@ import Openwater
 import Styles
 import Olympics_d
 import Pools_d
+import Sponsors_d
 import Records
 import psycopg2 as dbapi2
 

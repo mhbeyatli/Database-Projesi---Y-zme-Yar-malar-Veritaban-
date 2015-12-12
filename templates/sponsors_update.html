@@ -1,0 +1,38 @@
+ {% extends "layout.html" %}
+ {% block title %}Record Update Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('sponsor_update') }}" method="post">
+ <table class="t1">
+ {% for key, Sponsor in Sponsors %}
+ <tr>
+<td><input type="checkbox" name="sponsors_to_update"
+value="{{ key }}" /></td>
+ <td>
+<a href="{{ url_for('sponsor_page', key=key) }}">
+({{Sponsor.Sponsorid}} {{ Sponsor.Swimmername }} {{Sponsor.Birthyear}})
+</a>
+</td>
+ </tr>
+{% endfor %}
+<table class="t1">
+ <th>Sponsorid :</th>
+ <td>
+ <input type="text" name="Sponsorid" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Swimmer Name</th>
+ <td>
+ <input type="text" name="Swimmername" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Birth Year:</th>
+<td>
+ <input type="text" name="Birthyear" size="4" />
+</td>
+</tr>
+</table>
+<input class="button" value="Update" name="update" type="submit" />
+</form>
+{% endblock %}

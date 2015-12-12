@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Sponsors{% endblock %}
+{% block content %}<h1>List of Sponsors</h1>
+<a href="{{ url_for('sponsor_edit')}}">Add New Sponsors</a>
+<a href="{{ url_for('sponsor_update2')}}">Update Sponsors</a>
+<a href={{ url_for('sponsor_search2')}}>Search Sponsors</a>
+<form action="{{ url_for('sponsors_page') }}" method="post">
+ <table>
+ {% for key, Sponsor in Sponsors %}
+ <tr>
+<td><input type="checkbox" name="deletesponsors"
+value="{{ key }}" /></td>
+ <td>
+<a href="{{ url_for('sponsor_page', key=key) }}">
+({{Sponsor.Sponsorid}} {{ Sponsor.Swimmername }} {{Sponsor.Birthyear}})
+</a>
+</td>
+ </tr>
+{% endfor %}
+</table>
+<input type="submit" value="Delete" name="delete" />
+</form>
+{% endblock %}
+

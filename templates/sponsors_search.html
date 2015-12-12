@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+ {% block title %}Search Sponsors{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('sponsor_search') }}" method="post">
+<table class="t1">
+<tr>
+ <th>Enter the Keyword for Searching</th>
+ <td>
+ <input type="text" name="word" required autofocus />
+ </td>
+ </tr>
+</table>
+<input class="button" value="Search" name="search" type="submit" />
+</form>
+<form action="{{ url_for('sponsor_search') }}" method="post">
+ <table>
+ {% for key, Sponsor in Sponsors %}
+<tr>
+<td>
+<a href="{{ url_for('sponsor_page', key=key) }}">
+({{Sponsor.Sponsorid}} {{ Sponsor.Swimmername }} {{Sponsor.Birthyear}})
+</a>
+</td>
+ </tr>
+{% endfor %}
+{% endblock %}

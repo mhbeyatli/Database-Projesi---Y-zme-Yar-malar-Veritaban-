@@ -1,0 +1,27 @@
+ {% extends "layout.html" %}
+ {% block title %}Sponsors Add Form{% endblock %}
+ {% block content %}
+ <form action="{{ url_for('sponsors_page') }}" method="post">
+<table>
+<tr>
+ <th>Sponsor id :</th>
+ <td>
+ <input type="text" name="Sponsorid" required autofocus />
+ </td>
+ </tr>
+ <tr>
+ <th>Swimmer Name:</th>
+<td>
+ <input type="text" name="Swimmername" size="5" />
+</td>
+</tr>
+ <tr>
+ <th>Birth Year </th>
+<td>
+ <input type="text" name="Birthyear" size="5" />
+</td>
+</tr>
+</table>
+<input value="Save" name="save" type="submit" />
+</form>
+{% endblock %}

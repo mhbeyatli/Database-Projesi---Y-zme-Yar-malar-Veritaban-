@@ -1,56 +1,46 @@
-import psycopg2 as dbapi2
-from Pools_d import Pool
-from flask import render_template
-import datetime
-from flask import redirect
-from flask import url_for
+    def get_sponsor(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT SPONSORID, SWIMMERNAME, BIRTHYEAR FROM SPONSORS WHERE (LISTNO = %s)"
+            cursor.execute(query, (key,))
+            Sponsorid,Swimmername,Birthyear = cursor.fetchone()
+            return Sponsor(Sponsorid,Swimmername,Birthyear)
 
-class Pools:
-    def __init__(self, dsn):
-        self.dsn = dsn
-        self.last_key = None
-        
-    def get_pool(self, key):
+    def get_sponsors(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID,POOLNAME,CITY,AREA FROM POOLS WHERE (ID = %s)"
-            cursor.execute(query, (key))
-            Id,Poolname,City,Area = cursor.fetchone()
-            return Pool(Id,Poolname,City,Area)
-    def get_pools(self):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "SELECT * FROM POOLS ORDER BY ID"
+            query = "SELECT LISTNO, SPONSORID, SWIMMERNAME, BIRTHYEAR FROM SPONSORS ORDER BY LISTNO"
             cursor.execute(query)
-            Pools = [(key, Pool(Id,Poolname,City,Area ))
-                      for Id,Poolname,City,Area in cursor]
-            return Pools
+            Sponsors = [(key, Sponsor(Sponsorid,Swimmername,Birthyear))
+                      for key, Sponsorid,Swimmername,Birthyear in cursor]
+            return Sponsors
 
-    def add_pool(self, Newpool):
+    def add_sponsor(self, Olymp):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "INSERT INTO POOLS (ID,POOLNAME,CITY,AREA ) VALUES (%s, %s, %s, %s)"
-            cursor.execute(query, (Newpool.Id, Newpool.Poolname,Newpool.City, Newpool.Area))
+            query = "INSERT INTO SPONSORS (SPONSORID, SWIMMERNAME, BIRTHYEAR ) VALUES ( %s, %s, %s)"
+            cursor.execute(query, (Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid))
             connection.commit()
             self.last_key = cursor.lastrowid
-    def delete_pool(self, key):
+    def delete_sponsor(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "DELETE FROM POOLS WHERE (ID = %s)"
-            cursor.execute(query, (key))
+            query = "DELETE FROM SPONSORS WHERE (LISTNO = %s)"
+            cursor.execute(query, (key,))
             connection.commit()
 
-    def update_pool(self, Updateto, Newpool):
+    def update_sponsor(self, key,Sponsorid,Swimmername,Birthyear):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE POOLS SET ID = %s, POOLNAME = %s, CITY = %s, AREA = %s WHERE (ID = %s)"
-            cursor.execute(query, (Newpool.Id, Newpool.Poolname,Newpool.City, Newpool.Area, Updateto))
+            query = "UPDATE SPONSORS SET SPONSORID = %s, SWIMMERNAME = %s, BIRTHYEAR = %s WHERE (LISTNO = %s)"
+            cursor.execute(query, (Sponsorid,Swimmername,Birthyear, key))
             connection.commit()
 
-    def pool_search(self,tosearch):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()   
-            query = "SELECT ID,POOLNAME,CITY,AREA FROM POOLS WHERE (POOLNAME LIKE %s)"    
-            cursor.execute(query,tosearch)
-            Id,Poolname,City,Area = cursor.fetchone()
-            return Pool(Id,Poolname,City,Area)
+    def sponsors_search(self, word):
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "SELECT SPONSORID, SWIMMERNAME, BIRTHYEAR FROM SPONSORS WHERE (FULLNAME LIKE %s)"
+                cursor.execute(query,(word,))
+                Sponsors = [(key, Sponsor(Sponsorid,Swimmername,Birthyear))
+                          for key,Sponsorid,Swimmername,Birthyear in cursor]
+                return Sponsors
