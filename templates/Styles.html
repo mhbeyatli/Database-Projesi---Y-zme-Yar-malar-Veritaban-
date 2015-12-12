@@ -1,24 +1,40 @@
 {% extends "layout.html" %}
 {% block title %}Styles{% endblock %}
 {% block content %}<h2>Style List</h2>
-<a href="{{ url_for('style_edit')}}">Add Styles</a>
+<a href="{{ url_for('style_edit')}}"><input class="button" type="submit" value="Add Styles" name="Add" /></a>
 
 <form action="{{ url_for('styles_page') }}" method="post">
- <table>
+<table class="t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">Style</th>
+<th class="t1">Distance</th>
+
+
  {% for key, Style in Styles %}
- <tr>
-<td><input type="checkbox" name="styles_to_delete"
-value="{{ key }}" /></td>
- <td>
-<a href="{{ url_for('style_page', key=key) }}">
-{{ Style.title }} {{ Style.year }}mt
-</a>
-</td>
- </tr>
+<tr>
+	<td class="t1"> 
+	<input type="checkbox" name="styles_to_delete"
+		value="{{ key }}" /> 
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('style_page', key=key) }}">
+		{{ Style.title }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('style_page', key=key) }}">
+		{{ Style.year }} </a>
+	</td>
+	<td class="t1">
+	</td>
+
+</tr>
+
 {% endfor %}
 </table>
-<input type="submit" value="Delete" name="delete" />
-<input type="submit" value="Update" name="update" />
-<input type="button" value="Search" name="update" onclick="location.href='Styles/search2';" />
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="submit" value="Update" name="update" />
+<input class="button" type="button" value="Search" name="update" onclick="location.href='Styles/search2';" />
+</p>
 </form>
 {% endblock %}

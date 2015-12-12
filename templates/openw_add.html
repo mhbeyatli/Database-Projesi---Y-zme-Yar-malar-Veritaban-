@@ -2,26 +2,26 @@
  {% block title %}Openwater add form{% endblock %}
  {% block content %}
  <form action="{{ url_for('openw_add') }}">
-	<table class="t1">
- 		<tr>
- 			<th>Competition name:</th>
- 			<td>
+	<table class="t2">
+ 		<tr class="t2">
+ 			<th class="t2">Competition name:</th>
+ 			<td class="t2">
  				<input type="text" name="competition" required autofocus />
  			</td>
  		</tr>
- 		<tr>
-			<th>Winnerid:</th>
-			<td>
+ 		<tr class="t2">
+			<th class="t2">Winnerid:</th>
+			<td class="t2">
  				<input type="text" name="winnerid" required autofocus/>
 			</td>
 		</tr>
-		<tr>
-			<th>Year:</th>
-			<td>
+		<tr class="t2">
+			<th class="t2">Year:</th>
+			<td class="t2">
  				<input type="text" name="year" size="4" />
 			</td>
 		</tr>
 </table>
-<input class="button" value="Save" name="save" type="submit" />
+<input class="button2" value="Save" name="save" type="submit" />
 </form>
 {% endblock %}

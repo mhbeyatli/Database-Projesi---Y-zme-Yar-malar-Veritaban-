@@ -72,6 +72,30 @@ th.t1{
     color: #000000;
     height: 25px;
 }
+table.t2 {
+	max-width:500px;
+	margin: 25px 50px 25px 100px;
+	padding: 15px;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+th.t2, td.t2 {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th.t2{
+    color: #000000;
+    height: 25px;
+}
+
+input.button2{
+	background-color: #e5f2ff;
+	hover: #99ccff;
+	width: 120px;
+    margin-left: 500px;
+}
 tr:hover{background-color:#e5f2ff}
 
 p.paragraf{
