@@ -1,5 +1,6 @@
 import psycopg2 as dbapi2
 from Olympics_d import Olympic
+from Pools_d import Pool
 from Openwater import Openw
 from Records import Record
 from Styles import Men
@@ -86,7 +87,7 @@ class Store:
     def get_men(self,key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (STYLEID = %s) ORDER BY TIME"
+            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (STYLEID = %s)"
             cursor.execute(query,(key,))
             Allmen = [(key, Men(name,time, styleid))
                       for key, name, time, styleid in cursor]
@@ -119,7 +120,7 @@ class Store:
     def get_women(self,key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (STYLEID = %s) ORDER BY TIME"
+            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (STYLEID = %s)"
             cursor.execute(query,(key,))
             Allwomen = [(key, Women(name,time, styleid))
                       for key, name, time, styleid in cursor]
@@ -416,3 +417,51 @@ class Store:
                 Olympics = [(key, Olympic(Fullname,SwimmerId,Year,Poolid))
                           for key,Fullname,SwimmerId,Year,Poolid in cursor]
                 return Olympics
+
+    def get_pool(self, key):
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "SELECT ID,POOLNAME,CITY,AREA FROM POOLS WHERE (LISTNO = %s)"
+                cursor.execute(query, (key,))
+                Id,Poolname,City,Area = cursor.fetchone()
+                return Pool(Id,Poolname,City,Area)
+
+    def get_pools(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT LISTNO,ID,POOLNAME,CITY,AREA FROM POOLS ORDER BY LISTNO"
+            cursor.execute(query)
+            Pools = [(key, Pool(Id,Poolname,City,Area))
+                      for key,Id,Poolname,City,Area in cursor]
+            return Pools
+
+    def add_pool(self, Newpool):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "INSERT INTO POOLS (ID,POOLNAME,CITY,AREA ) VALUES (%s, %s, %s, %s)"
+            cursor.execute(query, (Newpool.Id, Newpool.Poolname,Newpool.City, Newpool.Area))
+            connection.commit()
+            self.last_key = cursor.lastrowid
+
+    def delete_pool(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "DELETE FROM POOLS WHERE (LISTNO = %s)"
+            cursor.execute(query, (key,))
+            connection.commit()
+
+    def update_pool(self, key,Id,Poolname,City,Area):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "UPDATE POOLS SET ID = %s, POOLNAME = %s, CITY = %s, AREA = %s WHERE (LISTNO = %s)"
+            cursor.execute(query, (Id,Poolname,City,Area,key))
+            connection.commit()
+
+    def pools_search(self, word):
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "SELECT LISTNO,ID,POOLNAME,CITY,AREA FROM POOLS WHERE (POOLNAME LIKE %s)"
+                cursor.execute(query,(word,))
+                Pools = [(key, Pool(Id,Poolname,City,Area))
+                          for key,Id,Poolname,City,Area in cursor]
+                return Pools

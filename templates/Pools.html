@@ -1,9 +1,9 @@
 x{% extends "layout.html" %}
 {% block title %}Pools{% endblock %}
 {% block content %}<h1>List of Pools</h1>
-<a href="{{ url_for('olympic_edit'}})">Add New Pools</a>
-<a href="pools_update.html">Update Pools</a>
-<a href="pools_search.html">Search Pools</a>
+<a href="{{ url_for('pool_edit')}}">Add Pool</a>
+<a href="{{ url_for('pool_update2')}}">Update Pools</a>
+<a href={{ url_for('pool_search2')}}>Search Pools</a>
 <form action="{{ url_for('pools_page') }}" method="post">
  <table>
  {% for key, Pool in Pools %}
@@ -12,7 +12,7 @@ x{% extends "layout.html" %}
 value="{{ key }}" /></td>
  <td>
 <a href="{{ url_for('pool_page', key=key) }}">
-{{ Pool.Id }} ({{Pool.Poolname}} {{ Pool.City }} {{Pool.Area}})
+({{ Pool.Id }} {{Pool.Poolname}} {{ Pool.City }} {{Pool.Area}})
 </a>
 </td>
  </tr>

@@ -1,26 +1,26 @@
- {% extends "layout.html" %}
- {% block title %}Pools Search Form{% endblock %}
+{% extends "layout.html" %}
+ {% block title %}Search Pools{% endblock %}
  {% block content %}
- <form action="{{ url_for('pools_search') }}" method="post">
-<table>
+ <form action="{{ url_for('pool_search') }}" method="post">
+<table class="t1">
 <tr>
- <th>Enter the Keyword for search:</th>
+ <th>Enter the Keyword for Searching</th>
  <td>
- <input type="text" name="keywords" required autofocus />
+ <input type="text" name="word" required autofocus />
  </td>
  </tr>
 </table>
-<input value="Save" name="save" type="submit" />
+<input class="button" value="Search" name="search" type="submit" />
 </form>
-<form action="{{ url_for('pools_search') }}" method="post">
+<form action="{{ url_for('pool_search') }}" method="post">
  <table>
  {% for key, Pool in Pools %}
 <tr>
- <td>
+<td>
 <a href="{{ url_for('pool_page', key=key) }}">
-{{ Pool.Id }} ({{Pool.Poolname}} {{ Pool.City }} {{Pool.Area}})
+({{Pool.Fullname}} {{ Pool.SwimmerId }} {{Pool.Year}} {{Pool.Poolid}})
 </a>
 </td>
  </tr>
-
+{% endfor %}
 {% endblock %}

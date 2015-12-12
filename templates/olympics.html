@@ -1,4 +1,4 @@
-x{% extends "layout.html" %}
+{% extends "layout.html" %}
 {% block title %}Olympics{% endblock %}
 {% block content %}<h1>List of Olympics</h1>
 <a href="{{ url_for('olympic_edit')}}">Add New Olympics</a>
@@ -10,7 +10,6 @@ x{% extends "layout.html" %}
  <tr>
 <td><input type="checkbox" name="deleteolympics"
 value="{{ key }}" /></td>
-
  <td>
 <a href="{{ url_for('olympic_page', key=key) }}">
 ({{Olympic.Fullname}} {{ Olympic.SwimmerId }} {{Olympic.Year}} {{Olympic.Poolid}})

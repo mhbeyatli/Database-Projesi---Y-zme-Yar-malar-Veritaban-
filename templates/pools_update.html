@@ -1,42 +1,44 @@
  {% extends "layout.html" %}
- {% block title %}pools Update Form{% endblock %}
+ {% block title %}Record Update Form{% endblock %}
  {% block content %}
-<a href="{{ url_for('pool_edit'}})">Add/Delete New pools</a>
-<a href="pools_update.html">Update pools</a>
-<a href="pools_search.html">Search pools</a>
  <form action="{{ url_for('pool_update') }}" method="post">
-<table>
+ <table class="t1">
+ {% for key, Pool in Pools %}
  <tr>
- <th>ID No of the element you want to update:</th>
-<td>
- <input type="text" name="Toupdate" size="4" />
+<td><input type="checkbox" name="pools_to_update"
+value="{{ key }}" /></td>
+ <td>
+<a href="{{ url_for('pool_page', key=key) }}">
+({{Pool.Id}} {{ Pool.Poolname }} {{Pool.City}} {{Pool.Area}})
+</a>
 </td>
-</tr> 
+ </tr>
+{% endfor %}
+<table class="t1">
+ <th>ID:</th>
+ <td>
+ <input type="text" name="Id" required autofocus />
+ </td>
+ </tr>
  <tr>
- <th>New ID No:</th>
-<td>
- <input type="text" name="Id" size="3" />
-</td>
-</tr> 
-<tr>
- <th>New Pool Name:</th>
+ <th>Pool Name:</th>
  <td>
  <input type="text" name="Poolname" required autofocus />
  </td>
  </tr>
  <tr>
- <th>New City : </th>
+ <th>City:</th>
 <td>
- <input type="text" name="City" required autofocus />
+ <input type="text" name="City" size="4" />
 </td>
 </tr>
  <tr>
- <th>Area : </th>
+ <th>Area:</th>
 <td>
- <input type="text" name="Area" size="10" />
+ <input type="text" name="Area" size="4" />
 </td>
 </tr>
 </table>
-<input value="Save" name="save" type="submit" />
+<input class="button" value="Update" name="update" type="submit" />
 </form>
 {% endblock %}
