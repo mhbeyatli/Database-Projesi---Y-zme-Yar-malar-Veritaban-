@@ -7,8 +7,7 @@ from flask import render_template
 from config import app
 
 class Olympic:
-    def __init__(self,Listno,Fullname,SwimmerId,Year,Poolid):
-            self.Listno = Listno
+    def __init__(self,Fullname,SwimmerId,Year,Poolid):
             self.Fullname = Fullname
             self.SwimmerId = SwimmerId
             self.Year = Year
@@ -24,16 +23,15 @@ def olympics_page():
         keys = request.form.getlist('deleteolympics')
         for key in keys:
             app.store.delete_olympic(int(key))
-            return redirect(url_for('olympic_page'))
+            return redirect(url_for('olympics_page'))
 
     else:
-        Listno = request.form['Listno']
         Fullname = request.form['Fullname']
         SwimmerId = request.form['SwimmerId']
         Year = request.form['Year']
         Poolid = request.form['Poolid']
-        Olympic = Olympic(Listno,Fullname,SwimmerId,Year,Poolid)
-        app.store.add_olympic(Olympic)
+        Olympics = Olympic(Fullname,SwimmerId,Year,Poolid)
+        app.store.add_olympic(Olympics)
         return redirect(url_for('olympic_page', key=app.store.last_key))
 
 @app.route('/Olympics/<int:key>')
@@ -42,23 +40,29 @@ def olympic_page(key):
     now = datetime.datetime.now()
     return render_template('Olympics.html', Olympic=Olympic, current_time=now.ctime())
 
-@app.route('/Records/add')
-def record_edit():
+@app.route('/Olympics/add/')
+def olympic_edit():
     now = datetime.datetime.now()
-    return render_template('oympicsadd.html', current_time=now.ctime())
+    return render_template('olympicsadd.html', current_time=now.ctime())
+
 
 @app.route('/Olympics/update/',methods=['GET' , 'POST'])
 def olympic_update():
     if request.method == 'POST':
-        Toupdate = request.form['Toupdate']
-        Listno = request.form['Listno']
         Fullname = request.form['Fullname']
         SwimmerId = request.form['SwimmerId']
         Year = request.form['Year']
         Poolid = request.form['Poolid']
-        Olympic = Olympic(Listno,Fullname,SwimmerId,Year,Poolid)
-        app.store.Olympicupdate(Toupdate,Olympic)
-        return redirect(url_for('olympic_page', key=app.store.last_key))
+        keys = request.form.getlist('olympics_to_update')
+        for key in keys:
+            app.store.update_olympic(int(key),Fullname,SwimmerId,Year,Poolid)
+    return redirect(url_for('olympics_page'))
+
+@app.route('/Olympics/update2/')
+def olympic_update2():
+    Olympics = app.store.get_olympics()
+    now = datetime.datetime.now()
+    return render_template('olympics_update.html',Olympics=Olympics,current_time=now.ctime())
 
 @app.route('/Olympics/search')
 def olympic_search():

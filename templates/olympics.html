@@ -2,7 +2,7 @@ x{% extends "layout.html" %}
 {% block title %}Olympics{% endblock %}
 {% block content %}<h1>List of Olympics</h1>
 <a href="{{ url_for('olympic_edit')}}">Add New Olympics</a>
-<a href="{{ url_for('olympic_update')}}">Update Olympics</a>
+<a href="{{ url_for('olympic_update2')}}">Update Olympics</a>
 <a href={{ url_for('olympic_search')}}>Search Olympics</a>
 <form action="{{ url_for('olympics_page') }}" method="post">
  <table>
@@ -13,7 +13,7 @@ value="{{ key }}" /></td>
 
  <td>
 <a href="{{ url_for('olympic_page', key=key) }}">
-{{ Olympic.Listno }} ({{Olympic.Fullname}} {{ Olymic.SwimmerId }} {{Olympic.Year}} {{Olympic.Poolid}})
+({{Olympic.Fullname}} {{ Olympic.SwimmerId }} {{Olympic.Year}} {{Olympic.Poolid}})
 </a>
 </td>
  </tr>

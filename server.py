@@ -8,7 +8,6 @@ from store import Store
 import Medals
 import Openwater
 import Styles
-import Olympics
 import Olympics_d
 import Pools
 import Pools_d

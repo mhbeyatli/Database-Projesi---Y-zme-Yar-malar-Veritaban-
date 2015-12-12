@@ -1,5 +1,5 @@
 import psycopg2 as dbapi2
-
+from Olympics_d import Olympic
 from Openwater import Openw
 from Records import Record
 from Styles import Men
@@ -18,7 +18,7 @@ class Store:
     def __init__(self, dsn):
         self.dsn = dsn
         self.last_key = None
-        
+
     def add_style(self, title,year):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -44,7 +44,7 @@ class Store:
             query = "UPDATE STYLESS SET TITLE = %s, METER = %s WHERE (ID = %s)"
             cursor.execute(query, (title, year,key))
             connection.commit()
-            
+
     def get_style(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -60,7 +60,7 @@ class Store:
             Styles = [(key, Style( title, year))
                       for key, title, year in cursor]
         return Styles
-    
+
     def search_style(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -82,7 +82,7 @@ class Store:
             query = "DELETE FROM MEN WHERE (ID = %s)"
             cursor.execute(query, (key,))
             connection.commit()
-            
+
     def get_men(self,key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -91,7 +91,7 @@ class Store:
             Allmen = [(key, Men(name,time, styleid))
                       for key, name, time, styleid in cursor]
             return Allmen
-            
+
     def search_men(self, tosearch, ids):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -100,8 +100,8 @@ class Store:
             Allmen = [(key, Men(name, time, styleid))
                       for key, name, time, styleid in cursor]
             return Allmen
-    
-            
+
+
     def update_men(self, key, name, time, styleid):
         try:
             with dbapi2.connect(self.dsn) as connection:
@@ -114,8 +114,8 @@ class Store:
             connection.rollback()
         finally:
             connection.close()
-    
-              
+
+
     def get_women(self,key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -148,7 +148,7 @@ class Store:
             flash('Cannot be update ')
             connection.rollback()
         finally:
-            connection.close() 
+            connection.close()
     def search_women(self, tosearch, ids):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -156,15 +156,15 @@ class Store:
             cursor.execute(query,(tosearch,ids))
             Allwomen = [(key, Women(name, time, styleid))
                       for key, name, time, styleid in cursor]
-            return Allwomen 
-    
+            return Allwomen
+
     def add_record(self, record1):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "INSERT INTO RECO (NAME, REC) VALUES (%s, %s)"
             cursor.execute(query, (record1.name, record1.rec))
             connection.commit()
-    
+
     def add_recor(self, recor1):
         try:
             with dbapi2.connect(self.dsn) as connection:
@@ -178,7 +178,7 @@ class Store:
             connection.rollback()
         finally:
             connection.close()
-            
+
     def add_lowrecor(self, lowrecor1):
         try:
             with dbapi2.connect(self.dsn) as connection:
@@ -192,8 +192,8 @@ class Store:
             connection.rollback()
         finally:
             connection.close()
-    
-        
+
+
     def delete_record(self, key):
         try:
             with dbapi2.connect(self.dsn) as connection:
@@ -226,14 +226,14 @@ class Store:
             cursor = connection.cursor()
             query = "UPDATE RECOL SET NAME = %s, LOWRECOR = %s WHERE (ID = %s)"
             cursor.execute(query, (name, lowrecor, key))
-            connection.commit()            
+            connection.commit()
     def update_record(self, key, name, rec):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "UPDATE RECO SET NAME = %s, REC = %s WHERE (ID = %s)"
             cursor.execute(query, (name, rec, key))
             connection.commit()
-    
+
     def update_recor(self, key, name, recor):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -248,7 +248,7 @@ class Store:
             cursor.execute(query)
             LowRecors = [(key, RecorLow(name, lowrecor))
                       for key, name, lowrecor in cursor]
-        return LowRecors 
+        return LowRecors
 
     def get_lowrecors(self):
         with dbapi2.connect(self.dsn) as connection:
@@ -266,7 +266,7 @@ class Store:
             cursor.execute(query, (key,))
             name, rec = cursor.fetchone()
             return Record(name, rec)
-        
+
 
     def get_recor(self):
         with dbapi2.connect(self.dsn) as connection:
@@ -275,10 +275,10 @@ class Store:
             cursor.execute(query)
             Recors = [(key, Recor(name, recor))
                       for key, name, recor in cursor]
-        return Recors 
-  
-        
-        
+        return Recors
+
+
+
     def get_records(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -287,7 +287,7 @@ class Store:
             Records = [(key, Record(name, rec))
                       for key, name, rec in cursor]
             return Records
-        
+
     def get_recors(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -296,7 +296,7 @@ class Store:
             Recors = [(key, Recor(name, recor))
                       for key, name, recor in cursor]
             return Recors
-   
+
     def record_search(self, tosearch):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
@@ -305,7 +305,7 @@ class Store:
                 Records = [(key, Record(name, rec))
                           for key, name, rec in cursor]
                 return Records
-   
+
     def recor_search(self, tosearch):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
@@ -314,7 +314,7 @@ class Store:
                 Recors = [(key, Recor(name, recor))
                           for key, name, recor in cursor]
                 return Recors
-            
+
     def lowrecor_search(self, tosearch):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
@@ -322,7 +322,7 @@ class Store:
                 cursor.execute(query,(tosearch,))
                 LowRecors = [(key, RecorLow(name, lowrecor))
                           for key, name, lowrecor in cursor]
-                return LowRecors  
+                return LowRecors
     def get_openw(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -360,7 +360,7 @@ class Store:
             connection.rollback()
         finally:
             connection.close()
-            
+
     def search_openw(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -369,41 +369,43 @@ class Store:
             Openwater = [(key, Openw(comp,winnerid,year))
                       for key, comp, winnerid, year in cursor]
             return Openwater
+
     def get_olympic(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT LISTNO,FULLNAME,SWIMMERID,YEAR,POOLID FROM OLYMPICS WHERE (LISTNO = %s)"
-            cursor.execute(query, (key))
-            Listno,Fullname,SwimmerId,Year,Poolid = cursor.fetchone()
-            return Olympic(Listno,Fullname,SwimmerId,Year,Poolid)
+            query = "SELECT FULLNAME, SPONSORID,YEAR,POOLID FROM OLYMPICS WHERE (LISTNO = %s)"
+            cursor.execute(query, (key,))
+            Fullname,SwimmerId,Year,Poolid = cursor.fetchone()
+            return Olympic(Fullname,SwimmerId,Year,Poolid)
+
     def get_olympics(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT * FROM OLYMPICS ORDER BY LISTNO"
+            query = "SELECT LISTNO, FULLNAME, SPONSORID, YEAR, POOLID FROM OLYMPICS ORDER BY LISTNO"
             cursor.execute(query)
-            Olympics = [(key,Olympic(Listno,Fullname,SwimmerId,Year,Poolid))
-                      for Listno,Fullname,SwimmerId,Year,Poolid in cursor]
+            Olympics = [(key, Olympic(Fullname, SwimmerId, Year, Poolid))
+                      for key, Fullname, SwimmerId, Year, Poolid in cursor]
             return Olympics
-    
+
     def add_olympic(self, Olymp):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "INSERT INTO OLYMPICS (LISTNO, FULLNAME, SWIMMERID, YEAR, POOLID ) VALUES (%s, %s, %s, %s, %s)"
-            cursor.execute(query, (Olymp.Listno, Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid))
+            query = "INSERT INTO OLYMPICS (FULLNAME, SPONSORID, YEAR, POOLID ) VALUES ( %s, %s, %s, %s)"
+            cursor.execute(query, (Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid))
             connection.commit()
             self.last_key = cursor.lastrowid
     def delete_olympic(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "DELETE FROM OLYMPICS WHERE (LISTID = %s)"
+            query = "DELETE FROM OLYMPICS WHERE (LISTNO = %s)"
             cursor.execute(query, (key,))
             connection.commit()
 
-    def update_olympic(self, Updateto, Olymp):
+    def update_olympic(self, key, Fullname,SwimmerId,Year,Poolid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "UPDATE OLYMPICS SET LISTNO = %s, FULLNAME = %s, SWIMMERID = %s, YEAR, = %s POOLID = %s WHERE (LISTNO = %s)"
-            cursor.execute(query, (Olymp.Listno, Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid, Updateto))
+            query = "UPDATE OLYMPICS SET FULLNAME = %S, SPONSORID = %S, YEAR = %S, POOLID = %s WHERE (LISTNO = %s)"
+            cursor.execute(query, (Fullname,SwimmerId,Year,Poolid, key))
             connection.commit()
 
     def olympic_search(self, tosearch):
