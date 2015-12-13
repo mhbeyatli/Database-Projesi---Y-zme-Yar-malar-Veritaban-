@@ -27,8 +27,13 @@ def openwater_page():
         keys = request.form.getlist('openw_to_delete')
         for key in keys:
             return render_template('openw_update.html',key=key)
-    elif 'add' in request.form:
-        return render_template('openw_add.html')
+    else:
+        name = request.form['name']
+        rec = request.form['rec']
+        record = Record(name, rec)
+        app.store.add_record(record)
+        return redirect(url_for('records_page', key=app.store.last_key))
+
 @app.route('/OpenWater/<int:key>')
 def openw_page(key):
     Openwater= app.store.get_openw(key)
@@ -37,12 +42,8 @@ def openw_page(key):
 
 @app.route('/OpenWater/add')
 def openw_add():
-    comp = request.form['competition']
-    winnerid = request.form['winnerid']
-    year = request.form['year'] 
-    openw = Openw(comp,winnerid, year)
-    app.store.add_openw(openw)
-    return redirect(url_for('openwater_page'))
+    now = datetime.datetime.now()
+    return render_template('openw_add.html', current_time=now.ctime())
 
 
 @app.route('/OpenWater/update/<key>',methods=['GET' , 'POST'])
