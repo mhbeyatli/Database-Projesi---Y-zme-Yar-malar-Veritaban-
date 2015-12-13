@@ -22,7 +22,7 @@ def pools_page():
         keys = request.form.getlist('deletepools')
         for key in keys:
             app.store.delete_pool(int(key))
-            return redirect(url_for('pool_page'))
+            return redirect(url_for('pools_page'))
 
     else:
         Id = request.form['Id']
@@ -31,7 +31,7 @@ def pools_page():
         Area = request.form['Area']
         Pools = Pool(Id,Poolname,City,Area)
         app.store.add_pool(Pools)
-        return redirect(url_for('pool_page', key=app.store.last_key))
+        return redirect(url_for('pools_page', key=app.store.last_key))
 
 @app.route('/Pools/add/')
 def pool_edit():

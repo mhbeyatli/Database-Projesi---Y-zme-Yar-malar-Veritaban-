@@ -30,7 +30,7 @@ def sponsors_page():
         Birthyear= request.form['Birthyear']
         Sponsors = Sponsor(Sponsorid,Swimmername,Birthyear)
         app.store.add_sponsor(Sponsors)
-        return redirect(url_for('sponsor_page', key=app.store.last_key))
+        return redirect(url_for('sponsors_page', key=app.store.last_key))
 
 @app.route('/Sponsors/<int:key>')
 def sponsor_page(key):

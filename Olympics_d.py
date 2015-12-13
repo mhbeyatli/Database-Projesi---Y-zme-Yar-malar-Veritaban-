@@ -31,7 +31,7 @@ def olympics_page():
         Poolid = request.form['Poolid']
         Olympics = Olympic(Fullname,SwimmerId,Year,Poolid)
         app.store.add_olympic(Olympics)
-        return redirect(url_for('olympic_page', key=app.store.last_key))
+        return redirect(url_for('olympics_page', key=app.store.last_key))
 
 @app.route('/Olympics/<int:key>')
 def olympic_page(key):
