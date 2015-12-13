@@ -4,7 +4,7 @@
  <form action="{{ url_for('sponsor_search') }}" method="post">
 <table class="t1">
 <tr>
- <th>Enter the Keyword for Searching</th>
+ <th>Enter the Sponsor name for Searching</th>
  <td>
  <input type="text" name="word" required autofocus />
  </td>
@@ -16,8 +16,8 @@
  <table>
 <tr class="t1">
 <th class="t1">#id </th>
-<th class="t1">Swimmer Name</th>
-<th class="t1">Birth Year</th>
+<th class="t1">Sponsor Name</th>
+<th class="t1">Starting Year</th>
 
  {% for key, Sponsor in Sponsors %}
 <tr>

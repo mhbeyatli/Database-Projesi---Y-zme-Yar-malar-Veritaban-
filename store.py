@@ -390,12 +390,19 @@ class Store:
             return Olympics
 
     def add_olympic(self, Olymp):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "INSERT INTO OLYMPICS (FULLNAME, SPONSORID, YEAR, POOLID ) VALUES ( %s, %s, %s, %s)"
-            cursor.execute(query, (Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid))
-            connection.commit()
-            self.last_key = cursor.lastrowid
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "INSERT INTO OLYMPICS (FULLNAME, SPONSORID, YEAR, POOLID ) VALUES ( %s, %s, %s, %s)"
+                cursor.execute(query, (Olymp.Fullname, Olymp.SwimmerId,Olymp.Year, Olymp.Poolid))
+                connection.commit()
+                self.last_key = cursor.lastrowid
+        except dbapi2.DatabaseError:
+            flash('Unable to add. Please be sure that Pool and Sponsor with such ids exist')
+            connection.rollback()
+        finally:
+            connection.close()
+
     def delete_olympic(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -445,11 +452,17 @@ class Store:
             self.last_key = cursor.lastrowid
 
     def delete_pool(self, key):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "DELETE FROM POOLS WHERE (LISTNO = %s)"
-            cursor.execute(query, (key,))
-            connection.commit()
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "DELETE FROM POOLS WHERE (LISTNO = %s)"
+                cursor.execute(query, (key,))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Due this PoolId is being used in Olympics table currently,Row cannot be deleted.')
+            connection.rollback()
+        finally:
+            connection.close()
 
     def update_pool(self, key,Id,Poolname,City,Area):
         with dbapi2.connect(self.dsn) as connection:
@@ -493,11 +506,17 @@ class Store:
             connection.commit()
             self.last_key = cursor.lastrowid
     def delete_sponsor(self, key):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "DELETE FROM SPONSORS WHERE (LISTNO = %s)"
-            cursor.execute(query, (key,))
-            connection.commit()
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "DELETE FROM SPONSORS WHERE (LISTNO = %s)"
+                cursor.execute(query, (key,))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Due this Sponsorid is being used in Olympics table currently,Row cannot be deleted.')
+            connection.rollback()
+        finally:
+            connection.close()
 
     def update_sponsor(self, key,Sponsorid,Swimmername,Birthyear):
         with dbapi2.connect(self.dsn) as connection:
