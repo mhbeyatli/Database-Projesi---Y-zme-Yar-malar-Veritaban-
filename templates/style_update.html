@@ -1,32 +1,20 @@
 {% extends "layout.html" %}
  {% block title %}Style Update Form{% endblock %}
  {% block content %}
- <form action="{{ url_for('style_update') }}" method="post">
- <table>
- {% for key, Style in Styles %}
- <tr>
-<td><input type="checkbox" name="styles_to_update"
-value="{{ key }}" /></td>
- <td>
-<a href="{{ url_for('style_page', key=key) }}">
-{{ Style.title }} {{ Style.year }}mt
-</a>
-</td>
- </tr>
-{% endfor %}
-<table>
- <th>Title:</th>
- <td>
+ <form action="{{ url_for('style_update', key=key) }}" method="post">
+ <table class="t1">
+ <th class="t1">Title:</th>
+ <td class="t1">
  <input  type="text" name="title" required autofocus />
  </td>
  </tr>
- <tr>
- <th>Meter:</th>
-<td>
+ <tr class="t1">
+ <th class="t1">Meter:</th>
+<td class="t1">
  <input type="text" name="year" size="4" />
 </td>
 </tr>
 </table>
-<input value="Update" name="update" type="submit" />
+<input class="button" value="Update" name="update" type="submit" />
 </form>
 {% endblock %}
