@@ -66,7 +66,7 @@ class Store:
     def search_style(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, TITLE, METER FROM STYLESS WHERE (TITLE LIKE %s)"
+            query = "SELECT ID, TITLE, METER FROM STYLESS WHERE (TITLE ILIKE '%%' || %s || '%%')"
             cursor.execute(query,(tosearch,))
             Styles = [(key, Style(title, year))
                       for key, title, year in cursor]
@@ -97,7 +97,7 @@ class Store:
     def search_men(self, tosearch, ids):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (NAME LIKE %s) AND (STYLEID= %s)"
+            query = "SELECT ID, NAME, TIME, STYLEID FROM MEN WHERE (NAME ILIKE '%%' || %s || '%%') AND (STYLEID= %s)"
             cursor.execute(query,(tosearch,ids))
             Allmen = [(key, Men(name, time, styleid))
                       for key, name, time, styleid in cursor]
@@ -154,7 +154,7 @@ class Store:
     def search_women(self, tosearch, ids):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (NAME LIKE %s) AND (STYLEID= %s)"
+            query = "SELECT ID, NAME, TIME, STYLEID FROM WOMEN WHERE (NAME ILIKE '%%' || %s || '%%') AND (STYLEID= %s)"
             cursor.execute(query,(tosearch,ids))
             Allwomen = [(key, Women(name, time, styleid))
                       for key, name, time, styleid in cursor]
