@@ -74,4 +74,4 @@ def olympic_search():
         word =request.form['word']
         Olympics=app.store.olympics_search(word)
         now = datetime.datetime.now()
-        return render_template('olympics.html', Olympics=Olympics, current_time=now.ctime())
+        return render_template('Olympics.html', Olympics=Olympics, current_time=now.ctime())

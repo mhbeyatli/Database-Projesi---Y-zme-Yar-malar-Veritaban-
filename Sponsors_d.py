@@ -72,4 +72,4 @@ def sponsor_search():
         word = request.form['word']
         Sponsors=app.store.sponsors_search(word)
         now = datetime.datetime.now()
-        return render_template('sponsors.html', Sponsors=Sponsors, current_time=now.ctime())
+        return render_template('Sponsors.html', Sponsors=Sponsors, current_time=now.ctime())
