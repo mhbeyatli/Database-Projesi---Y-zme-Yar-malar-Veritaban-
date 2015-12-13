@@ -2,16 +2,35 @@
  {% block title %}Record Update Form{% endblock %}
  {% block content %}
  <form action="{{ url_for('pool_update') }}" method="post">
- <table class="t1">
+<table class = "t1">
+<tr class="t1">
+<th class="t1">Update </th>
+<th class="t1">#Poolid </th>
+<th class="t1">Pool Name</th>
+<th class="t1">City</th>
+<th class="t1">Area</th>
+
+</tr>
  {% for key, Pool in Pools %}
  <tr>
 <td><input type="checkbox" name="pools_to_update"
 value="{{ key }}" /></td>
- <td>
-<a href="{{ url_for('pool_page', key=key) }}">
-({{Pool.Id}} {{ Pool.Poolname }} {{Pool.City}} {{Pool.Area}})
-</a>
+
+
+<td class="t1">
+{{ Pool.Id }}
 </td>
+<td class="t1">
+{{Pool.Poolname}}
+</td>
+<td class="t1">
+{{ Pool.City }}
+</td>
+<td class="t1">
+{{Pool.Area}}
+</td>
+
+
  </tr>
 {% endfor %}
 <table class="t1">

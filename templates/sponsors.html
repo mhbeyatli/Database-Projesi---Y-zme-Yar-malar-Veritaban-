@@ -5,15 +5,26 @@
 <a href="{{ url_for('sponsor_update2')}}">Update Sponsors</a>
 <a href={{ url_for('sponsor_search2')}}>Search Sponsors</a>
 <form action="{{ url_for('sponsors_page') }}" method="post">
- <table>
+ <table class="t1">
+<tr class="t1">
+<th class="t1">Delete </th>
+<th class="t1">#id </th>
+<th class="t1">Swimmer Name</th>
+<th class="t1">Birth Year</th>
+
+</tr>
  {% for key, Sponsor in Sponsors %}
- <tr>
-<td><input type="checkbox" name="deletesponsors"
+ <tr class="t1">
+<td class="t1"><input type="checkbox" name="deletesponsors"
 value="{{ key }}" /></td>
- <td>
-<a href="{{ url_for('sponsor_page', key=key) }}">
-({{Sponsor.Sponsorid}} {{ Sponsor.Swimmername }} {{Sponsor.Birthyear}})
-</a>
+<td class="t1">
+{{Sponsor.Sponsorid}}
+</td>
+<td class="t1">
+{{Sponsor.Swimmername }}
+</td>
+<td class="t1">
+{{Sponsor.Birthyear}}
 </td>
  </tr>
 {% endfor %}

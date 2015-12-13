@@ -7,10 +7,14 @@
  <tr>
 <td><input type="checkbox" name="sponsors_to_update"
 value="{{ key }}" /></td>
- <td>
-<a href="{{ url_for('sponsor_page', key=key) }}">
-({{Sponsor.Sponsorid}} {{ Sponsor.Swimmername }} {{Sponsor.Birthyear}})
-</a>
+<td class="t1">
+{{Sponsor.Sponsorid}}
+</td>
+<td class="t1">
+{{Sponsor.Swimmername }}
+</td>
+<td class="t1">
+{{Sponsor.Birthyear}}
 </td>
  </tr>
 {% endfor %}

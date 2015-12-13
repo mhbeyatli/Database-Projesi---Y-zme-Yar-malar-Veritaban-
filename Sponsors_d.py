@@ -17,8 +17,7 @@ def sponsors_page():
     if request.method == 'GET':
         Sponsors = app.store.get_sponsors()
         now = datetime.datetime.now()
-        return render_template('Sponsors.html', Sponsors=Sponsors,
-                               current_time=now.ctime())
+        return render_template('Sponsors.html', Sponsors=Sponsors, current_time=now.ctime())
     elif 'deletesponsors' in request.form:
         keys = request.form.getlist('deletesponsors')
         for key in keys:

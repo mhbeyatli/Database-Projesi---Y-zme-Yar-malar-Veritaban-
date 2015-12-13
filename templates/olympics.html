@@ -5,15 +5,32 @@
 <a href="{{ url_for('olympic_update2')}}">Update Olympics</a>
 <a href={{ url_for('olympic_search2')}}>Search Olympics</a>
 <form action="{{ url_for('olympics_page') }}" method="post">
- <table>
+ <table class="t1">
+<tr class="t1">
+<th class="t1">Delete </th>
+<th class="t1">FullName </th>
+<th class="t1">#SwimmerId </th>
+<th class="t1">Year</th>
+<th class="t1">#PoolId</th>
+
+</tr>
  {% for key, Olympic in Olympics %}
  <tr>
 <td><input type="checkbox" name="deleteolympics"
 value="{{ key }}" /></td>
- <td>
-<a href="{{ url_for('olympic_page', key=key) }}">
-({{Olympic.Fullname}} {{ Olympic.SwimmerId }} {{Olympic.Year}} {{Olympic.Poolid}})
-</a>
+ <td class="t1">
+({{Olympic.Fullname}}
+</td>
+<td class="t1">
+{{ Olympic.SwimmerId }}
+</td>
+<td class="t1">
+{{Olympic.Year}}
+</td>
+<td class="t1">
+{{Olympic.Poolid}})
+</td>
+
 </td>
  </tr>
 {% endfor %}

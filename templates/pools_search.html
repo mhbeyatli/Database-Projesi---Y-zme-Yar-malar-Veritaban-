@@ -13,14 +13,30 @@
 <input class="button" value="Search" name="search" type="submit" />
 </form>
 <form action="{{ url_for('pool_search') }}" method="post">
- <table>
+ <table class = "t1">
+<tr class="t1">
+<th class="t1">#Poolid </th>
+<th class="t1">Pool Name</th>
+<th class="t1">City</th>
+<th class="t1">Area</th>
+</tr>
  {% for key, Pool in Pools %}
-<tr>
-<td>
-<a href="{{ url_for('pool_page', key=key) }}">
-({{Pool.Fullname}} {{ Pool.SwimmerId }} {{Pool.Year}} {{Pool.Poolid}})
-</a>
+ <tr>
+
+<td class="t1">
+{{ Pool.Id }}
 </td>
+<td class="t1">
+{{Pool.Poolname}}
+</td>
+<td class="t1">
+{{ Pool.City }}
+</td>
+<td class="t1">
+{{Pool.Area}}
+</td>
+
+
  </tr>
 {% endfor %}
 {% endblock %}

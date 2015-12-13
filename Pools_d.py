@@ -17,7 +17,7 @@ def pools_page():
     if request.method == 'GET':
         Pools = app.store.get_pools()
         now = datetime.datetime.now()
-        return render_template('Pools.html', Pools=Pools,current_time=now.ctime())
+        return render_template('Pools.html', Pools=Pools, current_time=now.ctime())
     elif 'deletepools' in request.form:
         keys = request.form.getlist('deletepools')
         for key in keys:
