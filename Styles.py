@@ -65,11 +65,6 @@ def style_update(key):
     return redirect(url_for('styles_page'))
 
 
-@app.route('/Styles/search2')
-def style_search2():
-    now = datetime.datetime.now()
-    return render_template('style_search.html', current_time=now.ctime())
-
 @app.route('/Styles/search', methods=['GET' , 'POST'])
 def style_search():
     if request.method == 'POST':
