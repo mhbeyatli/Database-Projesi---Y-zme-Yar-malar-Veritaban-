@@ -411,12 +411,17 @@ class Store:
             connection.commit()
 
     def update_olympic(self, key, Fullname,SwimmerId,Year,Poolid):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = "UPDATE OLYMPICS SET FULLNAME = %s, SPONSORID = %s, YEAR = %s, POOLID = %s WHERE (LISTNO = %s)"
-            cursor.execute(query, (Fullname,SwimmerId,Year,Poolid, key))
-            connection.commit()
-
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "UPDATE OLYMPICS SET FULLNAME = %s, SPONSORID = %s, YEAR = %s, POOLID = %s WHERE (LISTNO = %s)"
+                cursor.execute(query, (Fullname,SwimmerId,Year,Poolid, key))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Unable to Update. Please be sure that new Sponsor and Pool ids exist.')
+            connection.rollback()
+        finally:
+            connection.close()
     def olympics_search(self, word):
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
