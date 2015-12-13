@@ -28,11 +28,12 @@ def openwater_page():
         for key in keys:
             return render_template('openw_update.html',key=key)
     else:
-        name = request.form['name']
-        rec = request.form['rec']
-        record = Record(name, rec)
-        app.store.add_record(record)
-        return redirect(url_for('records_page', key=app.store.last_key))
+        comp = request.form['competition']
+        winnerid = request.form['winnerid']
+        year = request.form['year'] 
+        openw = Openw(comp,winnerid, year)
+        app.store.add_openw(openw)
+        return redirect(url_for('openwater_page', key=app.store.last_key))
 
 @app.route('/OpenWater/<int:key>')
 def openw_page(key):
