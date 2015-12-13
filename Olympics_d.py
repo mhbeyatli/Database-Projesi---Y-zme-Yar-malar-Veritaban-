@@ -17,7 +17,7 @@ def olympics_page():
     if request.method == 'GET':
         Olympics = app.store.get_olympics()
         now = datetime.datetime.now()
-        return render_template('olympics.html', Olympics=Olympics, current_time=now.ctime())
+        return render_template('Olympics.html', Olympics=Olympics, current_time=now.ctime())
     elif 'deleteolympics' in request.form:
         keys = request.form.getlist('deleteolympics')
         for key in keys:
