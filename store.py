@@ -3,6 +3,9 @@ from Olympics_d import Olympic
 from Pools_d import Pool
 from Sponsors_d import Sponsor
 from Openwater import Openw
+from Openwater import Openwall
+from Openwater import Swimmer
+from Openwater import Competition
 from Records import Record
 from Styles import Men
 from Styles import Women
@@ -325,40 +328,51 @@ class Store:
                 LowRecors = [(key, RecorLow(name, lowrecor))
                           for key, name, lowrecor in cursor]
                 return LowRecors
-    def get_openw(self):
+   def get_openw(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, COMPETITION, WINNERID, YEAR FROM OPENWATER ORDER BY YEAR"
+            query = "SELECT COMPID, WINNERID, YEAR FROM OPENWATER WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            compid,winnerid,year= cursor.fetchone()
+            return Openw(compid,winnerid,year)
+        
+    def get_openws(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, COMPID, WINNERID, YEAR FROM OPENWATER ORDER BY YEAR"
             cursor.execute(query)
-            Openwater = [(key, Openw(competition,winnerid,year))
-                        for key, competition,winnerid,year in cursor]
+            Openwater = [(key, Openw(compid,winnerid,year))
+                        for key, compid,winnerid,year in cursor]
             return Openwater
     def add_openw(self, o1):
         try:
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
-                query = "INSERT INTO OPENWATER (COMPETITION, WINNERID,  YEAR) VALUES (%s, %s, %s)"
-                cursor.execute(query, (o1.comp, o1.winnerid, o1.year))
+                query = "INSERT INTO OPENWATER (COMPID, WINNERID,  YEAR) VALUES (%s, %s, %s)"
+                cursor.execute(query, (o1.compid, o1.winnerid, o1.year))
                 connection.commit()
                 self.last_key = cursor.lastrowid
         except dbapi2.DatabaseError:
+            flash('There is no data has this id. Check winner id or competition id! ')
             connection.rollback()
         finally:
             connection.close()
+            
     def delete_openw(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "DELETE FROM OPENWATER WHERE (ID = %s)"
+            query = "DELETE FROM OPENWATER WHERE (ID = %s) "
             cursor.execute(query, (key,))
             connection.commit()
-    def update_openw(self, key, comp, winnerid, year):
+    def update_openw(self, key, compid, winnerid, year):
         try:
             with dbapi2.connect(self.dsn) as connection:
                 cursor = connection.cursor()
-                query = "UPDATE OPENWATER SET COMPETITION = %s, WINNERID = %s, YEAR = %s WHERE (ID = %s)"
-                cursor.execute(query, (comp,winnerid, year, key))
+                query = "UPDATE OPENWATER SET COMPID = %s, WINNERID = %s, YEAR = %s WHERE (ID = %s)"
+                cursor.execute(query, (compid,winnerid, year, key))
                 connection.commit()
         except dbapi2.DatabaseError:
+            flash('You entered the wrong data or there is also a data with this id !')
             connection.rollback()
         finally:
             connection.close()
@@ -366,12 +380,147 @@ class Store:
     def search_openw(self, tosearch):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT ID, COMPETITION,WINNERID, YEAR FROM OPENWATER WHERE (COMPETITION LIKE %s)"
+            query = "SELECT ID, COMPID, WINNERID, YEAR FROM OPENWATER WHERE (ID = %s)"
             cursor.execute(query,(tosearch,))
-            Openwater = [(key, Openw(comp,winnerid,year))
-                      for key, comp, winnerid, year in cursor]
+            Openwater = [(key, Openw(compid,winnerid,year))
+                      for key, compid, winnerid, year in cursor]
             return Openwater
+    
+    def get_swimmer(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT NAME, SURNAME, NATIONALITY FROM SWIMMERS WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            name,surname,nationality= cursor.fetchone()
+            return Swimmer(name,surname,nationality)
+        
+    def get_swimmers(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME, SURNAME, NATIONALITY FROM SWIMMERS ORDER BY ID"
+            cursor.execute(query)
+            Openwater = [(key, Swimmer(name,surname,nationality))
+                        for key, name,surname,nationality in cursor]
+            return Openwater   
 
+    def add_swimmer(self, s1):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "INSERT INTO SWIMMERS (NAME, SURNAME, NATIONALITY) VALUES (%s, %s, %s)"
+                cursor.execute(query, (s1.name, s1.surname, s1.nationality))
+                connection.commit()
+                self.last_key = cursor.lastrowid
+        except dbapi2.DatabaseError:
+            flash('You entered the wrong data or there is also a data with this id !')
+            connection.rollback()
+        finally:
+            connection.close()   
+            
+    def delete_swimmer(self, key):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "DELETE FROM SWIMMERS WHERE (ID = %s)"
+                cursor.execute(query, (key,))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Cannot be deleted: this data is used in another table!')
+            connection.rollback()
+        finally:
+            connection.close()
+    def update_swimmer(self, key, name, surname, nationality):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "UPDATE SWIMMERS SET NAME = %s, SURNAME = %s, NATIONALITY = %s WHERE (ID = %s)"
+                cursor.execute(query, (name,surname, nationality, key))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('You entered the wrong data or there is also a data with this id !')
+            connection.rollback()
+        finally:
+            connection.close()
+
+    def search_swimmer(self, tosearch):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, NAME,SURNAME, NATIONALITY FROM SWIMMERS WHERE (NAME LIKE %s)"
+            cursor.execute(query,(tosearch,))
+            Openwater = [(key, Swimmer(name,surname,nationality))
+                      for key, name, surname, nationality in cursor]
+            return Openwater
+    def get_comp(self, key):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, COMPNAME, NUMBER_OF_SWIMMERS,LOCATION, PRIZE FROM COMPETITION WHERE (ID = %s)"
+            cursor.execute(query, (key,))
+            compname,snumber,location,prize= cursor.fetchone()
+            return Competition(compname,snumber,location,prize)
+        
+    def get_comps(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID,COMPNAME,NUMBER_OF_SWIMMERS, LOCATION, PRIZE FROM COMPETITION ORDER BY ID"
+            cursor.execute(query)
+            Openwater = [(key, Competition(compname,snumber,location,prize))
+                        for key, compname,snumber,location,prize in cursor]
+            return Openwater  
+    def add_comp(self, c1):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "INSERT INTO COMPETITION (COMPNAME,NUMBER_OF_SWIMMERS, LOCATION,PRIZE) VALUES (%s, %s, %s,%s)"
+                cursor.execute(query, (c1.compname,c1.snumber, c1.location,c1.prize))
+                connection.commit()
+                self.last_key = cursor.lastrowid
+        except dbapi2.DatabaseError:
+            flash('You entered the wrong data or there is also a data with this id !')
+            connection.rollback()
+        finally:
+            connection.close()   
+            
+    def delete_comp(self, key):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "DELETE FROM COMPETITION WHERE (ID = %s)"
+                cursor.execute(query, (key,))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('Cannot be deleted: this data is used in another table!')
+            connection.rollback()
+        finally:
+            connection.close()      
+    def update_comp(self, key,compname, snumber, location, prize):
+        try:
+            with dbapi2.connect(self.dsn) as connection:
+                cursor = connection.cursor()
+                query = "UPDATE COMPETITION SET COMPNAME= %s, NUMBER_OF_SWIMMERS = %s, LOCATION=%s, PRIZE = %s WHERE (ID = %s)"
+                cursor.execute(query, (compname,snumber,location, prize, key))
+                connection.commit()
+        except dbapi2.DatabaseError:
+            flash('You entered the wrong data or there is also a data with this id !')
+            connection.rollback()
+        finally:
+            connection.close()
+            
+    def search_comp(self, tosearch):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT ID, COMPNAME,NUMBER_OF_SWIMMERS,LOCATION, PRIZE FROM COMPETITION WHERE (COMPNAME LIKE %s)"
+            cursor.execute(query,(tosearch,))
+            Openwater = [(key, Competition(compname,snumber,location,prize))
+                      for key, compname,snumber, location,prize in cursor]
+            return Openwater
+    def get_openwall(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = "SELECT COMPETITION.ID, COMPETITION.COMPNAME, COMPETITION.LOCATION, OPENWATER.YEAR, COMPETITION.NUMBER_OF_SWIMMERS, COMPETITION.PRIZE, SWIMMERS.NAME, SWIMMERS.SURNAME FROM  OPENWATER LEFT JOIN COMPETITION ON COMPETITION.ID = OPENWATER.COMPID LEFT JOIN SWIMMERS ON SWIMMERS.ID = OPENWATER.WINNERID ORDER BY OPENWATER.YEAR"
+            cursor.execute(query)
+            Openwater = [(key, Openwall(comp,location, year,swimmers,prize,winnername,winnersurname))
+                      for key, comp,location, year,swimmers,prize,winnername,winnersurname in cursor]
+        return Openwater
     def get_olympic(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
