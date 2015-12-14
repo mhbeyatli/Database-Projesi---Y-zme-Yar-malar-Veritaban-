@@ -112,3 +112,33 @@ input.button{
 input.button:hover, input.button:active {
     background-color: #669999;
 }
+ul.nav2 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 17%;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+li.nav2
+{
+	display: block;
+}
+a.nav2 {
+    display: block;
+    color: #000;
+    padding: 8px 0 8px 16px;
+    text-decoration: none;
+}
+
+a.nav2:active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+a.nav2:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
