@@ -171,7 +171,8 @@ def updatemedalrec(id):
         print(medalrec.id)
     if request.method == 'POST' and 'addreco' in request.form:
         bscore = request.form.get('bscore')
-
+        if not bscore:
+            return redirect(url_for('medals_page'))
         with dbcon.connect(app.config['dsn']) as conn:
             cursor = conn.cursor()
             cursor.execute("""UPDATE medal_records SET bscore=%s WHERE ID=%s""",(float(bscore), int(id),))
