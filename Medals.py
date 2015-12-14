@@ -121,24 +121,14 @@ def medals_page():
                 #medals[int(row[0])] = Medals(row[0], row[1], row[2], row[3], row[4])
                 medals[int(row[0])] = Medals(row[0], row[1], row[2], row[3])
 
-            return render_template('Medals.html', current_time=now.ctime(), medals=medals.values(), kw=kw, medal_records=medal_records.values(), fr_medals=fr_medals.values())
-
-    if request.method == 'GET' and 'keyword' in request.args:
-        kwfr = request.args.get('keyword')
-
-        with dbcon.connect(app.config['dsn']) as conn:
-            cursor = conn.cursor()
-            cursor.execute("""SELECT * FROM fr_medals WHERE name ILIKE %(key)s""", dict(key='%'+kwfr+'%'))
-            rows = cursor.fetchall()
+            cursorr = conn.cursor()
+            cursorr.execute("""SELECT * FROM fr_medals WHERE name ILIKE %(key)s""", dict(key='%'+kw+'%'))
+            rows = cursorr.fetchall()
             fr_medals = {}
             for row in rows:
-                #medals[int(row[0])] = Medals(row[0], row[1], row[2], row[3], row[4])
                 fr_medals[int(row[0])] = Fr_Medals(row[0], row[1], row[2],row[3])
 
             return render_template('Medals.html', current_time=now.ctime(), medals=medals.values(), kw=kw, medal_records=medal_records.values(), fr_medals=fr_medals.values())
-
-
-
 
     return render_template('Medals.html', current_time=now.ctime(), medals=medals.values(), medal_records=medal_records.values(), fr_medals=fr_medals.values())
 
