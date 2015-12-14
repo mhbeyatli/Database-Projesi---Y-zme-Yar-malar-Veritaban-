@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Swimmer Update Form{% endblock %}
+{% block content %}
+
+<form action="{{ url_for('swimmer_update',key=key) }}" method="post">
+
+<table class="t2">
+ 	<th class="t2">Swimmer's Name::</th>
+		<td class="t2">
+ 			<input  type="text" name="name" required autofocus />
+ 		</td>
+ 	</tr>
+ 	<tr class="t2">
+		<th class="t2">Swimmer's Surname:</th>
+			<td class="t2">
+ 				<input  type="text" name="surname" required autofocus />
+ 			</td>
+ 	</tr>
+ 	<tr class="t2">
+		<th class="t2">Swimmer's Nationality:</th>
+			<td class="t2">
+ 				<input  type="text" name="nationality"  required autofocus />
+ 			</td>
+ 		</tr>
+ 	<tr>
+</table>
+	<input class="button2" value="Update" name="update" type="submit" />
+</form>
+
+{% endblock %}
