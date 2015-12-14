@@ -1,16 +1,14 @@
 {% extends "layout.html" %}
 {% block title %}Medals{% endblock %}
 {% block content %}
-		<br>
-		<br>
-		<button class="btn btn-default" data-toggle="modal" data-target="#myModal">Add New Competition</button>
+
 		<br>
 		<br>
 		<div class="row">
 			<form method="get">
 		      <div class="col-sm-8">
 				  <div class="form-group">
-				    <input type="text" class="form-control" id="keyword" name="keyword" value="{{kw}}" placeholder="Keyword(Year doesn't work)">
+				    <input type="text" class="form-control" id="keyword" name="keyword" value="{{kw}}" placeholder="Keyword">
 				  </div>
 		      </div>
 		      <div class="col-sm-4">
@@ -18,13 +16,15 @@
 		      </div>
 			</form>
 		</div>
-		<br>
 
+		<br>
+		<button class="btn btn-default" data-toggle="modal" data-target="#myModal">Add New Competition</button>
+		<br>
+		<br>
 		<table class="table table-bordered">
       <thead>
         <tr>
           <th>Competition ID</th>
-          <th>Year</th>
           <th>Gold</th>
           <th>Silver</th>
           <th>Bronze</th>
@@ -35,7 +35,6 @@
 	      	{% for i in medals %}
 	      	<tr>
 	      		<td>{{ i.id }}</td>
-	      		<td>{{ i.year }}</td>
 	      		<td>{{ i.gold }}</td>
 	      		<td>{{ i.silver }}</td>
 	      		<td>{{ i.bronze }}</td>
@@ -92,19 +91,54 @@
       </tbody>
     </table>
 
+	<br>
+	<br>
+	<button class="btn btn-default" data-toggle="modal" data-target="#myModalFR">Add Front-Runner Name</button>
+	<br>
+	<br>
+
+	<table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Best Score ID</th>
+        </tr>
+      </thead>
+	   <tbody>
+      	{% if fr_medals %}
+	      	{% for k in fr_medals %}
+	      	<tr>
+	      		<td>{{ k.id }}</td>
+	      		<td>{{ k.frname }}</td>
+	      		<td>{{ k.age }}</td>
+	      		<td>{{ k.cid }}</td>
+	      		<td>
+	      			<a href="{{ url_for('deletemedalfr', id=k.id) }}">Delete</a>
+	      		</td>
+	      		<td>
+	      			<a href="{{ url_for('updatemedalfr', id=k.id) }}">Update</a>
+	      		</td>
+	      	</tr>
+	        {% endfor %}
+        {% else %}
+        	<tr>
+	          <td colspan="5" align="center">Nothing found.</td>
+	        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel">Add New Player</h4>
+	        <h4 class="modal-title" id="myModalLabel">Add New Competition</h4>
 	      </div>
 	      <form method="post">
 		      <div class="modal-body">
-				  <div class="form-group">
-				    <label for="name">Year(Must be Entered)</label>
-				    <input type="text" class="form-control" id="year" name="year" placeholder="Year">
-				  </div>
 				  <div class="form-group">
 				    <label for="surname">Gold</label>
 				    <input type="text" class="form-control" id="gold" name="gold" placeholder="Gold">
@@ -137,7 +171,7 @@
 	      <form method="post">
 		      <div class="modal-body">
 				  <div class="form-group">
-				    <label for="surname">High Score(Must be Entered)</label>
+				    <label for="surname">High Score (Must be Entered)</label>
 				    <input type="text" class="form-control" id="bscore" name="bscore" placeholder="High Score">
 				  </div>
 				  <div class="form-group">
@@ -148,6 +182,37 @@
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		        <button type="submit" name="addrec" class="btn btn-primary">Save</button>
+		      </div>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade" id="myModalFR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Add Front-Runner Name</h4>
+	      </div>
+	      <form method="post">
+		      <div class="modal-body">
+				  <div class="form-group">
+				    <label for="surname">Name (Must be entered)</label>
+				    <input type="text" class="form-control" id="frname" name="frname" placeholder="Name">
+				  </div>
+				  <div class="form-group">
+				    <label for="surname">Age</label>
+				    <input type="text" class="form-control" id="age" name="age" placeholder="age">
+				  </div>
+				  <div class="form-group">
+				    <label for="surname">Best Score ID</label>
+				    <input type="text" class="form-control" id="cid" name="cid" placeholder="Best Score ID">
+				  </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="submit" name="addfr" class="btn btn-primary">Save</button>
 		      </div>
 	      </form>
 	    </div>
