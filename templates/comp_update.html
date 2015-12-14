@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Competition Update Form{% endblock %}
+{% block content %}
+
+<form action="{{ url_for('comp_update',key=key) }}" method="post">
+
+<table class="t2">
+	<tr class="t2">
+		<th class="t2">Competition name:</th>
+			<td class="t2">
+ 				<input  type="text" name="compname" required autofocus />
+ 			</td>
+ 	</tr>
+ 	<tr class="t2">
+		<th class="t2">Number of swimmers:</th>
+			<td class="t2">
+ 				<input  type="text" name="snumber" required autofocus />
+ 			</td>
+ 	</tr>
+ 	<tr class="t2">
+		<th class="t2">Location:</th>
+			<td class="t2">
+ 				<input  type="text" name="location"  required autofocus />
+ 			</td>
+ 	</tr>
+	<tr class="t2">
+		<th class="t2">Prize:</th>
+			<td class="t2">
+ 				<input type="text" name="prize" required autofocus />
+			</td>
+	</tr>
+</table>
+	<input class="button2" value="Update" name="update" type="submit" />
+</form>
+
+{% endblock %}
