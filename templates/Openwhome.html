@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block title %}OpenWater{% endblock %}
+{% block content %}
+
+<h2 style= "margin-left:25%;">Open Water Competition List</h2>
+<p>
+	
+</p>
+<p class="paragraf">
+	<ul style= "width:17%;" class="nav2">
+		<li class="nav2"><a class="nav2" href="{{ url_for('openwhome_page') }}">ALL OPENWATER RECORDS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('openwater_page') }}">COMPETITION RESULTS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('swimmers_page') }}">SWIMMERS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('competitions_page') }}">COMPETITION INFO</a></li>
+	</ul>
+</p>
+
+<p class="paragraf"> 
+<table style="margin-left:380px;"class="t1">
+<tr class="t1">
+<th class="t1">competition</th>
+<th class="t1">location</th>
+<th class="t1">year</th>
+<th class="t1">#swimmers</th>
+<th class="t1">prize</th>
+<th class="t1">winner</th>
+</tr>
+{% for key, Openwall in Openwater %}
+<tr class="t1">
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openwall.comp }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openwall.location }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openwall.year }} </a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openwall.swimmers }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openwall.prize }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('openwater_page', key=key) }}">
+		{{ Openwall.winnername}} {{Openwall.winnersurname}} </a>
+	</td>
+</tr>
+</p>
+{% endfor %}
+</table>
+
+
+{% endblock %}
+		
