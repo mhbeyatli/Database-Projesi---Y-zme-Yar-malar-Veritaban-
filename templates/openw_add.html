@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
  {% block title %}Openwater add form{% endblock %}
  {% block content %}
- <form action="{{ url_for('openwater_page') }}">
+ <form action="{{ url_for('openwater_page') }}" method="post">
 	<table class="t2">
  		<tr class="t2">
- 			<th class="t2">Competition name:</th>
+ 			<th class="t2">Competition id:</th>
  			<td class="t2">
- 				<input type="text" name="competition" required autofocus />
+ 				<input type="text" name="compid" required autofocus />
  			</td>
  		</tr>
  		<tr class="t2">
