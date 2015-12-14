@@ -1,7 +1,7 @@
 class Medals:
-    def __init__(self, id, year, gold="", silver="", bronze=""):
+    def __init__(self, id, gold="", silver="", bronze=""):
         self.id = id
-        self.year = year
+        #self.year = year
         self.gold = gold
         self.silver = silver
         self.bronze = bronze
@@ -11,3 +11,10 @@ class Medal_Records:
         self.id = id
         self.bscore = bscore
         self.mid = mid
+
+class Fr_Medals:
+    def __init__(self, id, frname, age, cid):
+        self.id = id
+        self.frname = frname
+        self.age = age
+        self.cid = cid
