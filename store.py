@@ -328,7 +328,8 @@ class Store:
                 LowRecors = [(key, RecorLow(name, lowrecor))
                           for key, name, lowrecor in cursor]
                 return LowRecors
-   def get_openw(self, key):
+    
+    def get_openw(self, key):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "SELECT COMPID, WINNERID, YEAR FROM OPENWATER WHERE (ID = %s)"
