@@ -2,19 +2,30 @@
 {% block title %}OpenWater{% endblock %}
 {% block content %}
 
-<h2>Open Water List</h2>
-<a href="{{ url_for('openw_add')}}"><input class="button" type="submit" value="Add" name="add" /></a>
+<h2 style= "margin-left:25%;" >Competition Results</h2>
+<p class="paragraf"> 
+
+	<ul style= "width:17%;" class="nav2">
+		<li class="nav2"><a class="nav2" href="{{ url_for('openwhome_page') }}">ALL OPENWATER RECORDS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('openwater_page') }}">COMPETITION RESULTS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('swimmers_page') }}">SWIMMERS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('competitions_page') }}">COMPETITION INFO</a></li>
+	</ul>
+
+</p>
+
+<a style= "margin-left:250px;" href="{{ url_for('openw_add')}}"><input class="button" type="submit" value="Add" name="add" /></a>
 <form action="{{ url_for('openwater_page') }}" method="post">
 <p>
 	
 </p>
 <p class="paragraf"> 
-<table class="t1">
+<table style="margin-left:300px;" class="t1">
 <tr class="t1">
 <th class="t1">    </th>
-<th class="t1">copetition</th>
-<th class="t1">year</th>
-<th class="t1">winnerid</th>
+<th class="t1">Competition id</th>
+<th class="t1">Year</th>
+<th class="t1">Winner id</th>
 
 </tr>
 {% for key, Openw in Openwater %}
@@ -25,7 +36,7 @@
 	</td>
 	<td class="t1">
 		<a href="{{ url_for('openwater_page', key=key) }}">
-		{{ Openw.comp }}</a>
+		{{ Openw.compid }}</a>
 	</td>
 	<td class="t1">
 		<a href="{{ url_for('openwater_page', key=key) }}">
@@ -42,7 +53,7 @@
 <p>
 
 </p>
-<p class = "paragraf">
+<p style="margin-left:250px;"class = "paragraf">
 <input class="button" type="submit" value="Delete" name="delete" />
 <input class="button" type="submit" value="Update" name="update" />
 <input class="button" type="button" value="Search" name="search" onclick="location.href='OpenWater/search2';" />
