@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block title %}OpenWater{% endblock %}
+{% block content %}
+
+<h2 style= "margin-left:25%;">Swimmer List</h2>
+
+<p class="paragraf">
+	<ul style= "width:17%;" class="nav2">
+		<li class="nav2"><a class="nav2" href="{{ url_for('openwhome_page') }}">ALL OPENWATER RECORDS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('openwater_page') }}">COMPETITION RESULTS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('swimmers_page') }}">SWIMMERS</a></li>
+  		<li class="nav2"><a class="nav2" href="{{ url_for('competitions_page') }}">COMPETITION INFO</a></li>
+	</ul>
+</p>
+
+
+<a style= "margin-left:250px;" href="{{ url_for('swimmer_add')}}"><input class="button" type="submit" value="Add" name="add" /></a>
+<form action="{{ url_for('swimmers_page') }}" method="post">
+<p>
+	
+</p>
+<p class="paragraf"> 
+<table style="margin-left:300px;" class="t1">
+<tr class="t1">
+<th class="t1">    </th>
+<th class="t1">swimmerid</th>
+<th class="t1">name</th>
+<th class="t1">surname</th>
+<th class="t1">nationality</th>
+
+</tr>
+{% for key, Swimmer in Openwater %}
+<tr class="t1">
+	<td class="t1"> 
+	<input type="checkbox" name="swimmer_to_delete"
+		value="{{ key }}" /> 
+	</td>
+		<td class="t1">
+		<a href="{{ url_for('swimmers_page', key=key) }}">
+		{{ key }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('swimmers_page', key=key) }}">
+		{{ Swimmer.name }}</a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('swimmers_page', key=key) }}">
+		{{ Swimmer.surname  }} </a>
+	</td>
+	<td class="t1">
+		<a href="{{ url_for('swimmers_page', key=key) }}">
+		{{ Swimmer.nationality }}</a>
+	</td>
+</tr>
+</p>
+{% endfor %}
+</table>
+<p>
+
+</p>
+<p style="margin-left:250px;" class = "paragraf">
+<input class="button" type="submit" value="Delete" name="delete" />
+<input class="button" type="submit" value="Update" name="update" />
+<input class="button" type="button" value="Search" name="search" onclick="location.href='Swimmers/search2';" />
+</p>
+</form>
+
+{% endblock %}
