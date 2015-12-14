@@ -5,9 +5,9 @@
 <form action="{{ url_for('openw_update',key=key) }}" method="post">
 
 <table class="t2">
- 	<th class="t2">Competition:</th>
+ 	<th class="t2">Competition id:</th>
 		<td class="t2">
- 			<input  type="text" name="competition" required autofocus />
+ 			<input  type="text" name="compid" required autofocus />
  		</td>
  	</tr>
  	<tr class="t2">
@@ -28,3 +28,4 @@
 </form>
 
 {% endblock %}
+
