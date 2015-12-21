@@ -1,15 +1,15 @@
-Welcome to itucsdb's documentation!
-===================================
+Welcome to itucsdb1506's documentation!
+=======================================
 
 :Team: Team Name
 
 :Members:
 
-   * Member 1
-   * Member 2
-   * Member 3
-   * Member 4
-   * Member 5
+   * Anıl Ağca
+   * Mustafa Tıkır
+   * Ege Çetindağ
+   * Elanur Yoktan
+   * Muhammed Habib Beyatlı
 
 **project description goes here (a few paragraphs)**
 
