@@ -1,17 +1,32 @@
 Welcome to itucsdb1506's documentation!
 =======================================
 
-:Team: Team Name
+:Team: itucsdb1506 (Blastoise)
 
 :Members:
 
    * Anıl Ağca
-   * Mustafa Tıkır
    * Ege Çetindağ
+   * Mustafa Tıkır
    * Elanur Yoktan
    * Muhammed Habib Beyatlı
 
-**project description goes here (a few paragraphs)**
+The aim of our project is creating a website that has some swimming statistics in it.
+
+Our project has 5 main topics related to swimming sport
+
+These topics are:
+
+*Swimming Records
+
+*Swimming Styles
+
+*Swimming Medals
+
+*Olympics Swimming
+
+*Open Water Swimming
+
 
 Contents:
 
