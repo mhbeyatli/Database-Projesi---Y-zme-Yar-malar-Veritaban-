@@ -47,7 +47,7 @@ Functions are going to be explained in the tables
    In this table there are 2 attributes for user to enter, and one secret attribute that is enabled for default
     for ordering the records.
 
-   So, 2 attributes are showen at the screen.
+   So, 2 attributes are always showen at the screen.
 
    These attributes are:
 
@@ -55,7 +55,7 @@ Functions are going to be explained in the tables
    2. Score                : it is an integer attribute
    3. ID of swimmer        : it is an also integer attribute, but it is enabled by default
 
-   Let me explatin the functions
+   Let me explain the functions
 
 1.1 Add fuction
 ---------------
@@ -77,7 +77,7 @@ Functions are going to be explained in the tables
       :scale: 50 %
       :alt: Add Function form for Record List
 
-      *Add form is shown at the top of the page*
+      *Add form*
 
    At this page, the user should write an string for the name and integer for the record.
 
@@ -206,8 +206,193 @@ Functions are going to be explained in the tables
 ===============================
    This table lists only the records of swimmer who has high score.
 
+   Actually there is no restriction about adding or deleting any records with high score or low score.
+
+   However, because of logical integrity, high scores are expected to enter from the user.
+
+   This table and other 2 tables are quite similar to each other. So, these tables are not going to be explained very deeply.
+
+   Also,  in this table there are 2 attributes for user to enter, and one secret attribute that is enabled for default
+    for ordering the records.
+
+   So, 2 attributes are always showen at the screen.
+
+   These attributes are:
+
+   1. Name of the swimmer  : it is an string attribute
+   2. HighestScore         : it is an integer attribute
+   3. ID of swimmer        : it is an also integer attribute, but it is enabled by default
+
+
+   This table is shown like this:
+
+   .. figure:: HighRecords.png
+      :scale: 50 %
+      :alt: High Records
+
+      *Records with high scores are shown*
+
+
+   Let me explain the functions briefly
+
+2.1 Add fuction
+---------------
+
+   Add function of High Score List for Records is nearly similar to Records list.
+
+   **Important Note**
+   At the add operation, user should enter an score that already exist in Records list.
+
+
+   In the Records Page, at the mid of the page, there is an button, and it is add High Scores button for High Scores.
+
+   If the user wants to add some record to the table, he or she shoul click to button first.
+
+   .. figure:: AddFuctionHighRecordList1.png
+      :scale: 50 %
+      :alt: Add Function for High Score list for records
+
+      *Add button is shown at the mid of the page*
+
+   When add button is clicked, the address of wab page is going to be changed and an simple form page will appear.
+
+   .. figure:: AddFuctionHighRecordList2.png
+      :scale: 50 %
+      :alt: Add Function form for High scores list for records
+
+      *Add form*
+
+   At this page, the user should write an string for the name and integer for the record.
+
+   After user write the data, it is enough to click to save button being at the buttom of the page.
+
+   And as it is shown below, it is added to High scores list for records.
+
+   .. figure:: AddFuctionHighRecordList3.png
+      :scale: 50 %
+      :alt: Data is added for Record List
+
+      *The new appearance of Record list with new data*
+
+   If entered swimmers record does not exist in the Records list, then there is going to appear an error message.
+
+   .. figure:: AddFuctionHighRecordList4.png
+      :scale: 50 %
+      :alt: Error
+
+      *Error message after added invalid swimmer record*
+
+2.2 Delete fuction
+------------------
+
+   Deletion operation for High Scores is similiar with the Records table's deletion.
+
+   As shown below, there is an empty button for each row of table, and at the buttom there is delete button.
+
+   .. figure:: DeleteFuctionHighRecordList1.png
+      :scale: 50 %
+      :alt: Delete fuction for High scores listf for records
+
+      *This screen cast shows how the delete function works for High Scores table*
+
+   When one of the empty button is clicked and the delete is pressed, then that row of the table is going to be deleted.
+
+   As it is shown below, it is deleted from the Records list.
+
+   .. figure:: DeleteFuctionHighRecordList2.png
+      :scale: 50 %
+      :alt: After delete operation is done for High Scores list for record List
+
+      *The new appearance of High scores list for records, after the delete operation is implemented.*
+
+
+2.3 Update fuction
+------------------
+
+   Update function updates the data in the High scores list for Records.
+
+   For update an row of the table, the user should first select the update button which is at the mid of the page.
+
+   .. figure:: UpdateFuctionHighRecordList1.png
+      :scale: 50 %
+      :alt: Update operation for High scores list for Records
+
+      *User needs to click to update button first*
+
+   After user clicked to update button, an new web page appears. That web page shows all the attributes and tuples of the table.
+
+   And, all rows have an button their left hand side for selecting the tuple which is going to be updated.
+
+   The user should select one of these and should fullfilled the form with true types of characthers.
+
+   And then, user should click the update.
+
+   .. figure:: UpdateFuctionHighRecordList2.png
+      :scale: 50 %
+      :alt: Update form for Record List
+
+      *This screen cast shows how the update form seems and works*
+
+   After the all necessery things is done in update form. The new appeance of Record page with updated data appears.
+
+   .. figure:: UpdateFuctionHighRecordList3.png
+      :scale: 50 %
+      :alt: After update operation is done for Record List
+
+      *High scores list for Records with updated data*
+
+   **Important Note**
+
+   If updated score of that record does not exist in the Records list, the program is going to give an error.
+
+   So, the user have to update the score that is existing in the Record list.
+
+2.4 Search fuction
+------------------
+
+   The another and last fuction for High scores list for Records table is search function.
+
+   It is easy to implement. Click to search function which is below of the table and shown below figure
+
+   .. figure:: SearchFuctionHighRecordList1.png
+      :scale: 50 %
+      :alt: Search operation for High scores list for Records
+
+      *Click to search*
+
+   If user clicks to search funciton, the web site turns an new page and that page request an name for searching
+
+   .. figure:: SearchFuctionHighRecordList2.png
+      :scale: 50 %
+      :alt: Search form for High scores list for Records
+
+      *Type the full name of swimmer for searching*
+
+   The user should write the full name of the swimmer for seaching.
+
+   After user write it, the page shown below appears
+
+   .. figure:: SearchFuctionHighRecordList3.png
+      :scale: 50 %
+      :alt: After Search operation for High scores list for Records
+
+      *The page after search operation correctly done*
+
+   If invalid name is entered, the page is going to show no value.
+
 3. Lowest Scores List for Records
 =================================
    This table lists only the records of swimmer who has low score.
 
+3.1 Add fuction
+---------------
+
+3.2 Delete fuction
+------------------
+
+3.3 Update fuction
+------------------
+
+3.4 Search fuction
+------------------
 
