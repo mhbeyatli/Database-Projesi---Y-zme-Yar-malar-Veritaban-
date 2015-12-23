@@ -19,7 +19,7 @@ Parts Implemented by Mustafa TIKIR
 
    Records page has been appeared.
 
-   In Records page there are 3 tables about swimmer records, and all these tables have 4 fucntions for each one.
+   In Records page there are 3 tables about swimmer records, and all these tables have 4 functions for each one.
 
    These tables are:
 
@@ -47,7 +47,7 @@ Functions are going to be explained in the tables
    In this table there are 2 attributes for user to enter, and one secret attribute that is enabled for default
     for ordering the records.
 
-   So, 2 attributes are always showen at the screen.
+   So, 2 attributes are always shown at the screen.
 
    These attributes are:
 
@@ -57,9 +57,9 @@ Functions are going to be explained in the tables
 
    Let me explain the functions
 
-1.1 Add fuction
----------------
-   The first function that i am going to explain is add function for Records list.
+1.1 Add function
+----------------
+   The first function that I am going to explain is add function for Records list.
 
    In the Records Page, at the top of the page, there is an button, and it is add button.
 
@@ -81,7 +81,7 @@ Functions are going to be explained in the tables
 
    At this page, the user should write an string for the name and integer for the record.
 
-   After user write the data, it is enough to click to save button being at the buttom of the page.
+   After user write the data, it is enough to click to save button being at the button of the page.
 
    And as it is shown below, it is added to Records list.
 
@@ -91,15 +91,15 @@ Functions are going to be explained in the tables
 
       *The new appearance of Record list with new data*
 
-1.2 Delete fuction
-------------------
+1.2 Delete function
+-------------------
    It is really easy to delete an row(tuple) from the table.
 
-   As shown below, there is an empty button for each row of table, and at the buttom there is delete button.
+   As shown below, there is an empty button for each row of table, and at the bottom there is delete button.
 
    .. figure:: TIKIR/DeleteFuctionRecordList1.png
       :scale: 50 %
-      :alt: Delete fuction for Record List
+      :alt: Delete function for Record List
 
       *This screen cast shows how the delete function works*
 
@@ -115,7 +115,7 @@ Functions are going to be explained in the tables
 
    **Important Note**
 
-   As i mentioned before, the value is going to be deleted dont have to be in the other tables.
+   As I mentioned before, the value is going to be deleted do not have to be in the other tables.
 
    What if it is in the other tables, there is going to appear an error message.
 
@@ -127,8 +127,8 @@ Functions are going to be explained in the tables
 
       *Error message after invalid tuple tried to be deleted*
 
-1.3 Update fuction
-------------------
+1.3 Update function
+-------------------
 
    Update function updates the data in the Records list.
 
@@ -144,7 +144,7 @@ Functions are going to be explained in the tables
 
    And, all rows have an button their left hand side for selecting the tuple which is going to be updated.
 
-   The user should select one of these and should fullfilled the form with true types of characthers.
+   The user should select one of these and should fulfilled the form with true types of characters.
 
    And then, user should click the update.
 
@@ -154,7 +154,7 @@ Functions are going to be explained in the tables
 
       *This screen cast shows how the update form seems and works*
 
-   After the all necessery things is done in update form. The new appeance of Record page with updated data appears.
+   After the all necessary things is done in update form. The new appearance of Record page with updated data appears.
 
    .. figure:: TIKIR/UpdateFuctionRecordList3.png
       :scale: 50 %
@@ -169,10 +169,10 @@ Functions are going to be explained in the tables
    The answer is the name of that tuple can be updated, but score of that tuple cannot be updated. So, it stays same in
    case it is tried to be changed.
 
-1.4 Search fuction
-------------------
+1.4 Search function
+-------------------
 
-   The another and last fuction for Records table is search function.
+   The another and last function for Records table is search function.
 
    It is easy to implement. Click to search function which is below of the table and shown below figure
 
@@ -182,7 +182,7 @@ Functions are going to be explained in the tables
 
       *Click to search*
 
-   If user clicks to search funciton, the web site turns an new page and that page request an name for searching
+   If user clicks to search function, the web site turns an new page and that page request an name for searching
 
    .. figure:: TIKIR/SearchFuctionRecordList2.png
       :scale: 50 %
@@ -190,7 +190,7 @@ Functions are going to be explained in the tables
 
       *Type the full name of swimmer for searching*
 
-   The user should write the full name of the swimmer for seaching.
+   The user should write the full name of the swimmer for searching.
 
    After user write it, the page shown below appears
 
@@ -215,12 +215,12 @@ Functions are going to be explained in the tables
    Also,  in this table there are 2 attributes for user to enter, and one secret attribute that is enabled for default
     for ordering the records.
 
-   So, 2 attributes are always showen at the screen.
+   So, 2 attributes are always shown at the screen.
 
    These attributes are:
 
    1. Name of the swimmer  : it is an string attribute
-   2. HighestScore         : it is an integer attribute
+   2. Highest Score         : it is an integer attribute
    3. ID of swimmer        : it is an also integer attribute, but it is enabled by default
 
 
@@ -235,8 +235,8 @@ Functions are going to be explained in the tables
 
    Let me explain the functions briefly
 
-2.1 Add fuction
----------------
+2.1 Add function
+----------------
 
    Add function of High Score List for Records is nearly similar to Records list.
 
@@ -254,7 +254,7 @@ Functions are going to be explained in the tables
 
       *Add button is shown at the mid of the page*
 
-   When add button is clicked, the address of wab page is going to be changed and an simple form page will appear.
+   When add button is clicked, the address of web page is going to be changed and an simple form page will appear.
 
    .. figure:: TIKIR/AddFuctionHighRecordList2.png
       :scale: 50 %
@@ -264,7 +264,7 @@ Functions are going to be explained in the tables
 
    At this page, the user should write an string for the name and integer for the record.
 
-   After user write the data, it is enough to click to save button being at the buttom of the page.
+   After user write the data, it is enough to click to save button being at the bottom of the page.
 
    And as it is shown below, it is added to High scores list for records.
 
@@ -285,13 +285,13 @@ Functions are going to be explained in the tables
 2.2 Delete fuction
 ------------------
 
-   Deletion operation for High Scores is similiar with the Records table's deletion.
+   Deletion operation for High Scores is similar with the Records table's deletion.
 
-   As shown below, there is an empty button for each row of table, and at the buttom there is delete button.
+   As shown below, there is an empty button for each row of table, and at the bottom there is delete button.
 
    .. figure:: TIKIR/DeleteFuctionHighRecordList1.png
       :scale: 50 %
-      :alt: Delete fuction for High scores listf for records
+      :alt: Delete function for High scores list for records
 
       *This screen cast shows how the delete function works for High Scores table*
 
@@ -306,8 +306,8 @@ Functions are going to be explained in the tables
       *The new appearance of High scores list for records, after the delete operation is implemented.*
 
 
-2.3 Update fuction
-------------------
+2.3 Update function
+-------------------
 
    Update function updates the data in the High scores list for Records.
 
@@ -323,7 +323,7 @@ Functions are going to be explained in the tables
 
    And, all rows have an button their left hand side for selecting the tuple which is going to be updated.
 
-   The user should select one of these and should fullfilled the form with true types of characthers.
+   The user should select one of these and should fulfilled the form with true types of characters.
 
    And then, user should click the update.
 
@@ -333,7 +333,7 @@ Functions are going to be explained in the tables
 
       *This screen cast shows how the update form seems and works*
 
-   After the all necessery things is done in update form. The new appeance of Record page with updated data appears.
+   After the all necessary things is done in update form. The new appeance of Record page with updated data appears.
 
    .. figure:: TIKIR/UpdateFuctionHighRecordList3.png
       :scale: 50 %
@@ -347,10 +347,10 @@ Functions are going to be explained in the tables
 
    So, the user have to update the score that is existing in the Record list.
 
-2.4 Search fuction
-------------------
+2.4 Search function
+-------------------
 
-   The another and last fuction for High scores list for Records table is search function.
+   The another and last function for High scores list for Records table is search function.
 
    It is easy to implement. Click to search function which is below of the table and shown below figure
 
@@ -360,7 +360,7 @@ Functions are going to be explained in the tables
 
       *Click to search*
 
-   If user clicks to search funciton, the web site turns an new page and that page request an name for searching
+   If user clicks to search function, the web site turns an new page and that page request an name for searching
 
    .. figure:: TIKIR/SearchFuctionHighRecordList2.png
       :scale: 50 %
@@ -368,7 +368,7 @@ Functions are going to be explained in the tables
 
       *Type the full name of swimmer for searching*
 
-   The user should write the full name of the swimmer for seaching.
+   The user should write the full name of the swimmer for searching.
 
    After user write it, the page shown below appears
 
@@ -383,19 +383,19 @@ Functions are going to be explained in the tables
 3. Lowest Scores List for Records
 =================================
 
-   This table lists only the records of swimmer who has low score. This table's fuctions and table's itself quite similar to High
+   This table lists only the records of swimmer who has low score. This table's functions and table's itself quite similar to High
    scores table.
 
 
-3.1 Add fuction
----------------
+3.1 Add function
+----------------
 
    Add function of Lowest Scores List for Records is nearly similar to Records list and quite similar to High Scores table
 
    **Important Note**
    At the add operation, user should enter an score that already exist in Records list.
 
-   In the Records Page, at the buttom of the page, there is an button, and it is add Lowest  Scores button for High Scores.
+   In the Records Page, at the bottom of the page, there is an button, and it is add Lowest  Scores button for High Scores.
 
    If the user wants to add some record to the table, he or she should click to button first.
 
@@ -405,7 +405,7 @@ Functions are going to be explained in the tables
 
       *Add button is shown at the nearly bottom of the page*
 
-   When add button is clicked, the address of wab page is going to be changed and an simple form page will appear.
+   When add button is clicked, the address of web page is going to be changed and an simple form page will appear.
 
    .. figure:: TIKIR/AddFuctionLowRecordList2.png
       :scale: 50 %
@@ -415,7 +415,7 @@ Functions are going to be explained in the tables
 
    At this page, the user should write an string for the name and integer for the record.
 
-   After user write the data, it is enough to click to save button being at the buttom of the page.
+   After user write the data, it is enough to click to save button being at the bottom of the page.
 
    And as it is shown below, it is added to Lowest scores list for records.
 
@@ -434,16 +434,16 @@ Functions are going to be explained in the tables
       *Error message after added invalid swimmer record*
 
 
-3.2 Delete fuction
-------------------
+3.2 Delete function
+-------------------
 
-   Deletion operation for Lowest Scores is similiar with the Records table's deletion, and quite similar with the Hish Score's one.
+   Deletion operation for Lowest Scores is similar with the Records table's deletion, and quite similar with the High Score's one.
 
    As shown below, there is an empty button for each row of table, and at the buttom there is delete button.
 
    .. figure:: TIKIR/DeleteFuctionLowRecordList1.png
       :scale: 50 %
-      :alt: Delete fuction for Low scores list for records
+      :alt: Delete function for Low scores list for records
 
       *This screen cast shows how the delete function works for Low Scores table*
 
@@ -458,8 +458,8 @@ Functions are going to be explained in the tables
       *The new appearance of Low scores list for records, after the delete operation is implemented.*
 
 
-3.3 Update fuction
-------------------
+3.3 Update function
+-------------------
 
    Update function updates the data in the High scores list for Records.
 
@@ -475,7 +475,7 @@ Functions are going to be explained in the tables
 
    And, all rows have an button their left hand side for selecting the tuple which is going to be updated.
 
-   The user should select one of these and should fullfilled the form with true types of characthers.
+   The user should select one of these and should fulfilled the form with true types of characters.
 
    And then, user should click the update.
 
@@ -485,7 +485,7 @@ Functions are going to be explained in the tables
 
       *This screen cast shows how the update form seems and works*
 
-   After the all necessery things is done in update form. The new appeance of Record page with updated data appears.
+   After the all necessary things is done in update form. The new appearance of Record page with updated data appears.
 
    .. figure:: TIKIR/UpdateFuctionLowRecordList3.png
       :scale: 50 %
@@ -499,10 +499,10 @@ Functions are going to be explained in the tables
 
    So, the user have to update the score that is existing in the Record list.
 
-3.4 Search fuction
-------------------
+3.4 Search function
+-------------------
 
-   The another and last fuction for low scores list for Records table is search function.
+   The another and last function for low scores list for Records table is search function.
 
    It is easy to implement. Click to search function which is below of the table and shown below figure
 
@@ -512,7 +512,7 @@ Functions are going to be explained in the tables
 
       *Click to search*
 
-   If user clicks to search funciton, the web site turns an new page and that page request an name for searching
+   If user clicks to search function, the web site turns an new page and that page request an name for searching
 
    .. figure:: TIKIR/SearchFuctionLowRecordList2.png
       :scale: 50 %
@@ -520,7 +520,7 @@ Functions are going to be explained in the tables
 
       *Type the full name of swimmer for searching*
 
-   The user should write the full name of the swimmer for seaching.
+   The user should write the full name of the swimmer for searching.
 
    After user write it, the page shown below appears
 

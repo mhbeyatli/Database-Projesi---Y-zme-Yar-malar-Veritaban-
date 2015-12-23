@@ -6,11 +6,11 @@ Parts Implemented by Mustafa TIKIR
 
    There are 3 tables which are created in the elephantSQL. So, in the codes there is no code like create table...
 
-   Also, each table has 4 fucntions. All operations are done aim of the implement these 4 functions for each table.
+   Also, each table has 4 functions. All operations are done aim of the implement these 4 functions for each table.
 
    How these functions work is going to be explained in this developer guide.
 
-   All 3 tables' functions are quite similar. So, i am going to explain funcitons of one table. After that, developer will see
+   All 3 tables' functions are quite similar. So, I am going to explain functions of one table. After that, developer will see
    codes are really similar.
 
    In this part, project has implemented in object oriented approach.
@@ -42,7 +42,7 @@ Parts Implemented by Mustafa TIKIR
 
    All functions are going to be explained just for Records list
 
-1. Add Funciton
+1. Add Function
 ===============
 
    For adding an recor to database, add button in Records.html should be clicked. When it is clicked, a new page
@@ -52,7 +52,7 @@ Parts Implemented by Mustafa TIKIR
 
       <a href="{{ url_for('record_edit')}}"><input class="button" type="submit" value="Add" name="Add" /></a>
 
-   This web page's name is record_edit.html. In this web page, the form for adding new data sould be fullfilled correctly.
+   This web page's name is record_edit.html. In this web page, the form for adding new data should be fulfilled correctly.
 
    After save button is clicked, the form send its data to Records.py with the function records_page
 
@@ -65,7 +65,7 @@ Parts Implemented by Mustafa TIKIR
 
    SQL statements stay as embedded in python codes in store.py
 
-   So, lets turn back to add fucntion
+   So, let's turn back to add function
 
    records_page's code is:
 
@@ -114,8 +114,8 @@ Parts Implemented by Mustafa TIKIR
 2. Delete Function
 ==================
 
-   For deleteing an record from database, empty button sould be clicked which stands on left hand side of that record,
-    and delete button sould be clicked.
+   For deleting an record from database, empty button sould be clicked which stands on left hand side of that record,
+    and delete button should be clicked.
 
     When delete button is pressed, code sends the button and delete parameter to record_page function in Records.py
 
@@ -123,8 +123,8 @@ Parts Implemented by Mustafa TIKIR
 
       <input class="button" type="submit" value="Delete" name="delete" />
 
-    After it is sended , records_page function selects the elif statement, and finds the button which is clicked,
-    and sends the paramanters t delete_record fuction which is in store.py
+    After it is sent , records_page function selects the elif statement, and finds the button which is clicked,
+    and sends the parameters to delete_record function which is in store.py
 
     .. code-block:: python
 
@@ -149,8 +149,8 @@ Parts Implemented by Mustafa TIKIR
               app.store.add_record(record)
               return redirect(url_for('records_page', key=app.store.last_key))
 
-   When the parameters have sent to store.py delete fucntion gets the parameters and deletes that tuple with the SQL statement.
-   If that tuple has foreign key in another table, that gives an database error and it is catched with python code.
+   When the parameters have sent to store.py delete function gets the parameters and deletes that tuple with the SQL statement.
+   If that tuple has foreign key in another table, that gives an database error and it is caught with python code.
 
     .. code-block:: python
 
@@ -172,13 +172,13 @@ Parts Implemented by Mustafa TIKIR
 
    For update function to implement, update button should be clicked in Records.html and it opens new page.
 
-   That calls the update2 fucntion in Records.py.
+   That calls the update2 function in Records.py.
 
    .. code-block:: python
 
       <input class="button" type="button" value="Update" name="update" onclick="location.href='Records/update2';" />
 
-   And update2 fucniton is
+   And update2 function is
 
    .. code-block:: python
 
@@ -190,7 +190,7 @@ Parts Implemented by Mustafa TIKIR
 
    get_records function gets all the records from database and returns them.
 
-   Body of get_record() fuction
+   Body of get_record() function
 
    .. code-block:: python
 
@@ -207,9 +207,9 @@ Parts Implemented by Mustafa TIKIR
 
    In this page, desired tuple have to be selected and its new data should be entered.
 
-   After that, save button sould be clicked.
+   After that, save button should be clicked.
 
-   When the save button is clicked, the update2 fucntion in Records.py is called.
+   When the save button is clicked, the update2 function in Records.py is called.
 
    After the necessary things is done, record_update function in Records.py is going to be called.
 
@@ -242,9 +242,9 @@ Parts Implemented by Mustafa TIKIR
 4. Search Function
 ==================
 
-   For implementing search function in Records list, search button for given table sould be pressed first.
+   For implementing search function in Records list, search button for given table should be pressed first.
 
-   After it is pressed, Records.html page chances its directory. It calls search2 dunction in records.py
+   After it is pressed, Records.html page chances its directory. It calls search2 function in records.py
 
    .. code-block:: python
 
@@ -288,4 +288,4 @@ Parts Implemented by Mustafa TIKIR
 
 
    This python code includes an SQL query, and that query searchs the given keyword in database. After operation is done,
-   code returns the seached record.
+   code returns the searched record.
