@@ -8,7 +8,7 @@ User Guide of Parts Implemented by ANIL AĞCA
    
 1.1.Basic Contents
 ==================   
-Pools section of the main menu contains a table that has named as pools. Also this table works with olympics section and table.
+   Pools section of the main menu contains a table that has named as pools. Also this table works with olympics section and table.
 For each pool, webpage's pools section contains 4 attributes: Pool id, pool name, city, area. And Four operations can be made on pools which are adding a new pool, deleting an existing pool, updating an existing pool and searching.
    
 1.2.Operations on Pools
@@ -16,8 +16,8 @@ For each pool, webpage's pools section contains 4 attributes: Pool id, pool name
 
 1.2.1.Adding a New Pool
 -----------------------
-      To add a new pool, firstly Add Pool button that is under the main menu while in 'Pools Page' must be clicked. Then all four attributes which are pool id, pool name, city and area must be filled in order to add a new pool.
-   Also each pool id must be unique in order to keep integrity, it is not possible to add a new pool with an existing pool id.
+ To add a new pool, firstly Add Pool button that is under the main menu while in 'Pools Page' must be clicked. Then all four attributes which are pool id, pool name, city and area must be filled in order to add a new pool.
+Also each pool id must be unique in order to keep integrity, it is not possible to add a new pool with an existing pool id.
 
    .. figure:: anl/addingpool.png
       :scale: 100 %
@@ -26,9 +26,9 @@ For each pool, webpage's pools section contains 4 attributes: Pool id, pool name
       *Figure 1: Adding a New Pool*
 
    
-1.2.2Deleting a Pool
---------------------
-      In order to delete a Pool, while in pools page, the button near the pool that wanted to be deleted must be ticked first. After that with clicking delete button deletion can be completed. The Pools which are being used by any olympics cannot be deleted. In such attempts an error message will pop.
+1.2.2.Deleting a Pool
+---------------------
+ In order to delete a Pool, while in pools page, the button near the pool that wanted to be deleted must be ticked first. After that with clicking delete button deletion can be completed. The Pools which are being used by any olympics cannot be deleted. In such attempts an error message will pop.
       
    .. figure:: anl/deletingpool.png
       :scale: 100 %
@@ -38,9 +38,9 @@ For each pool, webpage's pools section contains 4 attributes: Pool id, pool name
 
  
 
-1.2.3Updating a Pool
---------------------
-      To update an existing pool, while in pools page in order to go to updating page, update pools button must be clicked.Then the update page will show up. In order to proceed the pool that wanted to be updated by the user must be ticked. And then new information about that pool must be entered by user to the form below the pools list. To update successfully all boxes must be filled correctly and also there must be no other pool with entered id currently. With updating a pool’s id, Also the Pool id section of the Olympics that uses that Pool id will be updated in such way, by reflecting the change on pools table to other tables, consistency of the web page is being established.
+1.2.3.Updating a Pool
+---------------------
+ To update an existing pool, while in pools page in order to go to updating page, update pools button must be clicked.Then the update page will show up. In order to proceed the pool that wanted to be updated by the user must be ticked. And then new information about that pool must be entered by user to the form below the pools list. To update successfully all boxes must be filled correctly and also there must be no other pool with entered id currently. With updating a pool’s id, Also the Pool id section of the Olympics that uses that Pool id will be updated in such way, by reflecting the change on pools table to other tables, consistency of the web page is being established.
 
    .. figure:: anl/updatingpool.png
       :scale: 100 %
@@ -51,7 +51,7 @@ For each pool, webpage's pools section contains 4 attributes: Pool id, pool name
  
 1.2.4 Searching a Pool
 ----------------------
-In order to search user must click the ‘Search Pools’ button that is under the main menu at ‘Pools Page’. After a keyword must be entered into the box in the search page. Then simply by clicking Search button below list of results will be shown.
+ In order to search user must click the ‘Search Pools’ button that is under the main menu at ‘Pools Page’. After a keyword must be entered into the box in the search page. Then simply by clicking Search button below list of results will be shown.
 
    .. figure:: anl/searchingpool.png
       :scale: 100 %
@@ -68,14 +68,14 @@ In order to search user must click the ‘Search Pools’ button that is under t
 
 2.1.Basic contents
 ==================
-   Sponsors page can be reached by clicking ‘Sponsors’ in the main page. In the page appearing sponsors that currently being contained by web page can be seen. Each sponsor has three attributes which are id, sponsor name and starting year of sponsorship. In sponsors table four operations could be done by user which are adding a new sponsor, updating an existing sponsor, deleting a sponsor and Searching in sponsors. 
+ Sponsors page can be reached by clicking ‘Sponsors’ in the main page. In the page appearing sponsors that currently being contained by web page can be seen. Each sponsor has three attributes which are id, sponsor name and starting year of sponsorship. In sponsors table four operations could be done by user which are adding a new sponsor, updating an existing sponsor, deleting a sponsor and Searching in sponsors. 
 
 2.2.Operations on sponsors
 ==========================
 
 2.2.1.Adding a New Sponsor
 --------------------------
-   While in the ‘Sponsors’ A new sponsor can be added by firstly clicking Add New Sponsor button. Then on the add page all sponsor id, sponsor name and starting year must be filled in order to add successfully. In case of leaving blank space error messages return.Also it is not possible to add a sponsor with same id with another sponsor. In such cases error messages will return.
+ While in the ‘Sponsors’ A new sponsor can be added by firstly clicking Add New Sponsor button. Then on the add page all sponsor id, sponsor name and starting year must be filled in order to add successfully. In case of leaving blank space error messages return.Also it is not possible to add a sponsor with same id with another sponsor. In such cases error messages will return.
 
    .. figure:: anl/addingsponsor.png
       :scale: 100 %
@@ -86,7 +86,7 @@ In order to search user must click the ‘Search Pools’ button that is under t
 
 2.2.2.Deleting a Sponsor
 ------------------------   
-   While in the ‘Sponsors’ deletion operation is possible by ticking the box near the sponsor that wanted to be deleted. After ticking the box by clicking delete button at the bottom of the page operation can be completed. Deleting a sponsor that is being used in olympics currently is not possible. In case of such attempt error message pops.
+ While in the ‘Sponsors’ deletion operation is possible by ticking the box near the sponsor that wanted to be deleted. After ticking the box by clicking delete button at the bottom of the page operation can be completed. Deleting a sponsor that is being used in olympics currently is not possible. In case of such attempt error message pops.
 
    .. figure:: anl/deletingsponsor.png
       :scale: 100 %
