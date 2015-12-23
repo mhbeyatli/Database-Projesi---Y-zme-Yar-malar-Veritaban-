@@ -4,9 +4,9 @@ Parts Implemented by Ege Çetindağ
 Styles
 ======
 
-      When user click the Styles from the navigation bar, style table shows up which is the main table of the swimming styles and
+      When user click the Styles from the navigation bar, style table shows up which is the main table of
 
-   includes the swimming styles and events(IM) of this styles.
+   the swimming styles and includes the swimming styles and events(IM) of this styles.
 
 
    .. figure:: Ege/Resim1.png
@@ -20,11 +20,11 @@ Men and Women High Scores
 
       By clicking one of these tuples, person.html is reached. In this html, Men and Women's highest records are
 
-   listed related to swimming types. If "backstroke 50m" is clicked, in person html you can see the highest records in men and women
+   listed related to swimming types. If "backstroke 50m" is clicked, in person html you can see the highest records
 
-   for 50m backstroke. Also, the records in this page are sorted by time that the swimmer completed the race in. So, the first person in
+   in men and women for 50m backstroke. Also, the records in this page are sorted by time that the swimmer completed
 
-   these lists always the person who swam this meter in the shortest time.
+   the race in. So, the first person in these lists always the person who swam this meter in the shortest time.
 
 .. |logo1| image:: Ege/Resim2.png
    :scale: 100%
@@ -55,7 +55,9 @@ Add
             :width: 90 %
             :scale: 50 %
 
-      Input should be written in text boxes and submitted by clicking save button. When it is saved, it automatically returns the tables.
+      Input should be written in text boxes and submitted by clicking save button. When it is saved, it automatically
+
+      returns the tables.
 
 Delete
 ------
@@ -68,9 +70,11 @@ Delete
 
       Since in Men and Women tables, foreign key is restrict to the Styles table, If any tuple in Styles table has a child,
 
-   This tuple cannot be deleted before deleting every child whose foreign key shows that tuple. This rule is only valid for Style table
+   This tuple cannot be deleted before deleting every child whose foreign key shows that tuple. This rule is only valid for
 
-   because men and women tables are referances this table. So, in men and women tables, tuples can be deleted without an error.
+   Style table because men and women tables are referances this table. So, in men and women tables, tuples can be deleted
+
+   without an error.
 
 
       .. figure:: Ege/Resim9.png
@@ -85,11 +89,11 @@ Update
 
       To update a tuple, again a selectbox should be selected and submitted by clicking the update button.
 
-    Then textboxes should be filled in the page, and submit button should be clicked. By doing that, id stays still but other attributes are changed.
+    Then textboxes should be filled in the page, and submit button should be clicked. By doing that, id stays still
 
-    Since foreign keys in Men and Women tables are cascaded on update function, no error message shows up. Because ID for the Styles
+     but other attributes are changed. Since foreign keys in Men and Women tables are cascaded on update function,
 
-    table cannot be changed.
+      no error message shows up. Because ID for the Styles table cannot be changed.
 
 .. |logo1| image:: Ege/Resim12.png
    :scale: 100%
