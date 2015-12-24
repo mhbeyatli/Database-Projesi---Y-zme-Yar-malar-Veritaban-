@@ -15,6 +15,7 @@ Pools table structurally has five attributes. Additional to pool name, pool id, 
         .. code-block:: sql
         
                CREATE TABLE POOLS ( 
+               LISTNO SERIAL,
                ID INTEGER PRIMARY KEY,
                POOLNAME VARCHAR(100) UNIQUE NOT NULL, 
                CITY VARCHAR(30) NOT NULL,

@@ -27,8 +27,17 @@ Database Design
 1. Group Member
 ^^^^^^^^^^^^^^^
 
-2. Group Member
-^^^^^^^^^^^^^^^
+2. Anil Agca
+^^^^^^^^^^^^
+   E/R diagram for my Tables :
+
+   .. figure:: anldiagram.png
+      :scale: 50 %
+      :alt: 
+
+      *Entity/Relation diagram of Olympics,Pools,Sponsors*
+
+All data included at Anil Agca section.
 
 3. Mustafa Tıkır's database part and E/R diagram
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
