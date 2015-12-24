@@ -4,12 +4,6 @@ Developer Guide
 Database Design
 ---------------
 
-**explain the database design of your project**
-
-
-**include the E/R diagram(s)**
-
-
    Our project's database design is implemented seperately. Each team member has designed his/her own database.
 
    So, our project's database design and E/R diagrams is going to be explained seperately.
@@ -27,8 +21,54 @@ Database Design
 1. Group Member
 ^^^^^^^^^^^^^^^
 
-2. Anil Agca
-^^^^^^^^^^^^
+2. Anıl AĞCAS's database part and E/R diagram
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+2.1. Database Design
+""""""""""""""""""""
+
+Pools table structurally has five attributes. Additional to pool name, pool id, area, city also listno is an attribute of pools table which is not being shown to end-user in any case. Listno is being used only for ordering the pools by the time they are entered. Pools table has created by following SQL code;
+
+        .. code-block:: sql
+        
+               CREATE TABLE POOLS ( 
+               LISTNO SERIAL,
+               ID INTEGER PRIMARY KEY,
+               POOLNAME VARCHAR(100) UNIQUE NOT NULL, 
+               CITY VARCHAR(30) NOT NULL,
+               AREA INTEGER ) 
+               
+               
+Olympics table has five attributes. Four of them are being seen by user and two foreign keys which references ‘Pools’ and ‘Sponsors’ tables. And the attribute named LISTNO that not being seen by user is being used for ordering rows. Code for creating table at SQL can be seen below.
+
+
+
+    .. code-block:: sql
+      
+            CREATE TABLE OLYMPICS( 
+            LISTNO SERIAL PRIMARY KEY,
+            FULLNAME VARCHAR(20), 
+            SPONSORID INTEGER 
+            REFERENCES SPONSORS(SPONSORID)
+            ON DELETE RESTRICT ON UPDATE, 
+            YEAR INTEGER,
+            POOLID INTEGER REFERENCES POOLS(ID)
+            ON DELETE RESTRICT ON UPDATE CASCADE )
+           
+Sponsors table has four attributes structurally which are ListNo, Sponsorid,SponsorName, Year. ListNo is being used only for ordering the rows and not being shown to user in any case. Primary key of the table Is ID and being referenced by Olympics table in order to get additional information with a sponsor having that id without using any additional rows at Olympics table.Sponsors table has been created by following SQL code;
+
+
+      .. code-block:: sql
+
+            CREATE TABLE SPONSORS( 
+            LISTNO SERIAL,
+            SPONSORID INTEGER PRIMARY KEY,
+            SPONSORNAME VARCHAR(30),
+            YEAR INTEGER )
+             
+2.2. E/R Diagram
+""""""""""""""""
+
    E/R diagram for my Tables :
 
    .. figure:: anldiagram.png
@@ -37,7 +77,6 @@ Database Design
 
       *Entity/Relation diagram of Olympics,Pools,Sponsors*
 
-Database design and all other functions explained at Anil Agca section.
 
 3. Mustafa Tıkır's database part and E/R diagram
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -108,19 +147,6 @@ Database design and all other functions explained at Anil Agca section.
 
 Code
 ----
-
-**explain the technical structure of your code**
-
-**to include a code listing, use the following example**::
-
-   .. code-block:: python
-
-      class Foo:
-
-         def __init__(self, x):
-            self.x = x
-
-:
 
    Connection with the database and our project is done in the server.py file which is main file for the python codes.
 
