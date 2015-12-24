@@ -8,7 +8,7 @@ OPENWATER SWIMMING
    with using multiple left joins on 3 tables in one query, is going to appear.
 
 
-   .. figure:: Yoktan/main.png
+   .. figure:: Yoktan/main.PNG
          :scale: 40 %
          :alt: Main  
          
