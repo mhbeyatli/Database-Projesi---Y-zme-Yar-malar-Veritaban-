@@ -37,7 +37,7 @@ Database Design
 
       *Entity/Relation diagram of Olympics,Pools,Sponsors*
 
-All data included at Anil Agca section.
+Database design and all other functions explained at Anil Agca section.
 
 3. Mustafa Tıkır's database part and E/R diagram
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -164,7 +164,7 @@ Code
 .. toctree::
 
    member1
-   member2
+   Anil Agca
    Mustafa Tıkır
    member4
    member5
