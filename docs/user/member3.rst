@@ -26,8 +26,8 @@ Also each pool id must be unique in order to keep integrity, it is not possible 
       *Figure 1: Adding a New Pool*
 
    
-1.2.2Deleting a Pool
---------------------
+1.2.2.Deleting a Pool
+---------------------
 In order to delete a Pool, while in pools page, the button near the pool that wanted to be deleted must be ticked first. After that with clicking delete button deletion can be completed. The Pools which are being used by any olympics cannot be deleted. In such attempts an error message will pop.
       
    .. figure:: anl/deletingpool.png
@@ -38,8 +38,8 @@ In order to delete a Pool, while in pools page, the button near the pool that wa
 
  
 
-1.2.3Updating a Pool
---------------------
+1.2.3.Updating a Pool
+---------------------
 To update an existing pool, while in pools page in order to go to updating page, update pools button must be clicked.Then the update page will show up. In order to proceed the pool that wanted to be updated by the user must be ticked. And then new information about that pool must be entered by user to the form below the pools list. To update successfully all boxes must be filled correctly and also there must be no other pool with entered id currently. With updating a pool’s id, Also the Pool id section of the Olympics that uses that Pool id will be updated in such way, by reflecting the change on pools table to other tables, consistency of the web page is being established.
 
    .. figure:: anl/updatingpool.png
@@ -49,7 +49,7 @@ To update an existing pool, while in pools page in order to go to updating page,
       *Figure 3: Updating a Pool*
 
  
-1.2.4 Searching a Pool
+1.2.4.Searching a Pool
 ----------------------
 In order to search user must click the ‘Search Pools’ button that is under the main menu at ‘Pools Page’. After a keyword must be entered into the box in the search page. Then simply by clicking Search button below list of results will be shown.
 
@@ -105,7 +105,7 @@ In order to update a sponsor first ‘Update Sponsor’ button at the ‘Sponsor
       *Figure 7: Updating a Sponsor*
 
 
-2.2.4 Search in Sponsors
+2.2.4.Search in Sponsors
 ------------------------
 To search firstly ‘Search Sponsors’ button must be clicked on the ‘Sponsors Page’. Then by simply entering the keyword into the form and clicking the ‘Search button’ search operation can be done. The result will be shown on the following page.
 
@@ -166,7 +166,7 @@ In order to update an Olympic, after reaching to olympics page with clicking ‘
 ------------------------
 Searching page can be reached by clicking the Search Olympics button on the Olympics page. Search operation can be made by entering the keyword into the form appeared and clicking at search button on the search page. Then Olympics named with the entered keyword will return to the screen.
    
-   .. figure:: anl/addingolympic.png
+   .. figure:: anl/searcingolympic.png
       :scale: 100 %
       :alt: Figure 12: Searching for an Olympic
 

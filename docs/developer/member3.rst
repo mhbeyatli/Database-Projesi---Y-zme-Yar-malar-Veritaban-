@@ -35,13 +35,13 @@ Pools section uses four html files, in order to execute operations and show cont
 1.2.1.Pools.html
 ================
 
-Pools.html is being used for showing the current records to user and deleting chosen record by clicking delete button. Pools.html file is a returning by web api at /Pools route
+Pools.html is being used for showing the current records to user and deleting chosen record by clicking delete button. Pools.html file is returning by web api at /Pools route
 
     .. code-block:: python
     
       {% for key, Pool in Pools %}
 
-Gathering a Pool for each time for a loop and printing it into the table which has columns as
+Gathering one Pool at each time for a loop and printing it into the table which has columns as
 
 
      .. code-block:: python
@@ -80,7 +80,7 @@ poolsadd.html file which can be reached with route /Pools/add/ contains a form w
 
 1.2.3.pools_update.html file
 ----------------------------
-Pools are being printed again like at pools.html only instead of delete checkbox, with an update checkbox added which added with following code ; 
+Pools are being printed again like at pools.html only instead of delete checkbox, with an update checkbox which added with following code ; 
 
       .. code-block:: python  
           
@@ -96,7 +96,7 @@ Has simple interface for search operation with a box for entering the keyword an
 
     .. code-block:: python
         
-         <form action="{{ url_for('recor_search') }}" method="post">
+         <form action="{{ url_for('pool_search') }}" method="post">
          <table class="t1">
          <tr>
           <th>Enter the Keyword for search:</th>
@@ -110,7 +110,7 @@ Has simple interface for search operation with a box for entering the keyword an
 
 1.3. Python rendering and referencing functions of pools table
 ==============================================================
-Python functions are being stored at two files which are store.py and Pools_d.py, Olympics_d.py, Sponsors_d.py. At Pools_d.py functions that are being used for rendering and establishing connection between HTML and other python functions at store.py. All functions at Pools_d.py, Olympics_d.py, Sponsors_d.py calls the related function at store.py with parameters taken from HTML, and sends renders the returning page from HTML files with taken data from SQL if any. Functions in Pools_d.py can be seen below.
+Python functions are being stored at two files which are store.py and Pools_d.py, Olympics_d.py, Sponsors_d.py. At Pools_d.py functions that are being used for rendering and establishing connection between HTML and other python functions at store.py. All functions at Pools_d.py, Olympics_d.py, Sponsors_d.py calls the related function at store.py with parameters taken from HTML, and sends rendering the returning page from HTML files with taken data from SQL if any. Functions in Pools_d.py can be seen below.
 
 
    .. code-block:: python
@@ -300,7 +300,7 @@ Olympics section uses four html files, in order to execute operations and show c
 2.2.1.Olympics.html
 ===================
 
-Olympics.html is being used for showing the current records to user and deleting chosen record by clicking delete button. Olympics.html file is returning by web api at /Pools route
+Olympics.html is being used for showing the current records to user and deleting chosen record by clicking delete button. Olympics.html file is returning by web api at /Olympics route
 
     .. code-block:: python
     
@@ -338,7 +338,7 @@ And after gathering olympic object at each time, printing the row with;
         13    {{Olympic.Poolid}}
         14    </td>
         
-Lines 4,7,10,13 prints attribute of the pool and line 1,2 creates a box which makes user able to delete the row by ticking and pressing delete button at the bottom of the page. By ticking this box html file will send message “deletepools” with a key to the python application and python will do rest of the operation.
+Lines 4,7,10,13 prints attribute of the olympic and line 1,2 creates a box which makes user able to delete the row by ticking and pressing delete button at the bottom of the page. By ticking this box html file will send message “deleteolympics” with a key to the python application and python will do rest of the operation.
 
 
 2.2.2.olympicsadd.html file
@@ -378,7 +378,7 @@ Has simple interface for search operation with a box for entering the keyword an
 
 3.3. Python rendering and referencing functions of pools table
 ==============================================================
-Python functions are being stored at two files which are store.py and Pools_d.py, Olympics_d.py, Sponsors_d.py. At Olympics_d.py functions that are being used for rendering and establishing connection between HTML and other python functions at store.py. All functions at Pools_d.py, Olympics_d.py, Sponsors_d.py calls the related function at store.py with parameters taken from HTML, and sends renders the returning page from HTML files with taken data from SQL if any. Functions in Olympics_d.py can be seen below.
+Python functions are being stored at two files which are store.py and Pools_d.py, Olympics_d.py, Sponsors_d.py. At Olympics_d.py functions that are being used for rendering and establishing connection between HTML and other python functions at store.py. All functions at Pools_d.py, Olympics_d.py, Sponsors_d.py calls the related function at store.py with parameters taken from HTML, and sends rendering the returning page from HTML files with taken data from SQL if any. Functions in Olympics_d.py can be seen below.
 
 
    .. code-block:: python
@@ -513,18 +513,18 @@ Function is being used on deleting operation.
    
     .. code-block:: python
     
-    def update_olympic(self, key, Fullname,SwimmerId,Year,Poolid):
-        try:
-            with dbapi2.connect(self.dsn) as connection:
-                cursor = connection.cursor()
-                query = "UPDATE OLYMPICS SET FULLNAME = %s, SPONSORID = %s, YEAR = %s, POOLID = %s WHERE (LISTNO = %s)"
-                cursor.execute(query, (Fullname,SwimmerId,Year,Poolid, key))
-                connection.commit()
-        except dbapi2.DatabaseError:
-            flash('Unable to Update. Please be sure that new Sponsor and Pool ids exist.')
-            connection.rollback()
-        finally:
-            connection.close()
+          def update_olympic(self, key, Fullname,SwimmerId,Year,Poolid):
+              try:
+                  with dbapi2.connect(self.dsn) as connection:
+                      cursor = connection.cursor()
+                      query = "UPDATE OLYMPICS SET FULLNAME = %s, SPONSORID = %s, YEAR = %s, POOLID = %s WHERE (LISTNO = %s)"
+                      cursor.execute(query, (Fullname,SwimmerId,Year,Poolid, key))
+                      connection.commit()
+              except dbapi2.DatabaseError:
+                  flash('Unable to Update. Please be sure that new Sponsor and Pool ids exist.')
+                  connection.rollback()
+              finally:
+                  connection.close()
             
 Function is being used for update operation. Puts parameters correct places at pre-written SQL code then executes it. Also has a try-except-finally code-block which being used in case of new pool id or sponsor id is not valid. 
 
@@ -567,7 +567,7 @@ HTML file of Sponsors are very similiar with Pools.Check part 1.2.
             
 3.3. Python rendering and referencing functions of sponsors table
 =================================================================
-Python functions are being stored at two files which are store.py and Sponsors.py. At Sponsors_d.py functions that are being used for rendering and establishing connection between HTML and other python functions at store.py. All functions at Pools_d.py, Olympics_d.py, Sponsors_d.py calls the related function at store.py with parameters taken from HTML, and sends renders to the returning page from HTML files with taken data from SQL if any. Functions in Sponsors_d.py can be seen below.
+Python functions are being stored at two files which are store.py and Sponsors.py. At Sponsors_d.py functions that are being used for rendering and establishing connection between HTML and other python functions at store.py. All functions at Pools_d.py, Olympics_d.py, Sponsors_d.py calls the related function at store.py with parameters taken from HTML, and sends rendering to the returning page from HTML files with taken data from SQL if any. Functions in Sponsors_d.py can be seen below.
 
 
    .. code-block:: python
@@ -721,5 +721,5 @@ Function is being used for update operation. Puts parameters correct places at p
                              for key,Sponsorid,Swimmername,Birthyear in cursor]
                    return Sponsors
 
-Function is being used for Search operation. Takes entered keyword as parameter and puts it in right place at pre-written SQL code. After with code being executed function takes results and returns them to called Pools_d.py which returns it to user.
+Function is being used for Search operation. Takes entered keyword as parameter and puts it in right place at pre-written SQL code. After with code being executed function takes results and returns them to called Sponsors_d.py which returns it to user.
          
