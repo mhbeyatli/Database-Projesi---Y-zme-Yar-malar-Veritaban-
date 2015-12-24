@@ -166,7 +166,7 @@ In order to update an Olympic, after reaching to olympics page with clicking ‘
 ------------------------
 Searching page can be reached by clicking the Search Olympics button on the Olympics page. Search operation can be made by entering the keyword into the form appeared and clicking at search button on the search page. Then Olympics named with the entered keyword will return to the screen.
    
-   .. figure:: anl/searcingolympic.png
+   .. figure:: anl/searchingolympic.png
       :scale: 100 %
       :alt: Figure 12: Searching for an Olympic
 
