@@ -33,7 +33,7 @@ OPENWATER SWIMMING
    When the user click to "COMPETITION RESULTS", competition results table and buttons 
    that are about functions of table are going to appear.
    
-   .. figure:: Yoktan/compresults.png
+   .. figure:: Yoktan/compresults.PNG
          :scale: 30 %
          :alt: Competition Results     
           
@@ -57,7 +57,7 @@ OPENWATER SWIMMING
 
    If the user wants to add a result to the table, he or she should click to add button first. Then, an add page will appear.
    
-   .. figure:: Yoktan/cradd.png
+   .. figure:: Yoktan/cradd.PNG
          :scale: 30 %
          :alt: Competition Results Add Page  
          
@@ -66,7 +66,7 @@ OPENWATER SWIMMING
    Because of competition id and winner id are referenced from other tables, user should enter reasonable variables that are 
    also in reference tables. If the entered data is reasonable when user click to save button result is saved as shown below:
    
-   .. figure:: Yoktan/crsaved.png
+   .. figure:: Yoktan/crsaved.PNG
          :scale: 30 %
          :alt: saved result
          
@@ -75,7 +75,7 @@ OPENWATER SWIMMING
    If the entered data is not reasonable, that means at least one of the variables that is referenced from other table does not 
    exist in reference table. So, there is going to appear an error message.
    
-   .. figure:: Yoktan/cradd2.png
+   .. figure:: Yoktan/cradd2.PNG
          :scale: 30 %
          :alt: save result
          
@@ -87,7 +87,7 @@ OPENWATER SWIMMING
    As shown below, there is a checkbox for each row of table, and at the buttom there is a delete button. After selection and 
    click delete, selected row is removed. 
    
-   .. figure:: Yoktan/crdelete.png
+   .. figure:: Yoktan/crdelete.PNG
          :scale: 30 %
          :alt: delete result
          
@@ -98,7 +98,7 @@ OPENWATER SWIMMING
    
    For update operation user should select a row and click update. 
    
-   .. figure:: Yoktan/crupdate.png
+   .. figure:: Yoktan/crupdate.PNG
          :scale: 30 %
          :alt: update result
          
@@ -107,7 +107,7 @@ OPENWATER SWIMMING
    Then, an update page will appear. User should change data wanted to update and click update button. If changed data is 
    reasonable update occurs. 
    
-   .. figure:: Yoktan/crupdate2.png
+   .. figure:: Yoktan/crupdate2.PNG
          :scale: 30 %
          :alt: update function
          
@@ -116,7 +116,7 @@ OPENWATER SWIMMING
    But, if changed data is not reasonable, it means referenced variables do not exist in reference table, there is going to 
    appear an error message.
    
-   .. figure:: Yoktan/crupdate3.png
+   .. figure:: Yoktan/crupdate3.PNG
          :scale: 30 %
          :alt: update error
          
@@ -133,7 +133,7 @@ OPENWATER SWIMMING
 
    When the user click to "SWIMMERS", swimmers table and buttons that are about functions of table are going to appear.
    
-   .. figure:: Yoktan/swimmers.png
+   .. figure:: Yoktan/swimmers.PNG
          :scale: 30 %
          :alt: Swimmers
          
@@ -157,7 +157,7 @@ OPENWATER SWIMMING
 
    If the user wants to add a swimmer to the table, he or she should click to add button first. Then, an add page will appear.
    
-   .. figure:: Yoktan/sadd.png
+   .. figure:: Yoktan/sadd.PNG
          :scale: 30 %
          :alt: Swimmers Add
          
@@ -169,7 +169,7 @@ OPENWATER SWIMMING
    As shown below, there is a checkbox for each row of table, and at the buttom there is a delete button. After selection and 
    click delete, selected row is removed.
    
-   .. figure:: Yoktan/sdelete.png
+   .. figure:: Yoktan/sdelete.PNG
          :scale: 30 %
          :alt: Swimmers Delete
          
@@ -178,7 +178,7 @@ OPENWATER SWIMMING
    For this table there is exceptional stuation. If data that wanted to remove, is used in another table user can not delete 
    this row and there is going to appear an error message.
    
-   .. figure:: Yoktan/sdelete2.png
+   .. figure:: Yoktan/sdelete2.PNG
          :scale: 30 %
          :alt: Swimmers Delete Error
          
@@ -197,7 +197,7 @@ OPENWATER SWIMMING
    For search operation user should click search button. A search page will appear and user should enter name of swimmer because 
    search function searchs by name. 
    
-   .. figure:: Yoktan/ssearch.png
+   .. figure:: Yoktan/ssearch.PNG
          :scale: 30 %
          :alt: Swimmers Search
          
@@ -209,7 +209,7 @@ OPENWATER SWIMMING
    When the user click to "COMPETITION INFO", competition informations table and buttons that are about functions of table are 
    going to appear.
    
-   .. figure:: Yoktan/compinfo.png
+   .. figure:: Yoktan/compinfo.PNG
          :scale: 30 %
          :alt: Competition Info
          
@@ -235,14 +235,14 @@ OPENWATER SWIMMING
 
    If the user wants to add a competition to the table, he or she should click to add button first. Then, an add page will appear.
    
-   .. figure:: Yoktan/compadd.png
+   .. figure:: Yoktan/compadd.PNG
          :scale: 30 %
          :alt: Competition Add
          
          *Competition add form*
          
          
-   .. figure:: Yoktan/compadd2.png
+   .. figure:: Yoktan/compadd2.PNG
          :scale: 30 %
          :alt: Competition Saved
          
@@ -254,7 +254,7 @@ OPENWATER SWIMMING
    As shown below, there is a checkbox for each row of table, and at the buttom there is a delete button. After selection and 
    click delete, selected row is removed.
    
-   .. figure:: Yoktan/compdelete.png
+   .. figure:: Yoktan/compdelete.PNG
          :scale: 30 %
          :alt: Competition Delete
          
@@ -264,7 +264,7 @@ OPENWATER SWIMMING
    For this table there is exceptional stuation. If data that wanted to remove, is used in another table user can not delete 
    this row and there is going to appear an error message.
    
-   .. figure:: Yoktan/compdelete2.png
+   .. figure:: Yoktan/compdelete2.PNG
          :scale: 30 %
          :alt: Competition Delete Error
          
@@ -276,20 +276,20 @@ OPENWATER SWIMMING
 
    For update operation user should select a row and click update. 
    
-   .. figure:: Yoktan/compupdate.png
+   .. figure:: Yoktan/compupdate.PNG
          :scale: 30 %
          :alt: update competition button
  
    
    Then, an update page will appear. User should change data wanted to update and click update button.
    
-   .. figure:: Yoktan/compupdate2.png
+   .. figure:: Yoktan/compupdate2.PNG
          :scale: 30 %
          :alt: update competition
    
    If changed data is used another table, data is also updated in other table.
    
-     .. figure:: Yoktan/compupdate3.png
+     .. figure:: Yoktan/compupdate3.PNG
          :scale: 30 %
          :alt: update competition change other tables
    
@@ -300,7 +300,7 @@ OPENWATER SWIMMING
    For search operation user should click search button. A search page will appear and user should enter name of competition
    because search function searchs by competition name. 
    
-   .. figure:: Yoktan/compsearch.png
+   .. figure:: Yoktan/compsearch.PNG
          :scale: 30 %
          :alt: Swimmers Search
          
