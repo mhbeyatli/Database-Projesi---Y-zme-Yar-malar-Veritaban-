@@ -229,7 +229,7 @@ Sponsors table has four attributes structurally which are ListNo, Sponsorid,Spon
 """"""""""""""""
       E/R diagram of this part :
 
-   .. figure:: mhbdia.png
+   .. figure:: mhb/mhbdia.png
       :scale: 35 %
       :alt: ER diagram
 
