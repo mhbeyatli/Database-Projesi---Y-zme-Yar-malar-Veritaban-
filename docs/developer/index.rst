@@ -18,8 +18,55 @@ Database Design
 
    Connection code is going to be given in codes section of developer guide
 
-1. Group Member
+1. Ege Çetindağ
 ^^^^^^^^^^^^^^^
+1.1. Database Design
+""""""""""""""""""""
+      Aim of this section is storing swimming types and easily reaching data of men and women who has score on this swimming style.
+
+   First table is Styless which is the main table.
+
+.. code-block:: python
+    CREATE TABLE STYLESS{
+    ID SERIAL PRIMARY KEY,
+    TITLE VARCHAR(45),
+    METER VARCHAR(20)
+    }
+
+      Men and Women tables reference to the ID of the main table and store name and best time of a swimmer.
+
+.. code-block:: python
+    CREATE TABLE MEN{
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(45),
+    TIME VARCHAR(20),
+    STYLEID INTEGER REFERENCES STYLESS(ID)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+    }
+
+.. code-block:: python
+    CREATE TABLE WOMEN{
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(45),
+    TIME VARCHAR(20),
+    STYLEID INTEGER REFERENCES STYLESS(ID)
+    ON DELETE RESTRICT
+    ON UPDATE CASCADE
+    }
+
+1.2. E/R Diagram
+""""""""""""""""
+
+   E/R diagram of this part :
+
+   .. figure:: ege/reference.jpg
+      :scale: 50 %
+      :alt: ER diagram
+
+      *Entity/Relation diagram*
+
+
 
 2. Anıl AĞCAS's database part and E/R diagram
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -30,42 +77,42 @@ Database Design
 Pools table structurally has five attributes. Additional to pool name, pool id, area, city also listno is an attribute of pools table which is not being shown to end-user in any case. Listno is being used only for ordering the pools by the time they are entered. Pools table has created by following SQL code;
 
         .. code-block:: sql
-        
-               CREATE TABLE POOLS ( 
+
+               CREATE TABLE POOLS (
                LISTNO SERIAL,
                ID INTEGER PRIMARY KEY,
-               POOLNAME VARCHAR(100) UNIQUE NOT NULL, 
+               POOLNAME VARCHAR(100) UNIQUE NOT NULL,
                CITY VARCHAR(30) NOT NULL,
-               AREA INTEGER ) 
-               
-               
+               AREA INTEGER )
+
+
 Olympics table has five attributes. Four of them are being seen by user and two foreign keys which references ‘Pools’ and ‘Sponsors’ tables. And the attribute named LISTNO that not being seen by user is being used for ordering rows. Code for creating table at SQL can be seen below.
 
 
 
     .. code-block:: sql
-      
-            CREATE TABLE OLYMPICS( 
+
+            CREATE TABLE OLYMPICS(
             LISTNO SERIAL PRIMARY KEY,
-            FULLNAME VARCHAR(20), 
-            SPONSORID INTEGER 
+            FULLNAME VARCHAR(20),
+            SPONSORID INTEGER
             REFERENCES SPONSORS(SPONSORID)
-            ON DELETE RESTRICT ON UPDATE, 
+            ON DELETE RESTRICT ON UPDATE,
             YEAR INTEGER,
             POOLID INTEGER REFERENCES POOLS(ID)
             ON DELETE RESTRICT ON UPDATE CASCADE )
-           
+
 Sponsors table has four attributes structurally which are ListNo, Sponsorid,SponsorName, Year. ListNo is being used only for ordering the rows and not being shown to user in any case. Primary key of the table Is ID and being referenced by Olympics table in order to get additional information with a sponsor having that id without using any additional rows at Olympics table.Sponsors table has been created by following SQL code;
 
 
       .. code-block:: sql
 
-            CREATE TABLE SPONSORS( 
+            CREATE TABLE SPONSORS(
             LISTNO SERIAL,
             SPONSORID INTEGER PRIMARY KEY,
             SPONSORNAME VARCHAR(30),
             YEAR INTEGER )
-             
+
 2.2. E/R Diagram
 """"""""""""""""
 
@@ -73,7 +120,7 @@ Sponsors table has four attributes structurally which are ListNo, Sponsorid,Spon
 
    .. figure:: anldiagram.png
       :scale: 50 %
-      :alt: 
+      :alt:
 
       *Entity/Relation diagram of Olympics,Pools,Sponsors*
 
@@ -189,7 +236,7 @@ Code
 
 .. toctree::
 
-   member1
+   Ege Çetindağ
    Anil Agca
    Mustafa Tıkır
    member4
