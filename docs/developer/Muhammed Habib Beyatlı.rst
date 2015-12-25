@@ -8,15 +8,15 @@ Medals
 
       .. code-block:: python
 
-      <li class="nav"><a class= "nav" href="{{ url_for('medals_page')}}">Swimming Medals</a></li>
+                  <li class="nav"><a class= "nav" href="{{ url_for('medals_page')}}">Swimming Medals</a></li>
 
       These are the Bootstrap libraries in the layout.html.
 
       .. code-block:: python
 
-      <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
-      <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-          <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" />
+            <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+            <script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
 
       This is the code which provides the pop-up messages in layout.html.
 
