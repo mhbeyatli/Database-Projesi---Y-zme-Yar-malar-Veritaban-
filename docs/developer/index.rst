@@ -26,13 +26,13 @@ Database Design
 
    First table is Styless which is the main table.
 
-   .. code-block:: sql
-   
-       CREATE TABLE STYLESS{
-       ID SERIAL PRIMARY KEY,
-       TITLE VARCHAR(45),
-       METER VARCHAR(20)
-       }
+         .. code-block:: sql
+         
+             CREATE TABLE STYLESS{
+             ID SERIAL PRIMARY KEY,
+             TITLE VARCHAR(45),
+             METER VARCHAR(20)
+             }
 
       Men and Women tables reference to the ID of the main table and store name and best time of a swimmer.
 
