@@ -68,7 +68,7 @@ Database Design
 
 
 
-2. Anıl AĞCAS's database part and E/R diagram
+2. Anıl AĞCA's database part and E/R diagram
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 2.1. Database Design
