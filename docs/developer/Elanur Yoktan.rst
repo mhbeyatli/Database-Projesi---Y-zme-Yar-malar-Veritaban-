@@ -57,7 +57,7 @@ Swimmers Table
       
             Openwater= app.store.get_swimmers()
            
-      .. code-block:: python
+   .. code-block:: python
    
             query = "SELECT ID, NAME, SURNAME, NATIONALITY FROM SWIMMERS ORDER BY ID"
             
