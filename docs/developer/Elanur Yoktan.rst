@@ -42,7 +42,7 @@ Openwater Table
       
             Openwater= app.store.get_openws()
            
-      .. code-block:: python
+   .. code-block:: python
    
             query = "SELECT ID, COMPID, WINNERID, YEAR FROM OPENWATER ORDER BY YEAR" 
                        
