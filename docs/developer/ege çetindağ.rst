@@ -94,9 +94,9 @@ Delete
 
             query = "DELETE FROM STYLESS WHERE (ID = %s)"
 
-  Since, foreign keys that reference this table are on delete restrict, a tuple cannot be deleted if it has any child. If there is
-
-  an exception this code works:
+  Since, foreign keys that reference this table are on delete restrict, a tuple cannot be deleted if it has any child. 
+  
+  If there is an exception this code works:
 
    .. code-block:: python
 
@@ -226,6 +226,7 @@ Insert
    called tuples where foreign key matches ID of Styless Table.
 
    .. code-block:: python
+   
        else:
          name = request.form['name']
          time = request.form['time']
