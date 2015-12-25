@@ -26,7 +26,8 @@ Database Design
 
    First table is Styless which is the main table.
 
-   .. code-block:: python
+   .. code-block:: sql
+   
        CREATE TABLE STYLESS{
        ID SERIAL PRIMARY KEY,
        TITLE VARCHAR(45),
@@ -35,7 +36,8 @@ Database Design
 
       Men and Women tables reference to the ID of the main table and store name and best time of a swimmer.
 
-   .. code-block:: python
+   .. code-block:: sql
+   
        CREATE TABLE MEN{
        ID SERIAL PRIMARY KEY,
        NAME VARCHAR(45),
@@ -45,7 +47,8 @@ Database Design
        ON UPDATE CASCADE
        }
 
-   .. code-block:: python
+   .. code-block:: sql
+   
        CREATE TABLE WOMEN{
        ID SERIAL PRIMARY KEY,
        NAME VARCHAR(45),
