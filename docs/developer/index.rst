@@ -229,7 +229,7 @@ Sponsors table has four attributes structurally which are ListNo, Sponsorid,Spon
 """"""""""""""""
       E/R diagram of this part :
 
-   .. figure:: mhb/mhbdia.png
+   .. figure:: mhb/mhbdiagram.png
       :scale: 35 %
       :alt: ER diagram
 
@@ -242,45 +242,45 @@ Sponsors table has four attributes structurally which are ListNo, Sponsorid,Spon
 """"""""""""""""""""
    Aim of this section is storing openwater informations. There are 3 tables:
 
-   First table is Openwater which is about competition results. There are two 
+   First table is Openwater which is about competition results. There are two
    foreign key refenced from other tables.
-   
+
    .. code-block:: sql
 
             CREATE TABLE OPENWATER
             (
-               ID SERIAL PRIMARY KEY, 
-               COMPID INTEGER, 
-               FOREIGN KEY (COMPID) REFERENCES COMPETITION(ID) 
-               ON DELETE RESTRICT 
+               ID SERIAL PRIMARY KEY,
+               COMPID INTEGER,
+               FOREIGN KEY (COMPID) REFERENCES COMPETITION(ID)
+               ON DELETE RESTRICT
                ON UPDATE CASCADE,
                YEAR NUMERIC(4),
                WINNERID INTEGER,
-               FOREIGN KEY (WINNERID) REFERENCES SWIMMERS(ID) 
-               ON DELETE RESTRICT 
+               FOREIGN KEY (WINNERID) REFERENCES SWIMMERS(ID)
+               ON DELETE RESTRICT
                ON UPDATE CASCADE
             )
-   
+
    Second table is Swimmers which is about swimmers informatiions.
-   
+
    .. code-block:: sql
 
             CREATE TABLE SWIMMERS
             (
                SWIMMERID SERIAL PRIMARY KEY,
-               NAME VARCHAR(30), 
+               NAME VARCHAR(30),
                SURNAME VARCHAR(30),
                NATIONALITY VARCHAR(30)
             )
-   
+
    Third table is Competition which is about competition informatiions.
-   
+
    .. code-block:: sql
 
-            CREATE TABLE COMPETITION 
+            CREATE TABLE COMPETITION
             (
                ID SERIAL PRIMARY KEY,
-               COMPNAME VARCHAR(30), 
+               COMPNAME VARCHAR(30),
                NUMBER_OF_SWIMMERS INTEGER,
                LOCATION VARCHAR(30),
                PRIZE VARCHAR(10)
@@ -288,7 +288,7 @@ Sponsors table has four attributes structurally which are ListNo, Sponsorid,Spon
 
 5.2. E/R Diagram
 """"""""""""""""
-   
+
    E/R diagram for my Tables :
 
    .. figure:: Yoktan/blockdiagram.PNG
