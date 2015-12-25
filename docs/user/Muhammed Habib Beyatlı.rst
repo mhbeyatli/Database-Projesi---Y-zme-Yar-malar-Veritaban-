@@ -39,7 +39,7 @@ SWIMMING MEDALS
 
    When it is clicked to the button, a form will be seen.
 
-  .. figure:: mhb/Medals2.png
+   .. figure:: mhb/Medals2.png
       :scale: 35 %
       :alt: Medals
 
