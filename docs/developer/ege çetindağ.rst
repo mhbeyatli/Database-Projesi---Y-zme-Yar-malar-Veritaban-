@@ -11,9 +11,9 @@ Swimming Styles
 Styles table
 ------------
 
-      Operations for in this table are insert, delete, update and search. Also, in the first page get_styles() function is used with
-
-   GET method to write all rows in the Styless table.
+      Operations for in this table are insert, delete, update and search. Also, in the first page get_styles() function is used 
+   
+   with GET method to write all rows in the Styless table.
 
    .. code-block:: python
 
@@ -162,7 +162,7 @@ Search
 
        <form action="{{ url_for('style_search') }}" method="post">
 
-    ..code-block:: python
+    .. code-block:: python
 
       if request.method == 'POST':
          word =request.form['word']
