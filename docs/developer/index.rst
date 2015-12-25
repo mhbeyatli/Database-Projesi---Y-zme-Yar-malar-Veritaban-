@@ -27,7 +27,7 @@ Database Design
    First table is Styless which is the main table.
 
          .. code-block:: sql
-         
+
              CREATE TABLE STYLESS{
              ID SERIAL PRIMARY KEY,
              TITLE VARCHAR(45),
@@ -37,7 +37,7 @@ Database Design
       Men and Women tables reference to the ID of the main table and store name and best time of a swimmer.
 
    .. code-block:: sql
-   
+
        CREATE TABLE MEN{
        ID SERIAL PRIMARY KEY,
        NAME VARCHAR(45),
@@ -48,7 +48,7 @@ Database Design
        }
 
    .. code-block:: sql
-   
+
        CREATE TABLE WOMEN{
        ID SERIAL PRIMARY KEY,
        NAME VARCHAR(45),
@@ -72,7 +72,7 @@ Database Design
 
 
 2. Anıl AĞCA's database part and E/R diagram
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 2.1. Database Design
 """"""""""""""""""""
@@ -188,8 +188,53 @@ Sponsors table has four attributes structurally which are ListNo, Sponsorid,Spon
 
       *Entity/Relation diagram*
 
-4. Group Member
-^^^^^^^^^^^^^^^
+4. Muhammed Habib Beyatlı's database part and E/R diagram
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4.1. Database Design
+""""""""""""""""""""
+      Goal of this part, separate the swimming medals regarding to countries
+
+      MEDALS is the main table of this section. It has 4 attributes. It is related MEDAL_RECORDS table directly via 'ID' attribute.
+
+    .. code-block:: python
+
+      CREATE TABLE MEDALS(
+      ID SERIAL PRIMARY KEY,
+      GOLD VARCHAR(80),
+      SILVER VARCHAR(80),
+      BRONZE VARCHAR(80)
+      )
+
+      MEDAL_RECORDS is the middle table of this section. It has 3 attributes. It is related FR_MEDALS table directly via 'ID' attribute.
+
+    .. code-block:: python
+
+      CREATE TABLE MEDAL_RECORDS(
+      id SERIAL PRIMARY KEY,
+      bscore FLOAT NOT NULL,
+      mid INTEGER REFERENCES MEDALS (id) UNIQUE
+      )
+
+      FR_MEDALS is the undermost part of this section.
+
+    .. code-block:: python
+
+      CREATE TABLE FR_MEDALS(
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(80) NOT NULL,
+      age INTEGER,
+      cid INTEGER REFERENCES MEDAL_RECORDS (id)
+      )
+4.2. E/R Diagram
+""""""""""""""""
+      E/R diagram of this part :
+
+   .. figure:: mhbdia.png
+      :scale: 35 %
+      :alt: ER diagram
+
+      *Entity/Relation diagram*
+
 
 5. Group Member
 ^^^^^^^^^^^^^^^
@@ -242,5 +287,5 @@ Code
    Ege Çetindağ
    Anil Agca
    Mustafa Tıkır
-   member4
+   Muhammed Habib Beyatlı
    member5
